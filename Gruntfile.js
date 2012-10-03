@@ -18,18 +18,7 @@ module.exports = function(grunt) {
         'tasks/*.js'
       ],
       options: {
-        curly: true,
-        eqeqeq: true,
-        immed: true,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        undef: true,
-        boss: true,
-        eqnull: true,
-        node: true,
-        es5: true
+        jshintrc: '.jshintrc'
       }
     }
   });
@@ -37,7 +26,10 @@ module.exports = function(grunt) {
   // Actually load this plugin's task(s).
   grunt.loadTasks('tasks');
 
+  // The jshint plugin is used for linting.
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+
   // By default, lint task.
-  grunt.registerTask('default', ['jshint']);
+  grunt.registerTask('default', 'jshint');
 
 };

@@ -1,7 +1,7 @@
 {
   "name": "grunt-contrib-server",
   "description": "Start a static web server.",
-  "version": "0.4.0",
+  "version": "0.1.0",
   "homepage": "https://github.com/gruntjs/grunt-contrib-server",
   "author": {
     "name": "Grunt Team",
@@ -27,11 +27,15 @@
   "scripts": {
     "test": "grunt test"
   },
+  "dependencies": {
+    "connect": "~2.4.4"
+  },
   "devDependencies": {
+    "grunt-contrib-jshint": "0.1.0",
     "grunt-contrib-clean": "0.4.0a",
     "grunt": "~0.4.0a"
   },
   "keywords": [
-    "gruntplugin"
+
   ]
 }
