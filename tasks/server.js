@@ -20,6 +20,7 @@ module.exports = function(grunt) {
     // Merge task-specific options with these defaults.
     var options = this.options({
       port: 8000,
+      hostname: 'localhost',
       base: '.',
       keepalive: false
     });
@@ -43,8 +44,8 @@ module.exports = function(grunt) {
     }
 
     // Start server.
-    grunt.log.writeln('Starting static web server on port ' + options.port + '.');
-    connect.apply(null, middleware).listen(options.port);
+    grunt.log.writeln('Starting static web server on ' + options.hostname + ':' + options.port + '.');
+    connect.apply(null, middleware).listen(options.port, options.hostname);
 
     // So many people expect this task to keep alive that I'm adding an option
     // for it. Running the task explicitly as grunt:keepalive will override any
