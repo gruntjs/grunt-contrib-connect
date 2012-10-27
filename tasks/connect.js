@@ -22,19 +22,20 @@ module.exports = function(grunt) {
       port: 8000,
       hostname: 'localhost',
       base: '.',
-      keepalive: false
+      keepalive: false,
+      middleware: function(connect, options) {
+        // Connect requires the base path to be absolute.
+        var base = path.resolve(options.base);
+        return [
+          // Serve static files.
+          connect.static(base),
+          // Make empty directories browsable.
+          connect.directory(base)
+        ];
+      }
     });
 
-    // Connect requires the base path to be absolute.
-    var base = path.resolve(options.base);
-
-    // Sweet, sweet middleware.
-    var middleware = [
-      // Serve static files.
-      connect.static(base),
-      // Make empty directories browsable. (overkill?)
-      connect.directory(base)
-    ];
+    var middleware = options.middleware.call(this, connect, options) || [];
 
     // If --debug was specified, enable logging.
     if (grunt.option('debug')) {

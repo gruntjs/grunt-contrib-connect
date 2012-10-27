@@ -20,6 +20,20 @@ module.exports = function(grunt) {
       options: {
         jshintrc: '.jshintrc'
       }
+    },
+    server: {
+      options: {
+        keepalive: true,
+        // Example usage
+        middleware: function(connect, options) {
+          // Return array of whatever middlewares you want
+          return [
+            function(req, res, next) {
+              res.end(JSON.stringify(options, null, '\t'));
+            }
+          ];
+        }
+      }
     }
   });
 
