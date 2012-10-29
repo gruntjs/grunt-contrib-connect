@@ -1,6 +1,6 @@
 [Grunt homepage](http://gruntjs.com/) | [Documentation table of contents](toc.md)
 
-# server (built-in task)
+# connect (built-in task)
 Start a static web server.
 
 ## About
@@ -26,6 +26,6 @@ This example shows a brief overview of the [config](api_config.md) properties us
 // Project configuration.
 grunt.initConfig({
   // Configuration options.
-  server: {}
+  connect: {}
 });
 ```
