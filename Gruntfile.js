@@ -9,8 +9,6 @@
 'use strict';
 
 module.exports = function(grunt) {
-
-  // Project configuration.
   grunt.initConfig({
     jshint: {
       all: [
@@ -21,15 +19,19 @@ module.exports = function(grunt) {
         jshintrc: '.jshintrc'
       }
     },
+
+    nodeunit: {
+      tasks: ['test/*_test.js']
+    },
+
     server: {
       options: {
-        keepalive: true,
         // Example usage
         middleware: function(connect, options) {
           // Return array of whatever middlewares you want
           return [
             function(req, res, next) {
-              res.end(JSON.stringify(options, null, '\t'));
+              res.end('Hello world');
             }
           ];
         }
@@ -37,13 +39,11 @@ module.exports = function(grunt) {
     }
   });
 
-  // Actually load this plugin's task(s).
   grunt.loadTasks('tasks');
 
-  // The jshint plugin is used for linting.
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
-  // By default, lint task.
-  grunt.registerTask('default', 'jshint');
-
+  grunt.registerTask('default', ['jshint']);
+  grunt.registerTask('test', ['server', 'nodeunit']);
 };

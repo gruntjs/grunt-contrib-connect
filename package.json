@@ -22,7 +22,7 @@
   ],
   "main": "Gruntfile.js",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">=0.8.0"
   },
   "scripts": {
     "test": "grunt test"
@@ -31,11 +31,9 @@
     "connect": "~2.4.4"
   },
   "devDependencies": {
+    "grunt": "~0.4.0a",
     "grunt-contrib-jshint": "0.1.0",
-    "grunt-contrib-clean": "0.4.0a",
-    "grunt": "~0.4.0a"
+    "grunt-contrib-nodeunit": "~0.1.0"
   },
-  "keywords": [
-
-  ]
+  "keywords": []
 }
