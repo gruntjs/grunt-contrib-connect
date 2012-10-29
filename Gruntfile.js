@@ -1,5 +1,5 @@
 /*
- * grunt-contrib-server
+ * grunt-contrib-connect
  * http://gruntjs.com/
  *
  * Copyright (c) 2012 "Cowboy" Ben Alman, contributors

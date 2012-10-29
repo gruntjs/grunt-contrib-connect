@@ -1,23 +1,23 @@
 {
-  "name": "grunt-contrib-server",
+  "name": "grunt-contrib-connect",
   "description": "Start a static web server.",
   "version": "0.1.0",
-  "homepage": "https://github.com/gruntjs/grunt-contrib-server",
+  "homepage": "https://github.com/gruntjs/grunt-contrib-connect",
   "author": {
     "name": "Grunt Team",
     "url": "http://gruntjs.com/"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/gruntjs/grunt-contrib-server.git"
+    "url": "git://github.com/gruntjs/grunt-contrib-connect.git"
   },
   "bugs": {
-    "url": "https://github.com/gruntjs/grunt-contrib-server/issues"
+    "url": "https://github.com/gruntjs/grunt-contrib-connect/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/gruntjs/grunt-contrib-server/blob/master/LICENSE-MIT"
+      "url": "https://github.com/gruntjs/grunt-contrib-connect/blob/master/LICENSE-MIT"
     }
   ],
   "main": "Gruntfile.js",
