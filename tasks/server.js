@@ -16,7 +16,7 @@ module.exports = function(grunt) {
   // External libs.
   var connect = require('connect');
 
-  grunt.registerTask('server', 'Start a static web server.', function() {
+  grunt.registerTask('connect', 'Start a static web server.', function() {
     // Merge task-specific options with these defaults.
     var options = this.options({
       port: 8000,
