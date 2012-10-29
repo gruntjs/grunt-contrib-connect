@@ -24,16 +24,17 @@ module.exports = function(grunt) {
       base: '.',
       keepalive: false,
       middleware: function(connect, options) {
-        // Connect requires the base path to be absolute.
-        var base = path.resolve(options.base);
         return [
           // Serve static files.
-          connect.static(base),
+          connect.static(options.base),
           // Make empty directories browsable.
-          connect.directory(base)
+          connect.directory(options.base)
         ];
       }
     });
+
+    // Connect requires the base path to be absolute.
+    options.base = path.resolve(options.base);
 
     var middleware = options.middleware.call(this, connect, options) || [];
 
