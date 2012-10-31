@@ -24,7 +24,7 @@ module.exports = function(grunt) {
       tasks: ['test/*_test.js']
     },
 
-    server: {
+    connect: {
       options: {
         // Example usage
         middleware: function(connect, options) {
@@ -43,7 +43,8 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-contrib-internal');
 
-  grunt.registerTask('default', ['jshint']);
-  grunt.registerTask('test', ['server', 'nodeunit']);
+  grunt.registerTask('test', ['connect', 'nodeunit']);
+  grunt.registerTask('default', ['test', 'build-contrib']);
 };
