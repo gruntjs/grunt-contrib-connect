@@ -47,7 +47,16 @@ module.exports = function(grunt) {
 
     // Start server.
     grunt.log.writeln('Starting static web server on ' + options.hostname + ':' + options.port + '.');
-    connect.apply(null, middleware).listen(options.port, options.hostname);
+
+    connect.apply(null, middleware)
+      .listen(options.port, options.hostname)
+      .on('error', function(err) {
+        if (err.code === 'EADDRINUSE') {
+          grunt.fatal('Couldn\'t start server because the port is already used by another process.');
+        } else {
+          grunt.fatal(err);
+        }
+      });
 
     // So many people expect this task to keep alive that I'm adding an option
     // for it. Running the task explicitly as grunt:keepalive will override any
@@ -56,7 +65,7 @@ module.exports = function(grunt) {
       // This is now an async task. Since we don't store a handle to the "done"
       // function, this task will never, ever, ever terminate. Have fun!
       this.async();
-      grunt.log.write('Waiting forever...');
+      grunt.log.write('Waiting forever...\n');
     }
   });
 
