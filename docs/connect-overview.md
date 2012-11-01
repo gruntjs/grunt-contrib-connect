@@ -20,12 +20,17 @@ module.exports = function(grunt) {
 
 ## Project configuration
 
-This example shows a brief overview of the [config](api_config.md) properties used by the `server` task. For a more in-depth explanation, see the usage examples.
+This example shows a brief overview of the [options](connect-options.md) properties used by the `connect` task. For a more in-depth explanation, see the usage examples.
 
 ```javascript
 // Project configuration.
 grunt.initConfig({
-  // Configuration options.
-  connect: {}
+
+  connect: {
+    // Configuration options.
+    options: {
+      
+    }
+  }
 });
 ```

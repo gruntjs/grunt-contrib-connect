@@ -10,8 +10,10 @@ The `connect` task is most useful when used in conjunction with another task, li
 // Project configuration.
 grunt.initConfig({
   connect: {
-    port: 8000,
-    base: '.'
+    options: {
+      port: 8000,
+      base: '.'
+    }
   }
 });
 ```
