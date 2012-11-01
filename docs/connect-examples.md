@@ -1,6 +1,6 @@
-## Usage examples
+# Usage examples
 
-### Basic Use
+## Basic Use
 In this example, `grunt connect` will start a static web server at `http://localhost:9001/`, with its base path set to the `www-root` directory relative to the gruntfile, and any tasks run afterwards will be able to access it.
 
 ```javascript
@@ -13,7 +13,7 @@ grunt.initConfig({
 });
 ```
 
-### Roll Your Own
+## Roll Your Own
 Like the previous example, this example will start a static web server at `http://localhost:9001/`, with its base path set to the `www-root` directory relative to the gruntfile. Unlike the previous example, this is done by creating a brand new task. in fact, this plugin isn't even installed!
 
 ```javascript

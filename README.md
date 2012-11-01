@@ -67,9 +67,9 @@ function(connect, options) {
 
 Lets you add in your own Connect middlewares. This option expects a function that returns an array of middlewares.
 
-#### Usage examples
+### Usage examples
 
-##### Basic Use
+#### Basic Use
 In this example, `grunt connect` will start a static web server at `http://localhost:9001/`, with its base path set to the `www-root` directory relative to the gruntfile, and any tasks run afterwards will be able to access it.
 
 ```javascript
@@ -82,7 +82,7 @@ grunt.initConfig({
 });
 ```
 
-##### Roll Your Own
+#### Roll Your Own
 Like the previous example, this example will start a static web server at `http://localhost:9001/`, with its base path set to the `www-root` directory relative to the gruntfile. Unlike the previous example, this is done by creating a brand new task. in fact, this plugin isn't even installed!
 
 ```javascript
@@ -110,4 +110,4 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Thu Nov 01 2012 12:19:46.*
+*This file was generated on Thu Nov 01 2012 12:23:55.*
