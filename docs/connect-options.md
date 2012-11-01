@@ -1,43 +1,44 @@
 # Options
 
 ## port
-
-Type: `Integer`
+Type: `Integer`  
 Default: `8000`
 
-## hostname
+The port on which the webserver will respond.
 
-Type: `String`
+## hostname
+Type: `String`  
 Default: `localhost`
 
-## base
+The hostname the webserver will use.
 
-Type: `String`
+## base
+Type: `String`  
 Default: `.`
 
-Base directory.
+The base (or root) directory from which files will be served. The default directory is the same directory as the project's gruntfile.
 
 ## keepalive
-
-Type: `Boolean`
+Type: `Boolean`  
 Default: `false`
 
-Keep the server alive after the task has finished.
+Keep the server alive indefinitely. Note that if this option is enabled, any tasks specified after this task will _never run_. By default, once grunt's tasks have completed, the web server stops.
+
+This option can be enabled ad-hoc by running the task like `grunt connect:keepalive`
 
 ## middleware
-
-Type: `Function`
+Type: `Function`  
 Default:
 
 ```js
 function(connect, options) {
   return [
+    // Serve static files.
     connect.static(options.base),
-    connect.directory(options.base)
+    // Make empty directories browsable.
+    connect.directory(options.base),
   ];
 }
 ```
 
-Lets you to add in your own Connect middlewares.
-
-The option expects a function that returns and array of middlewares. See example in the Gruntfile.
+Lets you add in your own Connect middlewares. This option expects a function that returns an array of middlewares.

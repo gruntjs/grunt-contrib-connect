@@ -25,16 +25,15 @@ module.exports = function(grunt) {
     },
 
     connect: {
-      options: {
-        // Example usage
-        middleware: function(connect, options) {
-          // Return array of whatever middlewares you want
-          return [
-            function(req, res, next) {
-              res.end('Hello world');
-            }
-          ];
-        }
+      // Example usage
+      port: 9001,
+      middleware: function(connect, options) {
+        // Return array of whatever middlewares you want
+        return [
+          function(req, res, next) {
+            res.end('Hello world');
+          }
+        ];
       }
     }
   });

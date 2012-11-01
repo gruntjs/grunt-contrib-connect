@@ -17,8 +17,9 @@ module.exports = function(grunt) {
   var connect = require('connect');
 
   grunt.registerTask('connect', 'Start a static web server.', function() {
+
     // Merge task-specific options with these defaults.
-    var options = this.options({
+    var options = grunt.util._.defaults(grunt.config('connect'), {
       port: 8000,
       hostname: 'localhost',
       base: '.',
@@ -28,7 +29,7 @@ module.exports = function(grunt) {
           // Serve static files.
           connect.static(options.base),
           // Make empty directories browsable.
-          connect.directory(options.base)
+          connect.directory(options.base),
         ];
       }
     });
@@ -52,7 +53,7 @@ module.exports = function(grunt) {
       .listen(options.port, options.hostname)
       .on('error', function(err) {
         if (err.code === 'EADDRINUSE') {
-          grunt.fatal('Couldn\'t start server because the port is already used by another process.');
+          grunt.fatal('Port ' + options.port + ' is already in use by another process.');
         } else {
           grunt.fatal(err);
         }
