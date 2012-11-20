@@ -37,7 +37,7 @@ module.exports = function(grunt) {
     // Connect requires the base path to be absolute.
     options.base = path.resolve(options.base);
 
-    var middleware = options.middleware.call(this, connect, options) || [];
+    var middleware = options.middleware ? options.middleware.call(this, connect, options) : [];
 
     // If --debug was specified, enable logging.
     if (grunt.option('debug')) {
