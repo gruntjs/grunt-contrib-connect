@@ -1,4 +1,5 @@
 # Options
+{%= s.multi_task_options %}
 
 ## port
 Type: `Integer`  
