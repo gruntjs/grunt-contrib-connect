@@ -16,7 +16,7 @@ module.exports = function(grunt) {
   // External libs.
   var connect = require('connect');
 
-  grunt.registerMultiTask('connect', 'Start a static web server.', function() {
+  grunt.registerMultiTask('connect', 'Start a connect web server.', function() {
 
     // Merge task-specific options with these defaults.
     var options = this.options({
@@ -47,7 +47,7 @@ module.exports = function(grunt) {
     }
 
     // Start server.
-    grunt.log.writeln('Starting static web server on ' + options.hostname + ':' + options.port + '.');
+    grunt.log.writeln('Starting connect web server on ' + options.hostname + ':' + options.port + '.');
 
     connect.apply(null, middleware)
       .listen(options.port, options.hostname)
