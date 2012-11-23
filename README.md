@@ -30,7 +30,7 @@ _The following options are specified in the task configuration according to the 
 Type: `Integer`  
 Default: `8000`
 
-The port on which the webserver will respond.
+The port on which the webserver will respond. The task will fail if the specified port is already in use.
 
 #### hostname
 Type: `String`  
@@ -42,15 +42,15 @@ The hostname the webserver will use.
 Type: `String`  
 Default: `.`
 
-The base (or root) directory from which files will be served. The default directory is the same directory as the project's gruntfile.
+The base (or root) directory from which files will be served. Defaults to the project Gruntfile's directory.
 
 #### keepalive
 Type: `Boolean`  
 Default: `false`
 
-Keep the server alive indefinitely. Note that if this option is enabled, any tasks specified after this task will _never run_. By default, once grunt's tasks have completed, the web server stops.
+Keep the server alive indefinitely. Note that if this option is enabled, any tasks specified after this task will _never run_. By default, once grunt's tasks have completed, the web server stops. This option changes that behavior.
 
-This option can be enabled ad-hoc by running the task like `grunt connect:keepalive`
+This option can also be enabled ad-hoc by running the task like `grunt connect:targetname:keepalive`
 
 #### middleware
 Type: `Function`  
@@ -67,7 +67,10 @@ function(connect, options) {
 }
 ```
 
-Lets you add in your own Connect middlewares. This option expects a function that returns an array of middlewares.
+Lets you add in your own Connect middlewares. This option expects a function that returns an array of middlewares. See the [project Gruntfile][] and [project unit tests][] for a usage example.
+
+[project Gruntfile]: https://github.com/gruntjs/grunt-contrib-connect/blob/master/Gruntfile.js
+[project unit tests]: https://github.com/gruntjs/grunt-contrib-connect/blob/master/test/connect_test.js
 
 ### Usage examples
 
@@ -79,14 +82,16 @@ In this example, `grunt connect` (or more verbosely, `grunt connect:server`) wil
 grunt.initConfig({
   connect: {
     server: {
-      port: 9001,
-      base: 'www-root'
+      options: {
+        port: 9001,
+        base: 'www-root'
+      }
     }
   }
 });
 ```
 
-If you want your web server to use the default options, just omit the `options` object. You still need to specify a target (`uses_defaults` in this example), but the target's configuration object can otherwise be empty. In this example, `grunt connect` (or more verbosely, `grunt connect:uses_defaults`) will start a static web server using the default options.
+If you want your web server to use the default options, just omit the `options` object. You still need to specify a target (`uses_defaults` in this example), but the target's configuration object can otherwise be empty or nonexistent. In this example, `grunt connect` (or more verbosely, `grunt connect:uses_defaults`) will start a static web server using the default options.
 
 ```javascript
 // Project configuration.
@@ -98,7 +103,7 @@ grunt.initConfig({
 ```
 
 #### Multiple Servers
-You can specify multiple servers to be run alone or simultaneously by creating a target for each server. In this example, running either `grunt connect:site1` or `grunt connect:site2` will  start the appropriate web server, but running `grunt connect` will run _both_. Note that any server that specifies the [keepalive](#keepalive) option will prevent _any_ tasks from running after it, even other servers.
+You can specify multiple servers to be run alone or simultaneously by creating a target for each server. In this example, running either `grunt connect:site1` or `grunt connect:site2` will  start the appropriate web server, but running `grunt connect` will run _both_. Note that any server for which the [keepalive](#keepalive) option is specified will prevent _any_ task or target from running after it.
 
 ```javascript
 // Project configuration.
@@ -121,7 +126,7 @@ grunt.initConfig({
 ```
 
 #### Roll Your Own
-Like the previous example, this example will start a static web server at `http://localhost:9001/`, with its base path set to the `www-root` directory relative to the gruntfile. Unlike the previous example, this is done by creating a brand new task. in fact, this plugin isn't even installed!
+Like the [Basic Use](#basic-use) example, this example will start a static web server at `http://localhost:9001/`, with its base path set to the `www-root` directory relative to the gruntfile. Unlike the other example, this is done by creating a brand new task. in fact, this plugin isn't even installed!
 
 ```javascript
 // Project configuration.
@@ -148,4 +153,4 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Tue Nov 20 2012 15:59:56.*
+*This file was generated on Fri Nov 23 2012 11:41:12.*

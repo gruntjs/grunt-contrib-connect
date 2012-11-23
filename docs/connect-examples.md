@@ -8,14 +8,16 @@ In this example, `grunt connect` (or more verbosely, `grunt connect:server`) wil
 grunt.initConfig({
   connect: {
     server: {
-      port: 9001,
-      base: 'www-root'
+      options: {
+        port: 9001,
+        base: 'www-root'
+      }
     }
   }
 });
 ```
 
-If you want your web server to use the default options, just omit the `options` object. You still need to specify a target (`uses_defaults` in this example), but the target's configuration object can otherwise be empty. In this example, `grunt connect` (or more verbosely, `grunt connect:uses_defaults`) will start a static web server using the default options.
+If you want your web server to use the default options, just omit the `options` object. You still need to specify a target (`uses_defaults` in this example), but the target's configuration object can otherwise be empty or nonexistent. In this example, `grunt connect` (or more verbosely, `grunt connect:uses_defaults`) will start a static web server using the default options.
 
 ```javascript
 // Project configuration.
@@ -27,7 +29,7 @@ grunt.initConfig({
 ```
 
 ## Multiple Servers
-You can specify multiple servers to be run alone or simultaneously by creating a target for each server. In this example, running either `grunt connect:site1` or `grunt connect:site2` will  start the appropriate web server, but running `grunt connect` will run _both_. Note that any server that specifies the [keepalive](#keepalive) option will prevent _any_ tasks from running after it, even other servers.
+You can specify multiple servers to be run alone or simultaneously by creating a target for each server. In this example, running either `grunt connect:site1` or `grunt connect:site2` will  start the appropriate web server, but running `grunt connect` will run _both_. Note that any server for which the [keepalive](#keepalive) option is specified will prevent _any_ task or target from running after it.
 
 ```javascript
 // Project configuration.
@@ -50,7 +52,7 @@ grunt.initConfig({
 ```
 
 ## Roll Your Own
-Like the previous example, this example will start a static web server at `http://localhost:9001/`, with its base path set to the `www-root` directory relative to the gruntfile. Unlike the previous example, this is done by creating a brand new task. in fact, this plugin isn't even installed!
+Like the [Basic Use](#basic-use) example, this example will start a static web server at `http://localhost:9001/`, with its base path set to the `www-root` directory relative to the gruntfile. Unlike the other example, this is done by creating a brand new task. in fact, this plugin isn't even installed!
 
 ```javascript
 // Project configuration.

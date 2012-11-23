@@ -5,7 +5,7 @@
 Type: `Integer`  
 Default: `8000`
 
-The port on which the webserver will respond.
+The port on which the webserver will respond. The task will fail if the specified port is already in use.
 
 ## hostname
 Type: `String`  
@@ -17,15 +17,15 @@ The hostname the webserver will use.
 Type: `String`  
 Default: `.`
 
-The base (or root) directory from which files will be served. The default directory is the same directory as the project's gruntfile.
+The base (or root) directory from which files will be served. Defaults to the project Gruntfile's directory.
 
 ## keepalive
 Type: `Boolean`  
 Default: `false`
 
-Keep the server alive indefinitely. Note that if this option is enabled, any tasks specified after this task will _never run_. By default, once grunt's tasks have completed, the web server stops.
+Keep the server alive indefinitely. Note that if this option is enabled, any tasks specified after this task will _never run_. By default, once grunt's tasks have completed, the web server stops. This option changes that behavior.
 
-This option can be enabled ad-hoc by running the task like `grunt connect:keepalive`
+This option can also be enabled ad-hoc by running the task like `grunt connect:targetname:keepalive`
 
 ## middleware
 Type: `Function`  
@@ -42,4 +42,7 @@ function(connect, options) {
 }
 ```
 
-Lets you add in your own Connect middlewares. This option expects a function that returns an array of middlewares.
+Lets you add in your own Connect middlewares. This option expects a function that returns an array of middlewares. See the [project Gruntfile][] and [project unit tests][] for a usage example.
+
+[project Gruntfile]: https://github.com/gruntjs/grunt-contrib-connect/blob/master/Gruntfile.js
+[project unit tests]: https://github.com/gruntjs/grunt-contrib-connect/blob/master/test/connect_test.js
