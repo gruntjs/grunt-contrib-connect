@@ -18,13 +18,15 @@ npm install grunt-contrib-connect --save-dev
 ## Connect task
 _Run this task with the `grunt connect` command._
 
+_This task is a [multi task][] so any targets, files and options should be specified according to the [multi task][] documentation._
+[multi task]: https://github.com/gruntjs/grunt/wiki/Configuring-tasks
+
+
 Note that this server only runs as long as grunt is running. Once grunt's tasks have completed, the web server stops. This behavior can be changed with the [keepalive](#keepalive) option, and can be enabled ad-hoc by running the task like `grunt connect:keepalive`.
 
 This task was designed to be used in conjunction with another task that is run immediately afterwards, like the [grunt-contrib-qunit plugin](https://github.com/gruntjs/grunt-contrib-qunit) `qunit` task.
 
 ### Options
-_The following options are specified in the task configuration according to the [multi task options](https://github.com/gruntjs/grunt/blob/devel/docs/tasks.md) format._
-
 
 #### port
 Type: `Integer`  
@@ -34,13 +36,13 @@ The port on which the webserver will respond. The task will fail if the specifie
 
 #### hostname
 Type: `String`  
-Default: `localhost`
+Default: `'localhost'`
 
 The hostname the webserver will use.
 
 #### base
 Type: `String`  
-Default: `.`
+Default: `'.'`
 
 The base (or root) directory from which files will be served. Defaults to the project Gruntfile's directory.
 
@@ -153,4 +155,4 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Fri Nov 23 2012 11:41:12.*
+*This file was generated on Wed Nov 28 2012 08:44:54.*

@@ -1,5 +1,4 @@
 # Options
-{%= s.multi_task_options %}
 
 ## port
 Type: `Integer`  
@@ -9,13 +8,13 @@ The port on which the webserver will respond. The task will fail if the specifie
 
 ## hostname
 Type: `String`  
-Default: `localhost`
+Default: `'localhost'`
 
 The hostname the webserver will use.
 
 ## base
 Type: `String`  
-Default: `.`
+Default: `'.'`
 
 The base (or root) directory from which files will be served. Defaults to the project Gruntfile's directory.
 
