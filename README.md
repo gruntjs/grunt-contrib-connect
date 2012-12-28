@@ -2,7 +2,7 @@
 
 > Start a connect web server.
 
-_Note that this plugin has not yet been released, and only works with the latest bleeding-edge, in-development version of grunt. See the [When will I be able to use in-development feature 'X'?](https://github.com/gruntjs/grunt/blob/devel/docs/faq.md#when-will-i-be-able-to-use-in-development-feature-x) FAQ entry for more information._
+_Note that this plugin has not yet been released, and only works with the latest bleeding-edge, in-development version of grunt. See the [When will I be able to use in-development feature 'X'?](https://github.com/gruntjs/grunt/wiki/Frequently-Asked-Questions#faq-devel) FAQ entry for more information._
 
 ## Getting Started
 If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide, as it explains how to create a [gruntfile][Getting Started] as well as install and use grunt plugins. Once you're familiar with that process, install this plugin with this command:
@@ -12,7 +12,7 @@ npm install grunt-contrib-connect --save-dev
 ```
 
 [grunt]: http://gruntjs.com/
-[Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
+[Getting Started]: https://github.com/gruntjs/grunt/wiki/Getting-started
 
 
 ## Connect task
@@ -29,25 +29,25 @@ This task was designed to be used in conjunction with another task that is run i
 ### Options
 
 #### port
-Type: `Integer`  
+Type: `Integer`
 Default: `8000`
 
 The port on which the webserver will respond. The task will fail if the specified port is already in use.
 
 #### hostname
-Type: `String`  
+Type: `String`
 Default: `'localhost'`
 
 The hostname the webserver will use.
 
 #### base
-Type: `String`  
+Type: `String`
 Default: `'.'`
 
 The base (or root) directory from which files will be served. Defaults to the project Gruntfile's directory.
 
 #### keepalive
-Type: `Boolean`  
+Type: `Boolean`
 Default: `false`
 
 Keep the server alive indefinitely. Note that if this option is enabled, any tasks specified after this task will _never run_. By default, once grunt's tasks have completed, the web server stops. This option changes that behavior.
@@ -55,7 +55,7 @@ Keep the server alive indefinitely. Note that if this option is enabled, any tas
 This option can also be enabled ad-hoc by running the task like `grunt connect:targetname:keepalive`
 
 #### middleware
-Type: `Function`  
+Type: `Function`
 Default:
 
 ```js
