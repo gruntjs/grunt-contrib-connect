@@ -1,7 +1,7 @@
 {
   "name": "grunt-contrib-connect",
   "description": "Start a connect web server.",
-  "version": "0.1.0",
+  "version": "0.1.1rc5",
   "homepage": "https://github.com/gruntjs/grunt-contrib-connect",
   "author": {
     "name": "Grunt Team",
@@ -31,10 +31,10 @@
     "connect": "~2.4.4"
   },
   "devDependencies": {
-    "grunt-contrib-internal": "~0.1.0",
-    "grunt-contrib-jshint": "~0.1.0",
-    "grunt-contrib-nodeunit": "~0.1.0",
-    "grunt": "~0.4.0"
+    "grunt": "~0.4.0rc5",
+    "grunt-contrib-jshint": "~0.1.1rc5",
+    "grunt-contrib-nodeunit": "~0.1.2rc5",
+    "grunt-contrib-internal": "*"
   },
   "keywords": [
     "server",

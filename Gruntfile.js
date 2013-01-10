@@ -13,7 +13,8 @@ module.exports = function(grunt) {
     jshint: {
       all: [
         'Gruntfile.js',
-        'tasks/*.js'
+        'tasks/*.js',
+        '<%= nodeunit.tests %>'
       ],
       options: {
         jshintrc: '.jshintrc'
@@ -21,7 +22,7 @@ module.exports = function(grunt) {
     },
 
     nodeunit: {
-      tasks: ['test/*_test.js']
+      tests: ['test/*_test.js']
     },
 
     connect: {
@@ -58,5 +59,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-internal');
 
   grunt.registerTask('test', ['connect', 'nodeunit']);
-  grunt.registerTask('default', ['test', 'build-contrib']);
+  grunt.registerTask('default', ['jshint', 'test', 'build-contrib']);
 };

@@ -26,6 +26,8 @@ Note that this server only runs as long as grunt is running. Once grunt's tasks 
 
 This task was designed to be used in conjunction with another task that is run immediately afterwards, like the [grunt-contrib-qunit plugin](https://github.com/gruntjs/grunt-contrib-qunit) `qunit` task.
 
+_This plugin is only compatible with Grunt >= 0.4.0. This plugin is the replacement for the Grunt v0.3 core task `server`._
+
 ### Options
 
 #### port
@@ -149,10 +151,11 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
 
 ## Release History
 
+ * 2013-01-08   v0.1.1rc5   Updating to work with grunt v0.4.0rc5.
  * 2012-10-31   v0.1.0   Work in progress, not yet officially released.
 
 ---
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Wed Nov 28 2012 08:44:54.*
+*This file was generated on Thu Jan 10 2013 15:01:11.*
