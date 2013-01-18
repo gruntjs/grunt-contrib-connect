@@ -151,6 +151,7 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
 
 ## Release History
 
+ * 2013-01-17   v0.1.1rc6   Updating grunt/gruntplugin dependencies to rc6. Changing in-development grunt/gruntplugin dependency versions from tilde version ranges to specific versions.
  * 2013-01-08   v0.1.1rc5   Updating to work with grunt v0.4.0rc5.
  * 2012-10-31   v0.1.0   Work in progress, not yet officially released.
 
@@ -158,4 +159,4 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Thu Jan 10 2013 15:01:11.*
+*This file was generated on Fri Jan 18 2013 10:16:05.*
