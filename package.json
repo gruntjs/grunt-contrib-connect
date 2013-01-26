@@ -37,6 +37,7 @@
     "grunt": "0.4.0rc6"
   },
   "keywords": [
+    "gruntplugin",
     "server",
     "connect",
     "http"
