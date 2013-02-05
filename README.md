@@ -2,7 +2,6 @@
 
 > Start a connect web server.
 
-_Note that this plugin has not yet been released, and only works with the latest bleeding-edge, in-development version of grunt. See the [When will I be able to use in-development feature 'X'?](https://github.com/gruntjs/grunt/blob/devel/docs/faq.md#when-will-i-be-able-to-use-in-development-feature-x) FAQ entry for more information._
 
 ## Getting Started
 If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide, as it explains how to create a [gruntfile][Getting Started] as well as install and use grunt plugins. Once you're familiar with that process, install this plugin with this command:
@@ -12,7 +11,7 @@ npm install grunt-contrib-connect --save-dev
 ```
 
 [grunt]: http://gruntjs.com/
-[Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
+[Getting Started]: http://gruntjs.com/getting-started
 
 
 ## Connect task
@@ -159,4 +158,4 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Fri Jan 18 2013 10:16:05.*
+*This file was generated on Tue Feb 05 2013 11:51:32.*
