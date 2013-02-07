@@ -15,6 +15,7 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('connect', 'Start a connect web server.', function() {
     // Merge task-specific options with these defaults.
     var options = this.options({
+      protocol: 'http',
       port: 8000,
       hostname: 'localhost',
       base: '.',
@@ -28,6 +29,12 @@ module.exports = function(grunt) {
         ];
       }
     });
+
+    if (options.protocol !== 'http' &&
+      options.protocol !== 'https')
+    {
+      grunt.fatal("protocol must be 'http' or 'https'");
+    }
 
     // Connect requires the base path to be absolute.
     options.base = path.resolve(options.base);
@@ -56,8 +63,23 @@ module.exports = function(grunt) {
     var taskTarget = this.target;
     var keepAlive = this.flags.keepalive || options.keepalive;
 
-    var server = connect
-      .apply(null, middleware)
+    var app = connect
+      .apply(null, middleware);
+
+    var serverOpts = [app];
+    if (options.protocol === 'https')
+    {
+      var httpsOpts = {
+        key: options.key || grunt.file.read(path.join(__dirname, 'certs', 'server.key')).toString(),
+        cert: options.cert || grunt.file.read(path.join(__dirname, 'certs', 'server.crt')).toString(),
+        ca: options.ca || grunt.file.read(path.join(__dirname, 'certs', 'ca.crt')).toString(),
+        passphrase: options.passphrase || 'grunt',
+      };
+      serverOpts = [httpsOpts, app.listen];
+    }
+
+    var server = require(options.protocol)
+      .createServer.apply(null, serverOpts)
       .listen(options.port, options.hostname)
       .on('listening', function() {
         var address = server.address();

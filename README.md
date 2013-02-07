@@ -30,6 +30,12 @@ Note that this server only runs as long as grunt is running. Once grunt's tasks 
 This task was designed to be used in conjunction with another task that is run immediately afterwards, like the [grunt-contrib-qunit plugin](https://github.com/gruntjs/grunt-contrib-qunit) `qunit` task.
 ### Options
 
+#### protocol
+Type: `String`
+Default: `'http'`
+
+May be `'http'` or `'https'`
+
 #### port
 Type: `Integer`
 Default: `8000`
@@ -107,6 +113,58 @@ grunt.initConfig({
   }
 });
 ```
+
+#### Support for HTTPS
+
+A default certificate authority, certificate and key file are provided and pre-
+configured for use when `protocol` has been set to `https`.
+
+NOTE: The passphrase used on the files is `grunt`
+
+##### Advanced HTTPS config
+
+If the default certificate setup is unsuitable for your environment, OpenSSL
+can be used to create a set of self-signed certificates with a local ca root.
+
+```shell
+# Generate the CA key
+# Set a passphrase and remember what it is
+openssl genrsa -des3 -out ca.key 2048
+# Generate a CA root
+openssl req -new -x509 -days 3650 -key ca.key -out ca.crt
+
+# Generate the server key
+openssl genrsa -out server.key 1024
+# Generate the request to the self-signed CA root
+openssl req -new -key server.key -out server.csr
+# Generate the server certificate
+openssl x509 -req -in server.csr -out server.crt -CA ca.crt -CAkey ca.key -CAcreateserial -days 3650
+```
+
+For more details on the various options that can be set when configuring SSL,
+please see the Node documentation for [TLS][].
+
+Grunt configuration would become
+
+```javascript
+// Project configuration.
+grunt.initConfig({
+  connect: {
+    server: {
+      options: {
+        protocol: 'https',
+        port: 8443,
+        key: grunt.file.read('server.key').toString(),
+        cert: grunt.file.read('server.crt').toString(),
+        ca: grunt.file.read('ca.crt').toString(),
+        passphrase: 'grunt'
+      }
+    }
+  }
+});
+```
+
+[TLS]: http://nodejs.org/api/tls.html#tls_tls_createserver_options_secureconnectionlistener
 
 #### Multiple Servers
 You can specify multiple servers to be run alone or simultaneously by creating a target for each server. In this example, running either `grunt connect:site1` or `grunt connect:site2` will  start the appropriate web server, but running `grunt connect` will run _both_. Note that any server for which the [keepalive](#keepalive) option is specified will prevent _any_ task or target from running after it.
