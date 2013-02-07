@@ -2,9 +2,14 @@
 
 var grunt = require('grunt');
 var http = require('http');
+var https = require('https');
 
 function get(url, done) {
-  http.get(url, function(res) {
+  var client = http;
+  if (url.toLowerCase().indexOf('https') === 0) {
+    client = https;
+  }
+  client.get(url, function(res) {
     var body = '';
     res.on('data', function(chunk) {
       body += chunk;
@@ -23,5 +28,4 @@ exports.connect = {
       test.done();
     });
   },
-
 };

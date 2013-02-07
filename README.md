@@ -1,4 +1,4 @@
-# grunt-contrib-connect [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-connect.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-connect)
+# grunt-contrib-connect v0.3.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-connect.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect)
 
 > Start a connect web server.
 
@@ -35,6 +35,12 @@ Type: `Integer`
 Default: `8000`
 
 The port on which the webserver will respond. The task will fail if the specified port is already in use. You can use the special values `0` or `'?'` to use a system-assigned port.
+
+#### protocol
+Type: `String`
+Default: `'http'`
+
+May be `'http'` or `'https'`.
 
 #### hostname
 Type: `String`
@@ -150,6 +156,58 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
 });
 ```
 
+#### Support for HTTPS
+
+A default certificate authority, certificate and key file are provided and pre-
+configured for use when `protocol` has been set to `https`.
+
+NOTE: The passphrase used on the files is `grunt`
+
+####### Advanced HTTPS config
+
+If the default certificate setup is unsuitable for your environment, OpenSSL
+can be used to create a set of self-signed certificates with a local ca root.
+
+```shell
+### Generate the CA key
+### Set a passphrase and remember what it is
+openssl genrsa -des3 -out ca.key 2048
+### Generate a CA root
+openssl req -new -x509 -days 3650 -key ca.key -out ca.crt
+
+### Generate the server key
+openssl genrsa -out server.key 1024
+### Generate the request to the self-signed CA root
+openssl req -new -key server.key -out server.csr
+### Generate the server certificate
+openssl x509 -req -in server.csr -out server.crt -CA ca.crt -CAkey ca.key -CAcreateserial -days 3650
+```
+
+For more details on the various options that can be set when configuring SSL,
+please see the Node documentation for [TLS][].
+
+Grunt configuration would become
+
+```javascript
+// Project configuration.
+grunt.initConfig({
+  connect: {
+    server: {
+      options: {
+        protocol: 'https',
+        port: 8443,
+        key: grunt.file.read('server.key').toString(),
+        cert: grunt.file.read('server.crt').toString(),
+        ca: grunt.file.read('ca.crt').toString(),
+        passphrase: 'grunt',
+      },
+    },
+  },
+});
+```
+
+[TLS]: http://nodejs.org/api/tls.html#tls_tls_createserver_options_secureconnectionlistener
+
 
 ## Release History
 
@@ -165,4 +223,4 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Thu Apr 11 2013 00:01:44.*
+*This file was generated on Sun Sep 01 2013 19:52:23.*
