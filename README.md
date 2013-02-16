@@ -3,52 +3,45 @@
 > Start a connect web server.
 
 
+
 ## Getting Started
-If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide, as it explains how to create a [gruntfile][Getting Started] as well as install and use grunt plugins. Once you're familiar with that process, install this plugin with this command:
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
 npm install grunt-contrib-connect --save-dev
 ```
 
-[grunt]: http://gruntjs.com/
-[Getting Started]: http://gruntjs.com/getting-started
+
 
 
 ## Connect task
 _Run this task with the `grunt connect` command._
 
-_This task is a [multi task][] so any targets, files and options should be specified according to the [multi task][] documentation._
-[multi task]: https://github.com/gruntjs/grunt/wiki/Configuring-tasks
-
-
 Note that this server only runs as long as grunt is running. Once grunt's tasks have completed, the web server stops. This behavior can be changed with the [keepalive](#keepalive) option, and can be enabled ad-hoc by running the task like `grunt connect:keepalive`.
 
 This task was designed to be used in conjunction with another task that is run immediately afterwards, like the [grunt-contrib-qunit plugin](https://github.com/gruntjs/grunt-contrib-qunit) `qunit` task.
-
-_This plugin is only compatible with Grunt >= 0.4.0. This plugin is the replacement for the Grunt v0.3 core task `server`._
-
 ### Options
 
 #### port
-Type: `Integer`  
+Type: `Integer`
 Default: `8000`
 
 The port on which the webserver will respond. The task will fail if the specified port is already in use.
 
 #### hostname
-Type: `String`  
+Type: `String`
 Default: `'localhost'`
 
 The hostname the webserver will use.
 
 #### base
-Type: `String`  
+Type: `String`
 Default: `'.'`
 
 The base (or root) directory from which files will be served. Defaults to the project Gruntfile's directory.
 
 #### keepalive
-Type: `Boolean`  
+Type: `Boolean`
 Default: `false`
 
 Keep the server alive indefinitely. Note that if this option is enabled, any tasks specified after this task will _never run_. By default, once grunt's tasks have completed, the web server stops. This option changes that behavior.
@@ -56,7 +49,7 @@ Keep the server alive indefinitely. Note that if this option is enabled, any tas
 This option can also be enabled ad-hoc by running the task like `grunt connect:targetname:keepalive`
 
 #### middleware
-Type: `Function`  
+Type: `Function`
 Default:
 
 ```js
@@ -72,8 +65,8 @@ function(connect, options) {
 
 Lets you add in your own Connect middlewares. This option expects a function that returns an array of middlewares. See the [project Gruntfile][] and [project unit tests][] for a usage example.
 
-[project Gruntfile]: https://github.com/gruntjs/grunt-contrib-connect/blob/master/Gruntfile.js
-[project unit tests]: https://github.com/gruntjs/grunt-contrib-connect/blob/master/test/connect_test.js
+[project Gruntfile]: Gruntfile.js
+[project unit tests]: test/connect_test.js
 
 ### Usage examples
 
@@ -150,6 +143,7 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
 
 ## Release History
 
+ * 2013-02-14   v0.1.1   First official release for Grunt 0.4.0.
  * 2013-01-17   v0.1.1rc6   Updating grunt/gruntplugin dependencies to rc6. Changing in-development grunt/gruntplugin dependency versions from tilde version ranges to specific versions.
  * 2013-01-08   v0.1.1rc5   Updating to work with grunt v0.4.0rc5.
  * 2012-10-31   v0.1.0   Work in progress, not yet officially released.
@@ -158,4 +152,4 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Tue Feb 05 2013 11:51:32.*
+*This file was generated on Fri Feb 15 2013 20:22:19.*
