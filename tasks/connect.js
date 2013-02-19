@@ -9,6 +9,8 @@
 'use strict';
 
 module.exports = function(grunt) {
+  // Lo-dash
+  var _ = grunt.util._;
 
   // Nodejs libs.
   var path = require('path');
@@ -23,34 +25,47 @@ module.exports = function(grunt) {
       port: 8000,
       hostname: 'localhost',
       base: '.',
-      keepalive: false,
-      middleware: function(connect, options) {
-        return [
-          // Serve static files.
-          connect.static(options.base),
-          // Make empty directories browsable.
-          connect.directory(options.base),
-        ];
-      }
+      keepalive: false
     });
 
     // Connect requires the base path to be absolute.
     options.base = path.resolve(options.base);
 
-    var middleware = options.middleware ? options.middleware.call(this, connect, options) : [];
+    // Default middleware settings
+    var defaultMiddleware = {
+      '/': [
+        // Serve static files.
+        connect.static(options.base),
+        // Make empty directories browsable.
+        connect.directory(options.base),
+      ]
+    };
+
+    var middleware = options.middleware ? options.middleware.call(this, connect, options) : {};
+    if (_.isArray(middleware)) {
+      middleware = {'/': middleware};
+    }
+    middleware = _.extend({}, defaultMiddleware, middleware);
 
     // If --debug was specified, enable logging.
     if (grunt.option('debug')) {
       connect.logger.format('grunt', ('[D] server :method :url :status ' +
         ':res[content-length] - :response-time ms').magenta);
-      middleware.unshift(connect.logger('grunt'));
+      middleware['/'].unshift(connect.logger('grunt'));
     }
 
     // Start server.
     grunt.log.writeln('Starting connect web server on ' + options.hostname + ':' + options.port + '.');
 
-    connect.apply(null, middleware)
-      .listen(options.port, options.hostname)
+    var app = connect();
+    // Load middleware by path
+    _.forEach(middleware, function (wares, path) {
+      wares.forEach(function (ware) {
+        app.use(path, ware);
+      });
+    });
+
+    app.listen(options.port, options.hostname)
       .on('error', function(err) {
         if (err.code === 'EADDRINUSE') {
           grunt.fatal('Port ' + options.port + ' is already in use by another process.');

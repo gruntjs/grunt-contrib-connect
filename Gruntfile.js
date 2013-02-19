@@ -36,7 +36,7 @@ module.exports = function(grunt) {
           port: 9000,
         },
       },
-      custom_middleware: {
+      custom_middleware_short: {
         options: {
           port: 9001,
           middleware: function(connect, options) {
@@ -46,6 +46,22 @@ module.exports = function(grunt) {
                 res.end('Hello from port ' + options.port);
               }
             ];
+          },
+        },
+      },
+      custom_middleware_targeted: {
+        options: {
+          port: 9002,
+          base: 'test',
+          middleware: function(connect, options) {
+            // Return array of whatever middlewares you want
+            return {
+              '/custom': [
+                function(req, res, next) {
+                  res.end('Hello from port ' + options.port);
+                }
+              ]
+            };
           },
         },
       },

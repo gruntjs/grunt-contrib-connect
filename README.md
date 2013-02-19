@@ -71,7 +71,7 @@ function(connect, options) {
 }
 ```
 
-Lets you add in your own Connect middlewares. This option expects a function that returns an array of middlewares. See the [project Gruntfile][] and [project unit tests][] for a usage example.
+Lets you add in your own Connect middlewares. This option expects a function that returns an array of middlewares or an object that maps paths to arrays of middlewares. When mapping middlewares to specific paths, the default behavior for the root path will be maintained unless the returned object overrides it. See the [project Gruntfile][] and [project unit tests][] for a usage example.
 
 [project Gruntfile]: Gruntfile.js
 [project unit tests]: test/connect_test.js
