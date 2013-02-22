@@ -65,13 +65,15 @@ function(connect, options) {
   return [
     // Serve static files.
     connect.static(options.base),
+    // Serve some files from outside the project at /images
+    {'/images': connect.static('~/images')},
     // Make empty directories browsable.
     connect.directory(options.base),
   ];
 }
 ```
 
-Lets you add in your own Connect middlewares. This option expects a function that returns an array of middlewares or an object that maps paths to arrays of middlewares. When mapping middlewares to specific paths, the default behavior for the root path will be maintained unless the returned object overrides it. See the [project Gruntfile][] and [project unit tests][] for a usage example.
+Lets you add in your own Connect middlewares. This option expects a function that returns an array of middlewares or objects that map a path to a middleware or a mix of both. See the [project Gruntfile][] and [project unit tests][] for usage examples.
 
 [project Gruntfile]: Gruntfile.js
 [project unit tests]: test/connect_test.js

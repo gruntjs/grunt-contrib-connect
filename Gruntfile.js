@@ -9,6 +9,8 @@
 'use strict';
 
 module.exports = function(grunt) {
+  var path = require('path');
+
   grunt.initConfig({
     jshint: {
       all: [
@@ -49,22 +51,25 @@ module.exports = function(grunt) {
           },
         },
       },
+
       custom_middleware_targeted: {
         options: {
           port: 9002,
           base: 'test',
           middleware: function(connect, options) {
             // Return array of whatever middlewares you want
-            return {
-              '/custom': [
-                function(req, res, next) {
-                  res.end('Hello from port ' + options.port);
-                }
-              ]
-            };
+            return [
+                {
+                    '/custom': function(req, res, next) {
+                        res.end('Hello from port ' + options.port);
+                    }
+                },
+                connect.static(path.resolve(options.base)),
+                connect.directory(path.resolve(options.base)),
+            ];
           },
         },
-      },
+      }
     }
   });
 
