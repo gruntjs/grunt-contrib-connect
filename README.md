@@ -151,14 +151,15 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
 
 ## Release History
 
- * 2013-02-16   v0.1.2   Ensure Gruntfile.js is included on npm.
- * 2013-02-14   v0.1.1   First official release for Grunt 0.4.0.
- * 2013-01-17   v0.1.1rc6   Updating grunt/gruntplugin dependencies to rc6. Changing in-development grunt/gruntplugin dependency versions from tilde version ranges to specific versions.
- * 2013-01-08   v0.1.1rc5   Updating to work with grunt v0.4.0rc5.
- * 2012-10-31   v0.1.0   Work in progress, not yet officially released.
+ * 2013-03-07   v0.2.0   Upgrade connect dependency
+ * 2013-02-17   v0.1.2   Ensure Gruntfile.js is included on npm.
+ * 2013-02-15   v0.1.1   First official release for Grunt 0.4.0.
+ * 2013-01-18   v0.1.1rc6   Updating grunt/gruntplugin dependencies to rc6. Changing in-development grunt/gruntplugin dependency versions from tilde version ranges to specific versions.
+ * 2013-01-09   v0.1.1rc5   Updating to work with grunt v0.4.0rc5.
+ * 2012-11-01   v0.1.0   Work in progress, not yet officially released.
 
 ---
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Wed Feb 20 2013 12:36:55.*
+*This file was generated on Thu Mar 07 2013 01:11:17.*

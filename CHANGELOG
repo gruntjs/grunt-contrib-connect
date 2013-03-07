@@ -1,3 +1,7 @@
+v0.2.0:
+  date: 2013-03-07
+  changes:
+    - Upgrade connect dependency
 v0.1.2:
   date: 2013-02-17
   changes:
