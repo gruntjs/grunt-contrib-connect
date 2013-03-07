@@ -37,6 +37,11 @@ module.exports = function(grunt) {
     // Connect requires the base path to be absolute.
     options.base = path.resolve(options.base);
 
+    // Connect will listen to all interfaces if hostname is null.
+    if (options.hostname === '*') {
+      options.hostname = null;
+    }
+
     var middleware = options.middleware ? options.middleware.call(this, connect, options) : [];
 
     // If --debug was specified, enable logging.
@@ -47,7 +52,7 @@ module.exports = function(grunt) {
     }
 
     // Start server.
-    grunt.log.writeln('Starting connect web server on ' + options.hostname + ':' + options.port + '.');
+    grunt.log.writeln('Starting connect web server on ' + (options.hostname || '*') + ':' + options.port + '.');
 
     connect.apply(null, middleware)
       .listen(options.port, options.hostname)
