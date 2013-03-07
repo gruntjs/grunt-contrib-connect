@@ -42,6 +42,8 @@ Default: `'localhost'`
 
 The hostname the webserver will use.
 
+Setting it to * will make the server accessible from anywhere.
+
 #### base
 Type: `String`
 Default: `'.'`
