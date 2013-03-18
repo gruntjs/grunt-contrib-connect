@@ -43,7 +43,6 @@ module.exports = function(grunt) {
     }
 
     var middleware = options.middleware ? options.middleware.call(this, connect, options) : [];
-
     // If --debug was specified, enable logging.
     if (grunt.option('debug')) {
       connect.logger.format('grunt', ('[D] server :method :url :status ' +
@@ -54,8 +53,19 @@ module.exports = function(grunt) {
     // Start server.
     grunt.log.writeln('Starting connect web server on ' + (options.hostname || '*') + ':' + options.port + '.');
 
-    connect.apply(null, middleware)
-      .listen(options.port, options.hostname)
+    var app = connect();
+    middleware.forEach(function (middleware) {
+      if (typeof middleware === 'function') {
+        app.use(middleware);
+      } else if (typeof middleware === 'object') {
+        grunt.util._.forEach(middleware, function (ware, path) {
+          app.use(path, ware);
+        });
+      } else {
+        grunt.fatal('Middleware listings must be either functions or objects that map from paths to middleware functions');
+      }
+    });
+    app.listen(options.port, options.hostname)
       .on('error', function(err) {
         if (err.code === 'EADDRINUSE') {
           grunt.fatal('Port ' + options.port + ' is already in use by another process.');
