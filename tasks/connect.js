@@ -42,6 +42,11 @@ module.exports = function(grunt) {
       options.hostname = null;
     }
 
+    // Connect will listen to ephemeral port if asked
+    if (options.port === '?') {
+      options.port = 0;
+    }
+
     var middleware = options.middleware ? options.middleware.call(this, connect, options) : [];
 
     // If --debug was specified, enable logging.
@@ -52,16 +57,27 @@ module.exports = function(grunt) {
     }
 
     // Start server.
-    grunt.log.writeln('Starting connect web server on ' + (options.hostname || '*') + ':' + options.port + '.');
+    var done = this.async(),
+        self = this;
 
+    var server = 
     connect.apply(null, middleware)
       .listen(options.port, options.hostname)
+      .on('listening', function(ev) {
+        var address = server.address();
+        grunt.log.writeln('Started connect web server on ' + (address.host || 'localhost') + ':' + address.port + '.');
+        grunt.config.set('connect.' + self.target + '.address', address);
+
+        done(true);
+      })
       .on('error', function(err) {
         if (err.code === 'EADDRINUSE') {
           grunt.fatal('Port ' + options.port + ' is already in use by another process.');
         } else {
           grunt.fatal(err);
         }
+
+        done(false);
       });
 
     // So many people expect this task to keep alive that I'm adding an option
