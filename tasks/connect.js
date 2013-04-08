@@ -58,7 +58,7 @@ module.exports = function(grunt) {
 
     // Start server.
     var done = this.async(),
-        self = this;
+        taskTarget = this.target;
 
     var server = 
     connect.apply(null, middleware)
@@ -66,7 +66,8 @@ module.exports = function(grunt) {
       .on('listening', function(ev) {
         var address = server.address();
         grunt.log.writeln('Started connect web server on ' + (address.host || 'localhost') + ':' + address.port + '.');
-        grunt.config.set('connect.' + self.target + '.address', address);
+        grunt.config.set('connect.' + taskTarget + '.options.host', address.host || 'localhost');
+        grunt.config.set('connect.' + taskTarget + '.options.port', address.port);
 
         done(true);
       })
@@ -76,8 +77,6 @@ module.exports = function(grunt) {
         } else {
           grunt.fatal(err);
         }
-
-        done(false);
       });
 
     // So many people expect this task to keep alive that I'm adding an option
