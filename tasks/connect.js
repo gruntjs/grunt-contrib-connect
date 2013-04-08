@@ -58,7 +58,8 @@ module.exports = function(grunt) {
 
     // Start server.
     var done = this.async(),
-        taskTarget = this.target;
+        taskTarget = this.target,
+        keepAlive = this.flags.keepalive || options.keepalive;
 
     var server = 
     connect.apply(null, middleware)
@@ -69,7 +70,9 @@ module.exports = function(grunt) {
         grunt.config.set('connect.' + taskTarget + '.options.host', address.host || 'localhost');
         grunt.config.set('connect.' + taskTarget + '.options.port', address.port);
 
-        done(true);
+        if(!keepAlive){
+          done(true);
+        }
       })
       .on('error', function(err) {
         if (err.code === 'EADDRINUSE') {
@@ -82,10 +85,9 @@ module.exports = function(grunt) {
     // So many people expect this task to keep alive that I'm adding an option
     // for it. Running the task explicitly as grunt:keepalive will override any
     // value stored in the config. Have fun, people.
-    if (this.flags.keepalive || options.keepalive) {
+    if (keepAlive) {
       // This is now an async task. Since we don't store a handle to the "done"
       // function, this task will never, ever, ever terminate. Have fun!
-      this.async();
       grunt.log.write('Waiting forever...\n');
     }
   });
