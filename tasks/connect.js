@@ -71,7 +71,7 @@ module.exports = function(grunt) {
         grunt.config.set('connect.' + taskTarget + '.options.port', address.port);
 
         if(!keepAlive){
-          done(true);
+          done();
         }
       })
       .on('error', function(err) {
