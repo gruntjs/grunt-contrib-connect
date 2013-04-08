@@ -42,6 +42,11 @@ module.exports = function(grunt) {
       options.hostname = null;
     }
 
+    // Connect will listen to ephemeral port if asked
+    if (options.port === '?') {
+      options.port = 0;
+    }
+
     var middleware = options.middleware ? options.middleware.call(this, connect, options) : [];
 
     // If --debug was specified, enable logging.
@@ -52,10 +57,23 @@ module.exports = function(grunt) {
     }
 
     // Start server.
-    grunt.log.writeln('Starting connect web server on ' + (options.hostname || '*') + ':' + options.port + '.');
+    var done = this.async(),
+        taskTarget = this.target,
+        keepAlive = this.flags.keepalive || options.keepalive;
 
+    var server = 
     connect.apply(null, middleware)
       .listen(options.port, options.hostname)
+      .on('listening', function(ev) {
+        var address = server.address();
+        grunt.log.writeln('Started connect web server on ' + (address.host || 'localhost') + ':' + address.port + '.');
+        grunt.config.set('connect.' + taskTarget + '.options.host', address.host || 'localhost');
+        grunt.config.set('connect.' + taskTarget + '.options.port', address.port);
+
+        if(!keepAlive){
+          done();
+        }
+      })
       .on('error', function(err) {
         if (err.code === 'EADDRINUSE') {
           grunt.fatal('Port ' + options.port + ' is already in use by another process.');
@@ -67,10 +85,9 @@ module.exports = function(grunt) {
     // So many people expect this task to keep alive that I'm adding an option
     // for it. Running the task explicitly as grunt:keepalive will override any
     // value stored in the config. Have fun, people.
-    if (this.flags.keepalive || options.keepalive) {
+    if (keepAlive) {
       // This is now an async task. Since we don't store a handle to the "done"
       // function, this task will never, ever, ever terminate. Have fun!
-      this.async();
       grunt.log.write('Waiting forever...\n');
     }
   });

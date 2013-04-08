@@ -4,7 +4,7 @@
 Type: `Integer`
 Default: `8000`
 
-The port on which the webserver will respond. The task will fail if the specified port is already in use.
+The port on which the webserver will respond. The task will fail if the specified port is already in use. You can use the special values `0` or `?` to use a system-assigned port.
 
 ## hostname
 Type: `String`
