@@ -34,7 +34,7 @@ This task was designed to be used in conjunction with another task that is run i
 Type: `Integer`
 Default: `8000`
 
-The port on which the webserver will respond. The task will fail if the specified port is already in use.
+The port on which the webserver will respond. The task will fail if the specified port is already in use. You can use the special values `0` or `'?'` to use a system-assigned port.
 
 #### hostname
 Type: `String`
@@ -42,7 +42,7 @@ Default: `'localhost'`
 
 The hostname the webserver will use.
 
-Setting it to * will make the server accessible from anywhere.
+Setting it to `'*'` will make the server accessible from anywhere.
 
 #### base
 Type: `String`
@@ -153,7 +153,8 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
 
 ## Release History
 
- * 2013-03-07   v0.2.0   Upgrade connect dependency
+ * 2013-04-10   v0.3.0   Add ability to listen on system-assigned port.
+ * 2013-03-07   v0.2.0   Upgrade connect dependency.
  * 2013-02-17   v0.1.2   Ensure Gruntfile.js is included on npm.
  * 2013-02-15   v0.1.1   First official release for Grunt 0.4.0.
  * 2013-01-18   v0.1.1rc6   Updating grunt/gruntplugin dependencies to rc6. Changing in-development grunt/gruntplugin dependency versions from tilde version ranges to specific versions.
@@ -164,4 +165,4 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Thu Mar 07 2013 01:11:17.*
+*This file was generated on Thu Apr 11 2013 00:01:44.*
