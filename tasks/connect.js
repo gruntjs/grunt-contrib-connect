@@ -56,26 +56,33 @@ module.exports = function(grunt) {
     var taskTarget = this.target;
     var keepAlive = this.flags.keepalive || options.keepalive;
 
-    var server = connect
-      .apply(null, middleware)
-      .listen(options.port, options.hostname)
-      .on('listening', function() {
-        var address = server.address();
-        grunt.log.writeln('Started connect web server on ' + (address.host || 'localhost') + ':' + address.port + '.');
-        grunt.config.set('connect.' + taskTarget + '.options.host', address.host || 'localhost');
-        grunt.config.set('connect.' + taskTarget + '.options.port', address.port);
+    var app = connect.apply(null, middleware);
 
-        if (!keepAlive) {
-          done();
-        }
-      })
-      .on('error', function(err) {
-        if (err.code === 'EADDRINUSE') {
-          grunt.fatal('Port ' + options.port + ' is already in use by another process.');
-        } else {
-          grunt.fatal(err);
-        }
-      });
+    if(options.setup){
+      // Allow grunt tasks to configure the application further than
+      //  merely describing middleware
+      options.setup.call(null, app, options);
+    }
+
+    var server =
+      app.listen(options.port, options.hostname)
+        .on('listening', function() {
+          var address = server.address();
+          grunt.log.writeln('Started connect web server on ' + (address.host || 'localhost') + ':' + address.port + '.');
+          grunt.config.set('connect.' + taskTarget + '.options.host', address.host || 'localhost');
+          grunt.config.set('connect.' + taskTarget + '.options.port', address.port);
+
+          if (!keepAlive) {
+            done();
+          }
+        })
+        .on('error', function(err) {
+          if (err.code === 'EADDRINUSE') {
+            grunt.fatal('Port ' + options.port + ' is already in use by another process.');
+          } else {
+            grunt.fatal(err);
+          }
+        });
 
     // So many people expect this task to keep alive that I'm adding an option
     // for it. Running the task explicitly as grunt:keepalive will override any
