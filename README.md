@@ -131,6 +131,64 @@ grunt.initConfig({
 });
 ```
 
+### Mounting connect and express middleware.
+Connect provides a 'mounting' feature that allows you to define a pathname 'prefix' to invoke middleware. Middleware can be a simple function, or even an express application.
+
+At the top of your `Gruntfile.js` require your connect or express middleware. In this example we require an API endpoint so our front-end code can communicate with the `user` resource during development.
+
+```javascript
+// Top of Gruntfile.
+var usersAPI = require('./app/lib/users-api');
+```
+
+We then mount that in our middleware stack like so.
+
+```javascript
+// Project configuration.
+grunt.initConfig({
+  connect: {
+    server: {
+      options: {
+        port: 3000,
+        middleware: function (connect, options) {
+          return [
+            // Mount middleware.
+            connect().use('/api/v1/users', usersAPI),
+            // Serve static files.
+            connect.static(options.base)
+          ]
+        }
+      }
+    }
+  }
+});
+```
+
+All requests made to `/api/v1/users` will be intercepted by the API and served to the browser. Note that the mount pathname will be invisible to the middleware. A request to `/api/v1/users/1` will result in a request to `/1` in the middleware.
+
+For completeness here is the example `users-api`. It's just a fixture of sorts, returning static JSON so that we can test our front-end code.
+
+```javascript
+// /app/lib/users-api/index.js
+express = require('express');
+
+var app = exports.module = express();
+
+app.get('/', function (req, res) {
+  res.json([{id:1, name:'Lovecraft'},{id:2, name:'Bloch'}]);
+});
+
+// Optional. Allows us to run this as an independent server
+if (!module.parent) {
+  app.listen(3000, function () {
+    console.log('User API listening on port 3000.');
+  });
+}
+```
+
+Keep in mind that **this is just one of any number of possibilities**. You could serve up stylus, jade, or connect to a database and serve real data.
+
+
 #### Roll Your Own
 Like the [Basic Use](#basic-use) example, this example will start a static web server at `http://localhost:9001/`, with its base path set to the `www-root` directory relative to the gruntfile. Unlike the other example, this is done by creating a brand new task. in fact, this plugin isn't even installed!
 
