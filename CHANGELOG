@@ -1,3 +1,7 @@
+v0.3.1:
+  date: 2013-05-06
+  changes:
+    - Emit grunt event when server has started.
 v0.3.0:
   date: 2013-04-10
   changes:

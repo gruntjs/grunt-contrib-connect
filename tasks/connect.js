@@ -65,7 +65,9 @@ module.exports = function(grunt) {
         grunt.config.set('connect.' + taskTarget + '.options.host', address.host || 'localhost');
         grunt.config.set('connect.' + taskTarget + '.options.port', address.port);
 
-        if (!keepAlive) {
+        grunt.event.emit('connect.' + taskTarget + '.listening', (address.host || 'localhost'), address.port);
+
+        if(!keepAlive){
           done();
         }
       })

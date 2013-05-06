@@ -150,19 +150,38 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
 });
 ```
 
+#### Grunt Events
+The connect plugin will emit a grunt event, `connect.{taskName}.listening`, once the server has started. You can listen for this event to run things against a keepalive server, for example:
+
+```javascript
+    grunt.registerTask('jasmine-server', 'start web server for jasmine tests in browser', function() {
+        grunt.task.run('jasmine:tests:build');
+
+        grunt.event.once('connect.tests.listening', function(host, port) {
+            var specRunnerUrl = 'http://' + host + ':' + port + '/_SpecRunner.html';
+            grunt.log.writeln('Jasmine specs available at: ' + specRunnerUrl);
+            require('open')(specRunnerUrl);
+        });
+
+        grunt.task.run('connect:tests:keepalive');
+    });
+```
+
+
 
 ## Release History
 
- * 2013-04-10   v0.3.0   Add ability to listen on system-assigned port.
- * 2013-03-07   v0.2.0   Upgrade connect dependency.
- * 2013-02-17   v0.1.2   Ensure Gruntfile.js is included on npm.
- * 2013-02-15   v0.1.1   First official release for Grunt 0.4.0.
- * 2013-01-18   v0.1.1rc6   Updating grunt/gruntplugin dependencies to rc6. Changing in-development grunt/gruntplugin dependency versions from tilde version ranges to specific versions.
- * 2013-01-09   v0.1.1rc5   Updating to work with grunt v0.4.0rc5.
- * 2012-11-01   v0.1.0   Work in progress, not yet officially released.
+ * 2013-05-05   v0.3.1   Emit grunt event when server has started.
+ * 2013-04-09   v0.3.0   Add ability to listen on system-assigned port.
+ * 2013-03-06   v0.2.0   Upgrade connect dependency.
+ * 2013-02-16   v0.1.2   Ensure Gruntfile.js is included on npm.
+ * 2013-02-14   v0.1.1   First official release for Grunt 0.4.0.
+ * 2013-01-17   v0.1.1rc6   Updating grunt/gruntplugin dependencies to rc6. Changing in-development grunt/gruntplugin dependency versions from tilde version ranges to specific versions.
+ * 2013-01-08   v0.1.1rc5   Updating to work with grunt v0.4.0rc5.
+ * 2012-10-31   v0.1.0   Work in progress, not yet officially released.
 
 ---
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Thu Apr 11 2013 00:01:44.*
+*This file was generated on Mon May 06 2013 12:58:50.*
