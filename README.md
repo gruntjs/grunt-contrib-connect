@@ -155,6 +155,12 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
   connect(connect.static('www-root')).listen(9001);
 });
 ```
+<<<<<<< HEAD
+=======
+
+#### Grunt Events
+The connect plugin will emit a grunt event, `connect.{taskName}.listening`, once the server has started. You can listen for this event to run things against a keepalive server, for example:
+>>>>>>> ac0378a... updating docs in a better place
 
 #### Support for HTTPS
 
