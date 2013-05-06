@@ -9,15 +9,10 @@
 'use strict';
 
 module.exports = function(grunt) {
-
-  // Nodejs libs.
   var path = require('path');
-
-  // External libs.
   var connect = require('connect');
 
   grunt.registerMultiTask('connect', 'Start a connect web server.', function() {
-
     // Merge task-specific options with these defaults.
     var options = this.options({
       port: 8000,
@@ -57,14 +52,14 @@ module.exports = function(grunt) {
     }
 
     // Start server.
-    var done = this.async(),
-        taskTarget = this.target,
-        keepAlive = this.flags.keepalive || options.keepalive;
+    var done = this.async();
+    var taskTarget = this.target;
+    var keepAlive = this.flags.keepalive || options.keepalive;
 
-    var server = 
-    connect.apply(null, middleware)
+    var server = connect
+      .apply(null, middleware)
       .listen(options.port, options.hostname)
-      .on('listening', function(ev) {
+      .on('listening', function() {
         var address = server.address();
         grunt.log.writeln('Started connect web server on ' + (address.host || 'localhost') + ':' + address.port + '.');
         grunt.config.set('connect.' + taskTarget + '.options.host', address.host || 'localhost');
@@ -86,10 +81,9 @@ module.exports = function(grunt) {
     // for it. Running the task explicitly as grunt:keepalive will override any
     // value stored in the config. Have fun, people.
     if (keepAlive) {
-      // This is now an async task. Since we don't store a handle to the "done"
+      // This is now an async task. Since we don't call the "done"
       // function, this task will never, ever, ever terminate. Have fun!
       grunt.log.write('Waiting forever...\n');
     }
   });
-
 };
