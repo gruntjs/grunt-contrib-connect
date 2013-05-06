@@ -149,10 +149,26 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
   connect(connect.static('www-root')).listen(9001);
 });
 ```
+#### Grunt Events
+The connect plugin will emit a grunt event, `connect.{taskName}.listening`, once the server has started. You can listen for this event to run things against a keepalive server, for example:
 
+```javascript
+    grunt.registerTask('jasmine-server', 'start web server for jasmine tests in browser', function() {
+        grunt.task.run('jasmine:tests:build');
+
+        grunt.event.once('connect.tests.listening', function(host, port) {
+            var specRunnerUrl = 'http://' + host + ':' + port + '/_SpecRunner.html';
+            grunt.log.writeln('Jasmine specs available at: ' + specRunnerUrl);
+            require('open')(specRunnerUrl);
+        });
+
+        grunt.task.run('connect:tests:keepalive');
+    });
+```
 
 ## Release History
 
+ * 2013-05-06   v0.3.1   Emit connect.taskName.listening event with host, port when server is started.
  * 2013-04-10   v0.3.0   Add ability to listen on system-assigned port.
  * 2013-03-07   v0.2.0   Upgrade connect dependency.
  * 2013-02-17   v0.1.2   Ensure Gruntfile.js is included on npm.
