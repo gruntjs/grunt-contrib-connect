@@ -7,6 +7,8 @@
  */
 
 'use strict';
+var path = require('path');
+var certs = path.join(__dirname, 'tasks', 'certs');
 
 module.exports = function(grunt) {
   grunt.initConfig({
@@ -35,6 +37,22 @@ module.exports = function(grunt) {
         options: {
           port: 9000,
         },
+      },
+      custom_https: {
+        options: {
+          port: 8001,
+          protocol: 'https',
+        }
+      },
+      custom_https_certs: {
+        options: {
+          port: 8002,
+          protocol: 'https',
+          key: grunt.file.read(path.join(certs, 'server.key')).toString(),
+          cert: grunt.file.read(path.join(certs, 'server.crt')).toString(),
+          ca: grunt.file.read(path.join(certs, 'ca.crt')).toString(),
+          passphrase: 'grunt',
+        }
       },
       custom_middleware: {
         options: {
