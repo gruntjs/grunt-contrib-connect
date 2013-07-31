@@ -49,6 +49,12 @@ module.exports = function(grunt) {
           },
         },
       },
+      multiple_base: {
+        options: {
+          base: ['test', 'docs'],
+          port: 9002
+        }
+      }
     }
   });
 
