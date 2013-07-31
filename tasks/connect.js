@@ -11,6 +11,7 @@
 module.exports = function(grunt) {
   var path = require('path');
   var connect = require('connect');
+  var util = require('util');
 
   grunt.registerMultiTask('connect', 'Start a connect web server.', function() {
     // Merge task-specific options with these defaults.
@@ -20,17 +21,24 @@ module.exports = function(grunt) {
       base: '.',
       keepalive: false,
       middleware: function(connect, options) {
-        return [
+        var middlewares = [];
+        options.base.forEach(function(base) {
           // Serve static files.
-          connect.static(options.base),
+          middlewares.push(connect.static(base));
           // Make empty directories browsable.
-          connect.directory(options.base),
-        ];
+          middlewares.push(connect.directory(base));
+        });
+        return middlewares;
       }
     });
 
+    // consume array
+    options.base = util.isArray(options.base) ? options.base : [options.base];
+
     // Connect requires the base path to be absolute.
-    options.base = path.resolve(options.base);
+    options.base = options.base.map(function(base) {
+      return path.resolve(base);
+    });
 
     // Connect will listen to all interfaces if hostname is null.
     if (options.hostname === '*') {
