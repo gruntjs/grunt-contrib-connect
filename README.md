@@ -51,10 +51,12 @@ The hostname the webserver will use.
 Setting it to `'*'` will make the server accessible from anywhere.
 
 #### base
-Type: `String`
+Type: `String` or `Array<String`
 Default: `'.'`
 
 The base (or root) directory from which files will be served. Defaults to the project Gruntfile's directory.
+
+Can be an array of bases to serve multiple directory.
 
 #### keepalive
 Type: `Boolean`
@@ -70,12 +72,14 @@ Default:
 
 ```js
 function(connect, options) {
-  return [
+  var middlewares = [];
+  options.base.forEach(function(base) {
     // Serve static files.
-    connect.static(options.base),
+    middlewares.push(connect.static(base));
     // Make empty directories browsable.
-    connect.directory(options.base),
-  ];
+    middlewares.push(connect.directory(base));
+  });
+  return middlewares;
 }
 ```
 

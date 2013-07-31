@@ -28,4 +28,14 @@ exports.connect = {
       test.done();
     });
   },
+  multiple_base: function(test) {
+    test.expect(2);
+    get('http://localhost:9002/fixtures/hello.txt', function(res, body) {
+      test.equal(res.statusCode, 200, 'should return 200');
+      get('http://localhost:9002/connect-examples.md', function(res, body) {
+        test.equal(res.statusCode, 200, 'should return 200');
+        test.done();
+      });
+    });
+  },
 };

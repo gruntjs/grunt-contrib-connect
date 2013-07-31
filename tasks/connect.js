@@ -23,12 +23,14 @@ module.exports = function(grunt) {
       base: '.',
       keepalive: false,
       middleware: function(connect, options) {
-        return [
+        var middlewares = [];
+        options.base.forEach(function(base) {
           // Serve static files.
-          connect.static(options.base),
+          middlewares.push(connect.static(base));
           // Make empty directories browsable.
-          connect.directory(options.base),
-        ];
+          middlewares.push(connect.directory(base));
+        });
+        return middlewares;
       }
     });
 
@@ -36,8 +38,13 @@ module.exports = function(grunt) {
       grunt.fatal('protocol option must be \'http\' or \'https\'');
     }
 
+    // Normalize whether base is an array
+    options.base = Array.isArray(options.base) ? options.base : [options.base];
+
     // Connect requires the base path to be absolute.
-    options.base = path.resolve(options.base);
+    options.base = options.base.map(function(base) {
+      return path.resolve(base);
+    });
 
     // Connect will listen to all interfaces if hostname is null.
     if (options.hostname === '*') {
