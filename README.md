@@ -1,4 +1,4 @@
-# grunt-contrib-connect v0.3.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-connect.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect)
+# grunt-contrib-connect v0.4.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-connect.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect)
 
 > Start a connect web server.
 
@@ -31,19 +31,19 @@ This task was designed to be used in conjunction with another task that is run i
 ### Options
 
 #### port
-Type: `Integer`
+Type: `Integer`  
 Default: `8000`
 
 The port on which the webserver will respond. The task will fail if the specified port is already in use. You can use the special values `0` or `'?'` to use a system-assigned port.
 
 #### protocol
-Type: `String`
+Type: `String`  
 Default: `'http'`
 
 May be `'http'` or `'https'`.
 
 #### hostname
-Type: `String`
+Type: `String`  
 Default: `'localhost'`
 
 The hostname the webserver will use.
@@ -51,7 +51,7 @@ The hostname the webserver will use.
 Setting it to `'*'` will make the server accessible from anywhere.
 
 #### base
-Type: `String` or `Array`
+Type: `String` or `Array`  
 Default: `'.'`
 
 The base (or root) directory from which files will be served. Defaults to the project Gruntfile's directory.
@@ -59,7 +59,7 @@ The base (or root) directory from which files will be served. Defaults to the pr
 Can be an array of bases to serve multiple directories.
 
 #### keepalive
-Type: `Boolean`
+Type: `Boolean`  
 Default: `false`
 
 Keep the server alive indefinitely. Note that if this option is enabled, any tasks specified after this task will _never run_. By default, once grunt's tasks have completed, the web server stops. This option changes that behavior.
@@ -67,13 +67,13 @@ Keep the server alive indefinitely. Note that if this option is enabled, any tas
 This option can also be enabled ad-hoc by running the task like `grunt connect:targetname:keepalive`
 
 #### debug
-Type: `Boolean`
+Type: `Boolean`  
 Default: `false`
 
 Set the `debug` option to true to enable logging instead of using the `--debug` flag.
 
 #### livereload
-Type: `Boolean` or `Number`
+Type: `Boolean` or `Number`  
 Default: `false`
 
 Set to `true` or a port number to inject a live reload script tag into your page using [connect-livereload](https://github.com/intesso/connect-livereload).
@@ -81,7 +81,7 @@ Set to `true` or a port number to inject a live reload script tag into your page
 *This does not perform live reloading. It is intended to be used in tandem with grunt-contrib-watch or another task that will trigger a live reload server upon files changing.*
 
 #### middleware
-Type: `Function`
+Type: `Function`  
 Default:
 
 ```js
@@ -244,6 +244,7 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 ## Release History
 
+ * 2013-09-01   v0.4.0   Fix logging of which server address. Ability to set multiple bases. Event emitted when server starts listening. Support for HTTPS. debug option added to display debug logging like the --debug flag. livereload option added to inject a livereload snippet into the page.
  * 2013-04-10   v0.3.0   Add ability to listen on system-assigned port.
  * 2013-03-07   v0.2.0   Upgrade connect dependency.
  * 2013-02-17   v0.1.2   Ensure Gruntfile.js is included on npm.
@@ -256,4 +257,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Sun Sep 01 2013 21:05:28.*
+*This file was generated on Sun Sep 01 2013 21:18:08.*
