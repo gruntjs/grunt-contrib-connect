@@ -70,7 +70,6 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
 });
 ```
 
-<<<<<<< HEAD
 ## Support for HTTPS
 
 A default certificate authority, certificate and key file are provided and pre-

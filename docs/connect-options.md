@@ -21,10 +21,12 @@ The hostname the webserver will use.
 Setting it to `'*'` will make the server accessible from anywhere.
 
 ## base
-Type: `String`
+Type: `String` or `Array`
 Default: `'.'`
 
 The base (or root) directory from which files will be served. Defaults to the project Gruntfile's directory.
+
+Can be an array of bases to serve multiple directories.
 
 ## keepalive
 Type: `Boolean`

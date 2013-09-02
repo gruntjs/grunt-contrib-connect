@@ -51,12 +51,12 @@ The hostname the webserver will use.
 Setting it to `'*'` will make the server accessible from anywhere.
 
 #### base
-Type: `String` or `Array<String`
+Type: `String` or `Array`
 Default: `'.'`
 
 The base (or root) directory from which files will be served. Defaults to the project Gruntfile's directory.
 
-Can be an array of bases to serve multiple directory.
+Can be an array of bases to serve multiple directories.
 
 #### keepalive
 Type: `Boolean`
@@ -66,20 +66,24 @@ Keep the server alive indefinitely. Note that if this option is enabled, any tas
 
 This option can also be enabled ad-hoc by running the task like `grunt connect:targetname:keepalive`
 
+#### debug
+Type: `Boolean`
+Default: `false`
+
+Set the `debug` option to true to enable logging instead of using the `--debug` flag.
+
 #### middleware
 Type: `Function`
 Default:
 
 ```js
 function(connect, options) {
-  var middlewares = [];
-  options.base.forEach(function(base) {
+  return [
     // Serve static files.
-    middlewares.push(connect.static(base));
+    connect.static(options.base),
     // Make empty directories browsable.
-    middlewares.push(connect.directory(base));
-  });
-  return middlewares;
+    connect.directory(options.base),
+  ];
 }
 ```
 
@@ -159,12 +163,6 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
   connect(connect.static('www-root')).listen(9001);
 });
 ```
-<<<<<<< HEAD
-=======
-
-#### Grunt Events
-The connect plugin will emit a grunt event, `connect.{taskName}.listening`, once the server has started. You can listen for this event to run things against a keepalive server, for example:
->>>>>>> ac0378a... updating docs in a better place
 
 #### Support for HTTPS
 
@@ -218,6 +216,23 @@ grunt.initConfig({
 
 [TLS]: http://nodejs.org/api/tls.html#tls_tls_createserver_options_secureconnectionlistener
 
+#### Grunt Events
+The connect plugin will emit a grunt event, `connect.{taskName}.listening`, once the server has started. You can listen for this event to run things against a keepalive server, for example:
+
+```javascript
+grunt.registerTask('jasmine-server', 'start web server for jasmine tests in browser', function() {
+  grunt.task.run('jasmine:tests:build');
+
+  grunt.event.once('connect.tests.listening', function(host, port) {
+    var specRunnerUrl = 'http://' + host + ':' + port + '/_SpecRunner.html';
+    grunt.log.writeln('Jasmine specs available at: ' + specRunnerUrl);
+    require('open')(specRunnerUrl);
+  });
+
+  grunt.task.run('connect:tests:keepalive');
+});
+```
+
 
 ## Release History
 
@@ -233,4 +248,4 @@ grunt.initConfig({
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Sun Sep 01 2013 19:52:23.*
+*This file was generated on Sun Sep 01 2013 20:49:33.*
