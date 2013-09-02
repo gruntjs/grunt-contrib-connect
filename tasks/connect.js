@@ -13,6 +13,7 @@ module.exports = function(grunt) {
   var connect = require('connect');
   var http = require('http');
   var https = require('https');
+  var injectLiveReload = require('connect-livereload');
 
   grunt.registerMultiTask('connect', 'Start a connect web server.', function() {
     // Merge task-specific options with these defaults.
@@ -23,6 +24,7 @@ module.exports = function(grunt) {
       base: '.',
       keepalive: false,
       debug: false,
+      livereload: false,
       middleware: function(connect, options) {
         var middlewares = [];
         options.base.forEach(function(base) {
@@ -64,6 +66,14 @@ module.exports = function(grunt) {
       connect.logger.format('grunt', ('[D] server :method :url :status ' +
         ':res[content-length] - :response-time ms').magenta);
       middleware.unshift(connect.logger('grunt'));
+    }
+
+    // Inject live reload snippet
+    if (options.livereload !== false) {
+      if (options.livereload === true) {
+        options.livereload = 35729;
+      }
+      middleware.unshift(injectLiveReload({port: options.livereload}));
     }
 
     // Start server.

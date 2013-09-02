@@ -72,6 +72,14 @@ Default: `false`
 
 Set the `debug` option to true to enable logging instead of using the `--debug` flag.
 
+#### livereload
+Type: `Boolean` or `Number`
+Default: `false`
+
+Set to `true` or a port number to inject a live reload script tag into your page using [connect-livereload](https://github.com/intesso/connect-livereload).
+
+*This does not perform live reloading. It is intended to be used in tandem with grunt-contrib-watch or another task that will trigger a live reload server upon files changing.*
+
 #### middleware
 Type: `Function`
 Default:
@@ -248,4 +256,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Sun Sep 01 2013 20:49:33.*
+*This file was generated on Sun Sep 01 2013 21:05:28.*

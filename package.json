@@ -28,7 +28,8 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "connect": "~2.7.11"
+    "connect": "~2.7.11",
+    "connect-livereload": "~0.2.0"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.4",
