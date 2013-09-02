@@ -22,6 +22,7 @@ module.exports = function(grunt) {
       hostname: 'localhost',
       base: '.',
       keepalive: false,
+      debug: false,
       middleware: function(connect, options) {
         var middlewares = [];
         options.base.forEach(function(base) {
@@ -59,7 +60,7 @@ module.exports = function(grunt) {
     var middleware = options.middleware ? options.middleware.call(this, connect, options) : [];
 
     // If --debug was specified, enable logging.
-    if (grunt.option('debug')) {
+    if (grunt.option('debug') || options.debug === true) {
       connect.logger.format('grunt', ('[D] server :method :url :status ' +
         ':res[content-length] - :response-time ms').magenta);
       middleware.unshift(connect.logger('grunt'));

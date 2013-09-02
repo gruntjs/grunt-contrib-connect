@@ -34,6 +34,12 @@ Keep the server alive indefinitely. Note that if this option is enabled, any tas
 
 This option can also be enabled ad-hoc by running the task like `grunt connect:targetname:keepalive`
 
+## debug
+Type: `Boolean`
+Default: `false`
+
+Set the `debug` option to true to enable logging instead of using the `--debug` flag.
+
 ## middleware
 Type: `Function`
 Default:
