@@ -88,8 +88,8 @@ module.exports = function(grunt) {
       .listen(options.port, options.hostname)
       .on('listening', function() {
         var address = server.address();
-        grunt.log.writeln('Started connect web server on ' + (address.host || 'localhost') + ':' + address.port + '.');
-        grunt.config.set('connect.' + taskTarget + '.options.host', address.host || 'localhost');
+        grunt.log.writeln('Started connect web server on ' + (address.address || 'localhost') + ':' + address.port + '.');
+        grunt.config.set('connect.' + taskTarget + '.options.host', address.address || 'localhost');
         grunt.config.set('connect.' + taskTarget + '.options.port', address.port);
 
         grunt.event.emit('connect.' + taskTarget + '.listening', (address.host || 'localhost'), address.port);
