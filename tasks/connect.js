@@ -14,6 +14,7 @@ module.exports = function(grunt) {
   var http = require('http');
   var https = require('https');
   var injectLiveReload = require('connect-livereload');
+  var open = require('open');
 
   grunt.registerMultiTask('connect', 'Start a connect web server.', function() {
     // Merge task-specific options with these defaults.
@@ -26,6 +27,7 @@ module.exports = function(grunt) {
       keepalive: false,
       debug: false,
       livereload: false,
+      open: false,
       middleware: function(connect, options) {
         var middlewares = [];
         var directory = options.directory || options.base[options.base.length - 1];
@@ -110,6 +112,12 @@ module.exports = function(grunt) {
         grunt.config.set('connect.' + taskTarget + '.options.port', address.port);
 
         grunt.event.emit('connect.' + taskTarget + '.listening', (address.address || 'localhost'), address.port);
+
+        if (options.open === true) {
+          open(options.protocol + '://' + address.address + ':' + address.port);
+        } else if (typeof options.open === 'string') {
+          open(options.open);
+        }
 
         if (!keepAlive) {
           done();
