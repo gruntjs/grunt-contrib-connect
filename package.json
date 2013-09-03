@@ -29,7 +29,8 @@
   },
   "dependencies": {
     "connect": "~2.7.11",
-    "connect-livereload": "~0.2.0"
+    "connect-livereload": "~0.2.0",
+    "open": "0.0.4"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.4",
