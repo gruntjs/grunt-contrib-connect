@@ -22,17 +22,19 @@ module.exports = function(grunt) {
       port: 8000,
       hostname: 'localhost',
       base: '.',
+      directory: null,
       keepalive: false,
       debug: false,
       livereload: false,
       middleware: function(connect, options) {
         var middlewares = [];
+        var directory = options.directory || options.base[options.base.length - 1];
         options.base.forEach(function(base) {
           // Serve static files.
           middlewares.push(connect.static(base));
-          // Make empty directories browsable.
-          middlewares.push(connect.directory(base));
         });
+        // Make directory browse-able.
+        middlewares.push(connect.directory(directory));
         return middlewares;
       }
     });

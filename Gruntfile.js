@@ -70,10 +70,17 @@ module.exports = function(grunt) {
       multiple_base: {
         options: {
           base: ['test', 'docs'],
-          port: 9002
-        }
-      }
-    }
+          port: 9002,
+        },
+      },
+      multiple_base_directory: {
+        options: {
+          base: ['test', 'docs'],
+          directory: 'test/fixtures/',
+          port: 9003,
+        },
+      },
+    },
   });
 
   grunt.loadTasks('tasks');

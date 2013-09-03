@@ -26,7 +26,13 @@ Default: `'.'`
 
 The base (or root) directory from which files will be served. Defaults to the project Gruntfile's directory.
 
-Can be an array of bases to serve multiple directories.
+Can be an array of bases to serve multiple directories. The last base given will be the directory to become browse-able.
+
+## directory
+Type: `String`  
+Default: `null`
+
+Set to the directory you wish to be browse-able. Used to override the `base` option browse-able directory.
 
 ## keepalive
 Type: `Boolean`  
@@ -59,7 +65,7 @@ function(connect, options) {
   return [
     // Serve static files.
     connect.static(options.base),
-    // Make empty directories browsable.
+    // Make directory browse-able.
     connect.directory(options.base),
   ];
 }

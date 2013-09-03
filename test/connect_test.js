@@ -38,4 +38,16 @@ exports.connect = {
       });
     });
   },
+  multiple_base_directory: function(test) {
+    test.expect(4);
+    get('http://localhost:9003', function(res, body) {
+      test.equal(res.statusCode, 200, 'should return 200');
+      test.equal(body.trim(), 'hello.txt', 'Listing should contain hello.txt');
+      get('http://localhost:9003/fixtures/hello.txt', function(res, body) {
+        test.equal(res.statusCode, 200, 'should return 200');
+        test.equal(body, 'Hello world', 'Should display contents of /fixtures/hello.txt');
+        test.done();
+      });
+    });
+  },
 };
