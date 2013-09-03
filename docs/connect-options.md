@@ -62,12 +62,15 @@ Default:
 
 ```js
 function(connect, options) {
-  return [
+  var middlewares = [];
+  var directory = options.directory || options.base[options.base.length - 1];
+  options.base.forEach(function(base) {
     // Serve static files.
-    connect.static(options.base),
-    // Make directory browse-able.
-    connect.directory(options.base),
-  ];
+    middlewares.push(connect.static(base));
+  });
+  // Make directory browse-able.
+  middlewares.push(connect.directory(directory));
+  return middlewares;
 }
 ```
 

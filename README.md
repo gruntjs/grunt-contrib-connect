@@ -92,12 +92,15 @@ Default:
 
 ```js
 function(connect, options) {
-  return [
+  var middlewares = [];
+  var directory = options.directory || options.base[options.base.length - 1];
+  options.base.forEach(function(base) {
     // Serve static files.
-    connect.static(options.base),
-    // Make directory browse-able.
-    connect.directory(options.base),
-  ];
+    middlewares.push(connect.static(base));
+  });
+  // Make directory browse-able.
+  middlewares.push(connect.directory(directory));
+  return middlewares;
 }
 ```
 
@@ -264,4 +267,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Mon Sep 02 2013 20:23:06.*
+*This file was generated on Mon Sep 02 2013 20:34:53.*
