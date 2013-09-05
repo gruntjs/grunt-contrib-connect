@@ -1,4 +1,4 @@
-# grunt-contrib-connect v0.4.1 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-connect.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect)
+# grunt-contrib-connect v0.4.2 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-connect.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect)
 
 > Start a connect web server.
 
@@ -94,6 +94,9 @@ Default:
 function(connect, options) {
   var middlewares = [];
   var directory = options.directory || options.base[options.base.length - 1];
+  if (!Array.isArray(options.base)) {
+    options.base = [options.base];
+  }
   options.base.forEach(function(base) {
     // Serve static files.
     middlewares.push(connect.static(base));
@@ -253,6 +256,7 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 ## Release History
 
+ * 2013-09-05   v0.4.2   Un-normalize options.base as it should be a string or an array as the user has set.
  * 2013-09-02   v0.4.1   Browse-able directory is the last item supplied to bases. Added directory option to override browse-able directory.
  * 2013-09-01   v0.4.0   Fix logging of which server address. Ability to set multiple bases. Event emitted when server starts listening. Support for HTTPS. debug option added to display debug logging like the --debug flag. livereload option added to inject a livereload snippet into the page.
  * 2013-04-10   v0.3.0   Add ability to listen on system-assigned port.
@@ -267,4 +271,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Mon Sep 02 2013 20:34:53.*
+*This file was generated on Thu Sep 05 2013 13:10:30.*

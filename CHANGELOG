@@ -1,3 +1,7 @@
+v0.4.2:
+  date: 2013-09-05
+  changes:
+    - Un-normalize options.base as it should be a string or an array as the user has set.
 v0.4.1:
   date: 2013-09-02
   changes:
