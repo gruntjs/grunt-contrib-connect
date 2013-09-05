@@ -57,9 +57,11 @@ module.exports = function(grunt) {
       custom_middleware: {
         options: {
           port: 9001,
+          base: '.',
           middleware: function(connect, options) {
             // Return array of whatever middlewares you want
             return [
+              connect.static(options.base),
               function(req, res, next) {
                 res.end('Hello from port ' + options.port);
               }

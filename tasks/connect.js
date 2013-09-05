@@ -29,6 +29,9 @@ module.exports = function(grunt) {
       middleware: function(connect, options) {
         var middlewares = [];
         var directory = options.directory || options.base[options.base.length - 1];
+        if (!Array.isArray(options.base)) {
+          options.base = [options.base];
+        }
         options.base.forEach(function(base) {
           // Serve static files.
           middlewares.push(connect.static(base));
@@ -43,13 +46,14 @@ module.exports = function(grunt) {
       grunt.fatal('protocol option must be \'http\' or \'https\'');
     }
 
-    // Normalize whether base is an array
-    options.base = Array.isArray(options.base) ? options.base : [options.base];
-
     // Connect requires the base path to be absolute.
-    options.base = options.base.map(function(base) {
-      return path.resolve(base);
-    });
+    if (Array.isArray(options.base)) {
+      options.base = options.base.map(function(base) {
+        return path.resolve(base);
+      });
+    } else {
+      options.base = path.resolve(options.base);
+    }
 
     // Connect will listen to all interfaces if hostname is null.
     if (options.hostname === '*') {
