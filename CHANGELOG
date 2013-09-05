@@ -1,3 +1,7 @@
+v0.5.0:
+  date: 2013-09-05
+  changes:
+    - Add 'open' option.
 v0.4.2:
   date: 2013-09-05
   changes:
