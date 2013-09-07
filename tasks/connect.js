@@ -107,14 +107,16 @@ module.exports = function(grunt) {
       .listen(options.port, options.hostname)
       .on('listening', function() {
         var address = server.address();
-        grunt.log.writeln('Started connect web server on ' + (address.address || 'localhost') + ':' + address.port + '.');
-        grunt.config.set('connect.' + taskTarget + '.options.hostname', address.address || 'localhost');
+        var hostname = address.address || 'localhost';
+
+        grunt.log.writeln('Started connect web server on ' + hostname + ':' + address.port + '.');
+        grunt.config.set('connect.' + taskTarget + '.options.hostname', hostname);
         grunt.config.set('connect.' + taskTarget + '.options.port', address.port);
 
-        grunt.event.emit('connect.' + taskTarget + '.listening', (address.address || 'localhost'), address.port);
+        grunt.event.emit('connect.' + taskTarget + '.listening', hostname, address.port);
 
         if (options.open === true) {
-          open(options.protocol + '://' + address.address + ':' + address.port);
+          open(options.protocol + '://' + hostname + ':' + address.port);
         } else if (typeof options.open === 'string') {
           open(options.open);
         }
