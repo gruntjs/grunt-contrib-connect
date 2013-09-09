@@ -107,7 +107,7 @@ module.exports = function(grunt) {
       .listen(options.port, options.hostname)
       .on('listening', function() {
         var address = server.address();
-        var hostname = address.address || 'localhost';
+        var hostname = options.hostname || address.address || 'localhost';
 
         grunt.log.writeln('Started connect web server on ' + hostname + ':' + address.port + '.');
         grunt.config.set('connect.' + taskTarget + '.options.hostname', hostname);
