@@ -15,6 +15,7 @@ module.exports = function(grunt) {
   var https = require('https');
   var injectLiveReload = require('connect-livereload');
   var open = require('open');
+  var fs = require('fs');
 
   grunt.registerMultiTask('connect', 'Start a connect web server.', function() {
     // Merge task-specific options with these defaults.
@@ -93,7 +94,7 @@ module.exports = function(grunt) {
     var server = null;
 
     if (options.protocol === 'https') {
-      server = https.createServer({
+      server = https.createServer(options.certs && options.certs.call(this) || {
         key: options.key || grunt.file.read(path.join(__dirname, 'certs', 'server.key')).toString(),
         cert: options.cert || grunt.file.read(path.join(__dirname, 'certs', 'server.crt')).toString(),
         ca: options.ca || grunt.file.read(path.join(__dirname, 'certs', 'ca.crt')).toString(),
