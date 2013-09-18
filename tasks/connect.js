@@ -117,6 +117,9 @@ module.exports = function(grunt) {
 
         if (options.open === true) {
           open(options.protocol + '://' + hostname + ':' + address.port);
+        } else if (typeof options.open === 'object') {
+          var target = options.protocol + '://' + options.open.target + ':' + address.port ||  options.protocol + '://' + address.address + ':' + address.port;
+          open(target, options.open.appName, options.open.callback);
         } else if (typeof options.open === 'string') {
           open(options.open);
         }
