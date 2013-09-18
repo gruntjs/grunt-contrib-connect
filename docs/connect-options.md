@@ -57,10 +57,18 @@ Set to `true` or a port number to inject a live reload script tag into your page
 *This does not perform live reloading. It is intended to be used in tandem with grunt-contrib-watch or another task that will trigger a live reload server upon files changing.*
 
 ## open
-Type: `Boolean` or `String`
+Type: `Boolean` or `String` or `Object`
 Default: `false`
 
-Open the served page in your default browser. Specifying `true` opens the default server URL, while specifying a URL opens that URL.
+Open the served page in your default browser. Specifying `true` opens the default server URL, specifying a URL opens that URL or specify an object with the following keys to configure open directly (each are optional):
+
+```js
+{
+  target: 'http://localhost:8000', // target url to open
+  appName: 'open', // name of the app that opens, ie: open, start, xdg-open
+  callback: function() {} // called when the app has opened
+}
+```
 
 ## middleware
 Type: `Function`  

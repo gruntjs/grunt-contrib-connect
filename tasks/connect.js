@@ -108,6 +108,7 @@ module.exports = function(grunt) {
       .on('listening', function() {
         var address = server.address();
         var hostname = options.hostname || address.address || 'localhost';
+        var target = options.protocol + '://' + hostname + ':' + address.port;
 
         grunt.log.writeln('Started connect web server on ' + hostname + ':' + address.port + '.');
         grunt.config.set('connect.' + taskTarget + '.options.hostname', hostname);
@@ -116,7 +117,12 @@ module.exports = function(grunt) {
         grunt.event.emit('connect.' + taskTarget + '.listening', hostname, address.port);
 
         if (options.open === true) {
-          open(options.protocol + '://' + hostname + ':' + address.port);
+          open(target);
+        } else if (typeof options.open === 'object') {
+          options.open.target = options.open.target || target;
+          options.open.appName = options.open.appName || null;
+          options.open.callback = options.open.callback || function() {};
+          open(options.open.target, options.open.appName, options.open.callback);
         } else if (typeof options.open === 'string') {
           open(options.open);
         }
