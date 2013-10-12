@@ -82,6 +82,13 @@ module.exports = function(grunt) {
           port: 9003,
         },
       },
+      livereload: {
+        options: {
+          livereload: true,
+          base: 'test/fixtures/',
+          port: 9004,
+        },
+      },
     },
   });
 
