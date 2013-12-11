@@ -110,7 +110,7 @@ module.exports = function(grunt) {
         var hostname = options.hostname || address.address || 'localhost';
         var target = options.protocol + '://' + hostname + ':' + address.port;
 
-        grunt.log.writeln('Started connect web server on ' + target + ' .');
+        grunt.log.writeln('Started connect web server on ' + target);
         grunt.config.set('connect.' + taskTarget + '.options.hostname', hostname);
         grunt.config.set('connect.' + taskTarget + '.options.port', address.port);
 
