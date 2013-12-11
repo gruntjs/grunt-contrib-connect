@@ -75,20 +75,28 @@ Type: `Function`
 Default:
 
 ```js
-function(connect, options) {
-  var middlewares = [];
-  var directory = options.directory || options.base[options.base.length - 1];
-  if (!Array.isArray(options.base)) {
-    options.base = [options.base];
-  }
-  options.base.forEach(function(base) {
-    // Serve static files.
-    middlewares.push(connect.static(base));
-  });
-  // Make directory browse-able.
-  middlewares.push(connect.directory(directory));
-  return middlewares;
-}
+grunt.initConfig({
+  connect: {
+    server: {
+      options: {
+        middleware: function(connect, options) {
+          var middlewares = [];
+          var directory = options.directory || options.base[options.base.length - 1];
+          if (!Array.isArray(options.base)) {
+            options.base = [options.base];
+          }
+          options.base.forEach(function(base) {
+            // Serve static files.
+            middlewares.push(connect.static(base));
+          });
+          // Make directory browse-able.
+          middlewares.push(connect.directory(directory));
+          return middlewares;
+        },
+      },
+    },
+  },
+});
 ```
 
 Lets you add in your own Connect middlewares. This option expects a function that returns an array of middlewares. See the [project Gruntfile][] and [project unit tests][] for a usage example.
