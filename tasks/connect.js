@@ -28,6 +28,7 @@ module.exports = function(grunt) {
       debug: false,
       livereload: false,
       open: false,
+      onCreateServer: null,
       middleware: function(connect, options) {
         var middlewares = [];
         var directory = options.directory || options.base[options.base.length - 1];
@@ -101,6 +102,10 @@ module.exports = function(grunt) {
       }, app);
     } else {
       server = http.createServer(app);
+    }
+
+    if (options.onCreateServer && typeof options.onCreateServer == 'function'){
+      options.onCreateServer.call(null,server,connect);    
     }
 
     server
