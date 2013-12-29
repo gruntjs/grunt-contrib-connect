@@ -1,3 +1,12 @@
+v0.6.0:
+  date: 2013-12-29
+  changes:
+    - Open options.hostname if provided.
+    - Update connect-livereload to ~0.3.0.
+    - Update connect to ~2.12.0.
+    - Use well-formed ssl certificates.
+    - Support all options of open.
+    - Make directory browseable when base is a string.
 v0.5.0:
   date: 2013-09-05
   changes:

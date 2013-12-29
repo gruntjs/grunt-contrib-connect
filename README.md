@@ -1,4 +1,4 @@
-# grunt-contrib-connect v0.5.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-connect.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect)
+# grunt-contrib-connect v0.6.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-connect.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect)
 
 > Start a connect web server.
 
@@ -111,10 +111,10 @@ grunt.initConfig({
       options: {
         middleware: function(connect, options) {
           var middlewares = [];
-          var directory = options.directory || options.base[options.base.length - 1];
           if (!Array.isArray(options.base)) {
             options.base = [options.base];
           }
+          var directory = options.directory || options.base[options.base.length - 1];
           options.base.forEach(function(base) {
             // Serve static files.
             middlewares.push(connect.static(base));
@@ -278,6 +278,7 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 ## Release History
 
+ * 2013-12-29   v0.6.0   Open options.hostname if provided. Update connect-livereload to ~0.3.0. Update connect to ~2.12.0. Use well-formed ssl certificates. Support all options of open. Make directory browseable when base is a string.
  * 2013-09-05   v0.5.0   Add 'open' option.
  * 2013-09-05   v0.4.2   Un-normalize options.base as it should be a string or an array as the user has set. Fix setting target hostname option.
  * 2013-09-02   v0.4.1   Browse-able directory is the last item supplied to bases. Added directory option to override browse-able directory.
@@ -294,4 +295,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Tue Dec 10 2013 19:52:22.*
+*This file was generated on Sun Dec 29 2013 11:58:17.*
