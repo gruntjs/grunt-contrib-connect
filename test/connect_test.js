@@ -23,7 +23,14 @@ function get(url, done) {
 exports.connect = {
   custom_base: function(test) {
     test.expect(2);
-    get('http://localhost:8000/fixtures/hello.txt', function(res, body) {
+    get({
+      hostname: 'localhost',
+      port: 8000,
+      path: '/fixtures/hello.txt',
+      headers: {
+        accept: 'text/plain',
+      },
+    }, function(res, body) {
       test.equal(res.statusCode, 200, 'should return 200');
       test.equal(body, 'Hello world', 'should return static page');
       test.done();
@@ -31,7 +38,14 @@ exports.connect = {
   },
   multiple_base: function(test) {
     test.expect(2);
-    get('http://localhost:9002/fixtures/hello.txt', function(res, body) {
+    get({
+      hostname: 'localhost',
+      port: 9002,
+      path: '/fixtures/hello.txt',
+      headers: {
+        accept: 'text/plain',
+      },
+    }, function(res, body) {
       test.equal(res.statusCode, 200, 'should return 200');
       get('http://localhost:9002/connect-examples.md', function(res, body) {
         test.equal(res.statusCode, 200, 'should return 200');
@@ -41,7 +55,14 @@ exports.connect = {
   },
   multiple_base_directory: function(test) {
     test.expect(4);
-    get('http://localhost:9003', function(res, body) {
+    get({
+      hostname: 'localhost',
+      port: 9003,
+      path: '/',
+      headers: {
+        accept: 'text/html',
+      },
+    }, function(res, body) {
       test.equal(res.statusCode, 200, 'should return 200');
       test.ok((body.indexOf('hello.txt') !== -1), 'Listing should contain hello.txt');
       get('http://localhost:9003/fixtures/hello.txt', function(res, body) {
@@ -58,7 +79,7 @@ exports.connect = {
       port: 9004,
       path: '/livereload.html',
       headers: {
-        accept: 'html',
+        accept: 'text/html',
       },
     }, function(res, body) {
       test.ok((body.indexOf('35729/livereload.js') !== -1), 'Should contain livereload snippet.');
