@@ -105,7 +105,7 @@ module.exports = function(grunt) {
     }
 
     if (options.onCreateServer && typeof options.onCreateServer === 'function'){
-      options.onCreateServer.call(null,server,connect);    
+      options.onCreateServer.call(null, server, connect, options);   
     }
 
     server
