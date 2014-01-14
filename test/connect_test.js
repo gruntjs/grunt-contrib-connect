@@ -86,4 +86,18 @@ exports.connect = {
       test.done();
     });
   },
+  available_port: function(test) {
+    test.expect(2);
+    get({
+      hostname: 'localhost',
+      port: 9005,
+      headers: {
+        accept: 'text/plain',
+      },
+    }, function(res, body) {
+      test.equal(res.statusCode, 200, 'should return 200');
+      test.equal(body, 'Hello from port 9005', 'should return static page');
+      test.done();
+    });
+  }
 };

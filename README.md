@@ -34,7 +34,13 @@ This task was designed to be used in conjunction with another task that is run i
 Type: `Integer`  
 Default: `8000`
 
-The port on which the webserver will respond. The task will fail if the specified port is already in use. You can use the special values `0` or `'?'` to use a system-assigned port.
+The port on which the webserver will respond. The task will fail if the specified port is already in use unless you pass `true` to the [useAvailablePort](#useavailableport). You can use the special values `0` or `'?'` to use a system-assigned port.
+
+#### useAvailablePort
+Type: `Boolean`  
+Default: `false`
+
+If the specified port is in use, the task will fail. Change this to `true` to have it look for the next available port.
 
 #### protocol
 Type: `String`  
