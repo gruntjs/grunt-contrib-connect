@@ -89,6 +89,13 @@ module.exports = function(grunt) {
           port: 9004,
         },
       },
+      available_port: {
+        options: {
+          port: 9000,
+          useAvailablePort: true,
+          middleware: '<%= connect.custom_middleware.options.middleware %>'
+        }
+      }
     },
   });
 

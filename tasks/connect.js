@@ -21,6 +21,7 @@ module.exports = function(grunt) {
     var options = this.options({
       protocol: 'http',
       port: 8000,
+      useAvailablePort: false,
       hostname: 'localhost',
       base: '.',
       directory: null,
@@ -133,7 +134,13 @@ module.exports = function(grunt) {
       })
       .on('error', function(err) {
         if (err.code === 'EADDRINUSE') {
-          grunt.fatal('Port ' + options.port + ' is already in use by another process.');
+          if (options.useAvailablePort) {
+            options.port = options.port + 1;
+            server.listen(options.port, options.hostname);
+          }
+          else {
+            grunt.fatal('Port ' + options.port + ' is already in use by another process.');
+          }
         } else {
           grunt.fatal(err);
         }
