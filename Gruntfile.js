@@ -35,18 +35,21 @@ module.exports = function(grunt) {
       },
       custom_port: {
         options: {
-          port: 9000,
+          base: 'test',
+          port: 8001,
         },
       },
       custom_https: {
         options: {
-          port: 8001,
+          base: 'test',
+          port: 8002,
           protocol: 'https',
         }
       },
       custom_https_certs: {
         options: {
-          port: 8002,
+          base: 'test',
+          port: 8003,
           protocol: 'https',
           key: grunt.file.read(path.join(certs, 'server.key')).toString(),
           cert: grunt.file.read(path.join(certs, 'server.crt')).toString(),
@@ -54,39 +57,78 @@ module.exports = function(grunt) {
           passphrase: '',
         }
       },
-      custom_middleware: {
-        options: {
-          port: 9001,
-          base: '.',
-          middleware: function(connect, options) {
-            // Return array of whatever middlewares you want
-            return [
-              connect.static(options.base),
-              function(req, res, next) {
-                res.end('Hello from port ' + options.port);
-              }
-            ];
-          },
-        },
-      },
       multiple_base: {
         options: {
           base: ['test', 'docs'],
-          port: 9002,
+          port: 8004,
         },
       },
       multiple_base_directory: {
         options: {
           base: ['test', 'docs'],
           directory: 'test/fixtures/',
-          port: 9003,
+          port: 8005,
         },
       },
       livereload: {
         options: {
           livereload: true,
           base: 'test/fixtures/',
-          port: 9004,
+          port: 8006,
+        },
+      },
+      custom_middleware: {
+        options: {
+          port: 8007,
+          base: 'test',
+          middleware: function(connect, options, middlwares) {
+            // an explicit array of any middlewares that ignores the default set
+            return [
+              connect.static(options.base[0]),
+
+              function(req, res, next) {
+                if (req.url !== '/hello/world') {
+                  next();
+                  return;
+                }
+                res.end('Hello from port ' + options.port);
+              }
+            ];
+          },
+        },
+      },
+      null_middleware: {
+        options: {
+          port: 8008,
+          base: 'test/',
+          middleware: null
+        },
+      },
+      empty_middleware: {
+        options: {
+          port: 8009,
+          base: 'test/',
+          middleware: []
+        },
+      },
+      custom_middleware_patch_default_middleware: {
+        options: {
+          port: 8010,
+          base: 'test/',
+          middleware: function(connect, options, middlewares) {
+            // inject a custom middleware into the array of default middlewares
+            // this is likely the easiest way for other grunt plugins to
+            // extend the behavior of grunt-contrib-connect
+            middlewares.push(function(req, res, next) {
+              if (req.url !== '/hello/world') {
+                return next();
+              }
+
+              res.end('Hello, world from port #' + options.port + '!');
+            });
+
+            return middlewares;
+          },
         },
       },
       useAvailablePort: {
