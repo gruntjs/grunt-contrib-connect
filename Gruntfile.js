@@ -89,6 +89,13 @@ module.exports = function(grunt) {
           port: 9004,
         },
       },
+      useAvailablePort: {
+        options: {
+          port: 9005,
+          useAvailablePort: true,
+          livereload: true
+        }
+      }
     },
   });
 
