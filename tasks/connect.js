@@ -21,7 +21,7 @@ module.exports = function(grunt) {
     var options = this.options({
       protocol: 'http',
       port: 8000,
-      hostname: 'localhost',
+      hostname: '0.0.0.0',
       base: '.',
       directory: null,
       keepalive: false,

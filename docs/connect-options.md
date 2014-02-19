@@ -14,7 +14,7 @@ May be `'http'` or `'https'`.
 
 ## hostname
 Type: `String`  
-Default: `'localhost'`
+Default: `'0.0.0.0'`
 
 The hostname the webserver will use.
 
