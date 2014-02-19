@@ -27,7 +27,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "connect": "~2.12.0",
+    "connect": "~2.13.0",
     "connect-livereload": "~0.3.0",
     "open": "0.0.4"
   },
