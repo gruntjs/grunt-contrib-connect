@@ -96,14 +96,9 @@ module.exports = function(grunt) {
             options.livereload = 35729;
           }
 
-          portscanner.findAPortNotInUse(options.livereload, options.livereload + MAX_PORTS, options.hostname, function(error, foundPort) {
-            // if the found port doesn't match the option port, and we are forced to use the option port
-            if (options.livereload !== foundPort && options.useAvailablePort === false) {
-              grunt.fatal('Livereload Port ' + options.port + ' is already in use by another process.');
-            }
-            middleware.unshift(injectLiveReload({port: foundPort}));
-            callback(null);
-          });
+          // TODO: Add custom ports here?
+          middleware.unshift(injectLiveReload({port: options.livereload}));
+          callback(null);
         } else {
           callback(null);
         }
