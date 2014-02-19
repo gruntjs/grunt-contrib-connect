@@ -1,4 +1,4 @@
-# grunt-contrib-connect v0.6.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-connect.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect)
+# grunt-contrib-connect v0.7.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-connect.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect)
 
 > Start a connect web server.
 
@@ -44,7 +44,7 @@ May be `'http'` or `'https'`.
 
 #### hostname
 Type: `String`  
-Default: `'localhost'`
+Default: `'0.0.0.0'`
 
 The hostname the webserver will use.
 
@@ -296,4 +296,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Tue Feb 18 2014 23:27:34.*
+*This file was generated on Tue Feb 18 2014 23:30:25.*
