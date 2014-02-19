@@ -75,26 +75,34 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
 A default certificate authority, certificate and key file are provided and pre-
 configured for use when `protocol` has been set to `https`.
 
-NOTE: The passphrase used on the files is `grunt`
+NOTE: No passphrase set for the certificate.
+If you are getting warnings in Google Chrome, add 'server.crt' (from 'node_modules/tasks/certs')
+to your keychain.
+In OS X, after you add 'server.crt', right click on the certificate,
+select 'Get Info' - 'Trust' - 'Always Trust', close window, restart Chrome.
 
-##### Advanced HTTPS config
+#### Advanced HTTPS config
 
 If the default certificate setup is unsuitable for your environment, OpenSSL
 can be used to create a set of self-signed certificates with a local ca root.
 
 ```shell
-# Generate the CA key
-# Set a passphrase and remember what it is
-openssl genrsa -des3 -out ca.key 2048
-# Generate a CA root
-openssl req -new -x509 -days 3650 -key ca.key -out ca.crt
+# Create ca.key, use a password phrase when asked
+# When asked 'Common Name (e.g. server FQDN or YOUR name) []:' use your hostname, i.e 'mysite.dev'
+openssl genrsa -des3 -out ca.key 1024
+openssl req -new -key ca.key -out ca.csr
+openssl x509 -req -days 365 -in ca.csr -out ca.crt -signkey ca.key
 
-# Generate the server key
-openssl genrsa -out server.key 1024
-# Generate the request to the self-signed CA root
+# Create server certificate
+openssl genrsa -des3 -out server.key 1024
 openssl req -new -key server.key -out server.csr
-# Generate the server certificate
-openssl x509 -req -in server.csr -out server.crt -CA ca.crt -CAkey ca.key -CAcreateserial -days 3650
+
+# Remove password from the certificate
+cp server.key server.key.org
+openssl rsa -in server.key.org -out server.key
+
+# Generate self-siged certificate
+openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 ```
 
 For more details on the various options that can be set when configuring SSL,
@@ -112,8 +120,7 @@ grunt.initConfig({
         port: 8443,
         key: grunt.file.read('server.key').toString(),
         cert: grunt.file.read('server.crt').toString(),
-        ca: grunt.file.read('ca.crt').toString(),
-        passphrase: 'grunt',
+        ca: grunt.file.read('ca.crt').toString()
       },
     },
   },

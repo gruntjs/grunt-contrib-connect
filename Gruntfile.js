@@ -51,7 +51,7 @@ module.exports = function(grunt) {
           key: grunt.file.read(path.join(certs, 'server.key')).toString(),
           cert: grunt.file.read(path.join(certs, 'server.crt')).toString(),
           ca: grunt.file.read(path.join(certs, 'ca.crt')).toString(),
-          passphrase: 'grunt',
+          passphrase: '',
         }
       },
       custom_middleware: {
