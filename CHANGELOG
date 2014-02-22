@@ -3,6 +3,7 @@ v0.7.0:
   changes:
     - Update connect to ~2.13.0.
     - Default hostname switched to '0.0.0.0'.
+    - Modified options.middleware to accept an array or a function.
 v0.6.0:
   date: 2013-12-29
   changes:

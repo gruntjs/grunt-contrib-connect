@@ -108,26 +108,42 @@ If `true` the task will look for the next available port after the set `port` op
 This also applies to `livereload`.
 
 #### middleware
-Type: `Function`  
-Default:
+Type: `Function` or `Array`
+Default: `Array` of connect middlewares that use `options.base` for static files and directory browsing
+
+As an `Array`:
 
 ```js
 grunt.initConfig({
   connect: {
     server: {
       options: {
-        middleware: function(connect, options) {
-          var middlewares = [];
-          if (!Array.isArray(options.base)) {
-            options.base = [options.base];
+        middleware: [
+          function myMiddleware(req, res, next) {
+            res.end('Hello, world!');
           }
-          var directory = options.directory || options.base[options.base.length - 1];
-          options.base.forEach(function(base) {
-            // Serve static files.
-            middlewares.push(connect.static(base));
+        ],
+      },
+    },
+  },
+});
+```
+
+As a `function`:
+
+```js
+grunt.initConfig({
+  connect: {
+    server: {
+      options: {
+        middleware: function(connect, options, middlewares) {
+          // inject a custom middleware into the array of default middlewares
+          middlewares.push(function(req, res, next) {
+            if (req.url !== '/hello/world') return next();
+
+            res.end('Hello, world from port #' + options.port + '!');
           });
-          // Make directory browse-able.
-          middlewares.push(connect.directory(directory));
+
           return middlewares;
         },
       },
@@ -292,7 +308,7 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 ## Release History
 
- * 2014-02-18   v0.7.0   Update connect to ~2.13.0. Default hostname switched to '0.0.0.0'.
+ * 2014-02-18   v0.7.0   Update connect to ~2.13.0. Default hostname switched to '0.0.0.0'. Modified options.middleware to accept an array or a function.
  * 2013-12-29   v0.6.0   Open options.hostname if provided. Update connect-livereload to ~0.3.0. Update connect to ~2.12.0. Use well-formed ssl certificates. Support all options of open. Make directory browseable when base is a string.
  * 2013-09-05   v0.5.0   Add 'open' option.
  * 2013-09-05   v0.4.2   Un-normalize options.base as it should be a string or an array as the user has set. Fix setting target hostname option.
@@ -310,4 +326,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Wed Feb 19 2014 18:41:49.*
+*This file was generated on Fri Feb 21 2014 20:22:31.*
