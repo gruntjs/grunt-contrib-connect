@@ -24,7 +24,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt jshint test"
   },
   "dependencies": {
     "connect": "~2.13.0",
@@ -37,7 +37,8 @@
     "grunt-contrib-jshint": "~0.6.4",
     "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-contrib-internal": "~0.4.6",
-    "grunt": "~0.4.0"
+    "grunt": "~0.4.0",
+    "grunt-cli": "~0.1.13"
   },
   "peerDependencies": {
     "grunt": "~0.4.0"
