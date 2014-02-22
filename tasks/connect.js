@@ -20,6 +20,21 @@ module.exports = function(grunt) {
 
   var MAX_PORTS = 30; // Maximum available ports to check after the specified port
 
+  var createDefaultMiddleware = function createDefaultMiddleware(connect, options) {
+    var middlewares = [];
+    if (!Array.isArray(options.base)) {
+      options.base = [options.base];
+    }
+    var directory = options.directory || options.base[options.base.length - 1];
+    options.base.forEach(function(base) {
+      // Serve static files.
+      middlewares.push(connect.static(base));
+    });
+    // Make directory browse-able.
+    middlewares.push(connect.directory(directory));
+    return middlewares;
+  };
+
   grunt.registerMultiTask('connect', 'Start a connect web server.', function() {
     var done = this.async();
     // Merge task-specific options with these defaults.
@@ -34,20 +49,8 @@ module.exports = function(grunt) {
       livereload: false,
       open: false,
       useAvailablePort: false,
-      middleware: function(connect, options) {
-        var middlewares = [];
-        if (!Array.isArray(options.base)) {
-          options.base = [options.base];
-        }
-        var directory = options.directory || options.base[options.base.length - 1];
-        options.base.forEach(function(base) {
-          // Serve static files.
-          middlewares.push(connect.static(base));
-        });
-        // Make directory browse-able.
-        middlewares.push(connect.directory(directory));
-        return middlewares;
-      }
+      // if nothing passed, then is set below 'middleware = createDefaultMiddleware.call(this, connect, options);'
+      middleware: null
     });
 
     if (options.protocol !== 'http' && options.protocol !== 'https') {
@@ -73,7 +76,22 @@ module.exports = function(grunt) {
       options.port = 0;
     }
 
-    var middleware = options.middleware ? options.middleware.call(this, connect, options) : [];
+    //  The middleware options may be null, an array of middleware objects,
+    //  or a factory function that creates an array of middleware objects.
+    //  * For a null value, use the default array of middleware
+    //  * For a function, include the default array of middleware as the last arg
+    //    which enables the function to patch the default middleware without needing to know
+    //    the implementation of the default middleware factory function
+    var middleware;
+    if (options.middleware instanceof Array) {
+      middleware = options.middleware;
+    } else {
+      middleware = createDefaultMiddleware.call(this, connect, options);
+
+      if (typeof(options.middleware) === 'function') {
+        middleware = options.middleware.call(this, connect, options, middleware);
+      }
+    }
 
     // If --debug was specified, enable logging.
     if (grunt.option('debug') || options.debug === true) {

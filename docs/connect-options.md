@@ -78,26 +78,42 @@ If `true` the task will look for the next available port after the set `port` op
 This also applies to `livereload`.
 
 ## middleware
-Type: `Function`  
-Default:
+Type: `Function` or `Array`
+Default: `Array` of connect middlewares that use `options.base` for static files and directory browsing
+
+As an `Array`:
 
 ```js
 grunt.initConfig({
   connect: {
     server: {
       options: {
-        middleware: function(connect, options) {
-          var middlewares = [];
-          if (!Array.isArray(options.base)) {
-            options.base = [options.base];
+        middleware: [
+          function myMiddleware(req, res, next) {
+            res.end('Hello, world!');
           }
-          var directory = options.directory || options.base[options.base.length - 1];
-          options.base.forEach(function(base) {
-            // Serve static files.
-            middlewares.push(connect.static(base));
+        ],
+      },
+    },
+  },
+});
+```
+
+As a `function`:
+
+```js
+grunt.initConfig({
+  connect: {
+    server: {
+      options: {
+        middleware: function(connect, options, middlewares) {
+          // inject a custom middleware into the array of default middlewares
+          middlewares.push(function(req, res, next) {
+            if (req.url !== '/hello/world') return next();
+
+            res.end('Hello, world from port #' + options.port + '!');
           });
-          // Make directory browse-able.
-          middlewares.push(connect.directory(directory));
+
           return middlewares;
         },
       },
