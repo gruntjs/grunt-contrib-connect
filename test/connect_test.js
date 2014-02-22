@@ -126,7 +126,7 @@ exports.connect = {
     });
   },
   livereload: function(test) {
-    test.expect(1);
+    test.expect(2);
     get({
       hostname: 'localhost',
       port: 8006,
@@ -136,7 +136,19 @@ exports.connect = {
       },
     }, function(res, body) {
       test.ok((body.indexOf('35729/livereload.js') !== -1), 'Should contain livereload snippet.');
-      test.done();
+
+      // check if livereload works with params
+      get({
+        hostname: 'localhost',
+        port: 8006,
+        path: '/livereload.html?a=1&b=2#id',
+        headers: {
+          accept: 'text/html',
+        },
+      }, function(res, body) {
+        test.ok((body.indexOf('35729/livereload.js') !== -1), 'Should contain livereload snippet.');
+        test.done();
+      });
     });
   },
   custom_middleware: function(test) {
