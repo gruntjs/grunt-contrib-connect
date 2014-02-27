@@ -1,3 +1,7 @@
+v0.7.1:
+  date: 2014-02-27
+  changes:
+    - Fixes issue with the '*' hostname option.
 v0.7.0:
   date: 2014-02-18
   changes:

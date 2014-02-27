@@ -137,6 +137,13 @@ module.exports = function(grunt) {
           useAvailablePort: true,
           livereload: true
         }
+      },
+      allHostname: {
+        options: {
+          port: 8012,
+          hostname: '*',
+          base: 'test/'
+        }
       }
     },
   });

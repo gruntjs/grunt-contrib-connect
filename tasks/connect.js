@@ -68,7 +68,7 @@ module.exports = function(grunt) {
 
     // Connect will listen to all interfaces if hostname is null.
     if (options.hostname === '*') {
-      options.hostname = null;
+      options.hostname = '';
     }
 
     // Connect will listen to ephemeral port if asked
@@ -147,7 +147,7 @@ module.exports = function(grunt) {
             .listen(foundPort, options.hostname)
             .on('listening', function() {
               var address = server.address();
-              var hostname = options.hostname || 'localhost';
+              var hostname = options.hostname || '0.0.0.0';
               var target = options.protocol + '://' + hostname + ':' + address.port;
 
               grunt.log.writeln('Started connect web server on ' + target);
