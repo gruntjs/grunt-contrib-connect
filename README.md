@@ -105,7 +105,6 @@ Open the served page in your default browser. Specifying `true` opens the defaul
   Default: `false`
 
 If `true` the task will look for the next available port after the set `port` option.
-This also applies to `livereload`.
 
 #### middleware
 Type: `Function` or `Array`
@@ -327,4 +326,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Thu Feb 27 2014 15:45:07.*
+*This file was generated on Fri Feb 28 2014 22:38:50.*

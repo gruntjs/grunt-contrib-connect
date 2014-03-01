@@ -75,7 +75,6 @@ Open the served page in your default browser. Specifying `true` opens the defaul
   Default: `false`
 
 If `true` the task will look for the next available port after the set `port` option.
-This also applies to `livereload`.
 
 ## middleware
 Type: `Function` or `Array`
