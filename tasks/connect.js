@@ -157,14 +157,14 @@ module.exports = function(grunt) {
               grunt.event.emit('connect.' + taskTarget + '.listening', hostname, address.port);
 
               if (options.open === true) {
-                open(target);
+                open(target, options.browser || void 0);
               } else if (typeof options.open === 'object') {
                 options.open.target = options.open.target || target;
                 options.open.appName = options.open.appName || null;
                 options.open.callback = options.open.callback || function() {};
                 open(options.open.target, options.open.appName, options.open.callback);
               } else if (typeof options.open === 'string') {
-                open(options.open);
+                open(options.open, options.browser || void 0);
               }
 
               if (!keepAlive) {
