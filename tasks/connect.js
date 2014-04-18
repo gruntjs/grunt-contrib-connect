@@ -50,7 +50,10 @@ module.exports = function(grunt) {
       open: false,
       useAvailablePort: false,
       // if nothing passed, then is set below 'middleware = createDefaultMiddleware.call(this, connect, options);'
-      middleware: null
+      middleware: null,
+      //Actually we always have implicit middleware mount point and it's stands for '/'
+      //see - https://github.com/senchalabs/connect/blob/2.13.x/lib/proto.js
+      route: '/'
     });
 
     if (options.protocol !== 'http' && options.protocol !== 'https') {
@@ -122,8 +125,11 @@ module.exports = function(grunt) {
         }
       },
       function(){
+        var app = connect();
+        middleware.forEach(function(val, i){
+          app.use(options.route,middleware[i]);
+        });
 
-        var app = connect.apply(null, middleware);
         var server = null;
 
         if (options.protocol === 'https') {
