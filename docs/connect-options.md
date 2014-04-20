@@ -42,6 +42,12 @@ Keep the server alive indefinitely. Note that if this option is enabled, any tas
 
 This option can also be enabled ad-hoc by running the task like `grunt connect:targetname:keepalive`
 
+## route
+Type: `String`  
+Default: `/`
+
+Set this to use another route. For example, if you set this to '/public' you can access files from 'http://localhost:8000/public' instead of 'http://localhost:8000/'
+
 ## debug
 Type: `Boolean`  
 Default: `false`

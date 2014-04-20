@@ -251,4 +251,15 @@ exports.connect = {
       });
     });
   },
+  customRoute: function(test){
+    test.expect(2);
+
+    get('http://localhost:8013/public/fixtures/hello.txt', function(res, body){
+      test.equal(res.statusCode, 200, 'should return 200');
+      get('http://localhost:8013/fixtures/hello.txt', function(res, body){
+        test.equal(res.statusCode, 404, 'should return 404');
+        test.done();
+      });
+    });
+  }
 };

@@ -144,6 +144,13 @@ module.exports = function(grunt) {
           hostname: '*',
           base: 'test/'
         }
+      },
+      customRoute: {
+        options: {
+          port: 8013,
+          base: 'test/',
+          route: '/public'
+        }
       }
     },
   });
