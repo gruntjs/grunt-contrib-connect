@@ -49,6 +49,7 @@ module.exports = function(grunt) {
       livereload: false,
       open: false,
       useAvailablePort: false,
+      onCreateServer: null,
       // if nothing passed, then is set below 'middleware = createDefaultMiddleware.call(this, connect, options);'
       middleware: null
     });
@@ -74,6 +75,10 @@ module.exports = function(grunt) {
     // Connect will listen to ephemeral port if asked
     if (options.port === '?') {
       options.port = 0;
+    }
+
+    if (options.onCreateServer && !Array.isArray(options.onCreateServer)) {
+      options.onCreateServer = [options.onCreateServer];
     }
 
     //  The middleware options may be null, an array of middleware objects,
@@ -135,6 +140,13 @@ module.exports = function(grunt) {
           }, app);
         } else {
           server = http.createServer(app);
+        }
+
+        // Call any onCreateServer functions that are present
+        if (options.onCreateServer) {
+          options.onCreateServer.forEach(function(func) {
+            func.call(null, server, connect, options);
+          });
         }
 
         portscanner.findAPortNotInUse(options.port, options.port + MAX_PORTS, options.hostname, function(error, foundPort) {

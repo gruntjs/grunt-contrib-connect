@@ -106,6 +106,31 @@ Open the served page in your default browser. Specifying `true` opens the defaul
 
 If `true` the task will look for the next available port after the set `port` option.
 
+#### onCreateServer
+Type: `Function` or `Array`
+Default: `null`
+
+A function to be called after the server object is created, to allow integrating libraries that need access to connect's server object. A Socket.IO example:
+
+```js
+grunt.initConfig({
+  connect: {
+    server: {
+      options: {
+        port: 8000,
+        hostname: '*',
+        onCreateServer: function(server, connect, options) {
+          var io = require('socket.io').listen(server);
+          io.sockets.on('connection', function(socket) {
+            // do something with socket
+          });
+        });
+      }
+    }
+  }
+});
+```
+
 #### middleware
 Type: `Function` or `Array`
 Default: `Array` of connect middlewares that use `options.base` for static files and directory browsing

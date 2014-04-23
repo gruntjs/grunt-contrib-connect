@@ -144,6 +144,18 @@ module.exports = function(grunt) {
           hostname: '*',
           base: 'test/'
         }
+      },
+      onCreateServer: {
+        options: {
+          port: 8013,
+          hostname: '*',
+          onCreateServer: function(server, connect, options) {
+            server.on('request', function(req, res) {
+              // set a config object, so we can check it in our tests
+              grunt.config.data.connect.onCreateServer.test = true;
+            });
+          }
+        }
       }
     },
   });
