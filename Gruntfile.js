@@ -39,6 +39,18 @@ module.exports = function(grunt) {
           port: 8001,
         },
       },
+      self_port_q: {
+        options: {
+          base: 'test',
+          port: '?',
+        }
+      },
+      self_port_0: {
+        options: {
+          base: 'test',
+          port: 0,
+        }
+      },
       custom_https: {
         options: {
           base: 'test',
