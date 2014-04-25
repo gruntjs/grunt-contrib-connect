@@ -124,7 +124,7 @@ grunt.initConfig({
           io.sockets.on('connection', function(socket) {
             // do something with socket
           });
-        });
+        }
       }
     }
   }
