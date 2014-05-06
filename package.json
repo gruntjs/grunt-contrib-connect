@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "connect": "~2.13.0",
-    "connect-livereload": "~0.3.0",
+    "connect-livereload": "~0.4.0",
     "open": "0.0.4",
     "portscanner": "0.2.2",
     "async": "~0.2.10"
