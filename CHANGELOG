@@ -1,3 +1,7 @@
+v0.7.2:
+  date: 2014-05-28
+  changes:
+    - Support for connect.static options.
 v0.7.1:
   date: 2014-02-27
   changes:

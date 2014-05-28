@@ -1,4 +1,4 @@
-# grunt-contrib-connect v0.7.1 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-connect.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect)
+# grunt-contrib-connect v0.7.2 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect)
 
 > Start a connect web server.
 
@@ -51,12 +51,15 @@ The hostname the webserver will use.
 Setting it to `'*'` will make the server accessible from anywhere.
 
 #### base
-Type: `String` or `Array`  
+Type: `String` or `Array` or `Object`  
 Default: `'.'`
 
-The base (or root) directory from which files will be served. Defaults to the project Gruntfile's directory.
+| Type     | Result                                                                                                                                           | Example                                              |
+| ---      | :---                                                                                                                                             | ---                                                  |
+| *String* | The base (or root) directory from which files will be served. Defaults to the project Gruntfile's directory.                                     | `'public'`                                           |
+| *Array*  | Array of `String` (or `Object`) bases to serve multiple directories. The last base given will be the [directory][] to become browse-able.        | `['public','www-root']`                              |
+| *Object* | Map containing `path` and `options` keys. `options` are passed on to the [connect.static](http://www.senchalabs.org/connect/static.html) module. | `{ path: 'public', options: { maxAge: 1000*60*5 } }` |
 
-Can be an array of bases to serve multiple directories. The last base given will be the directory to become browse-able.
 
 #### directory
 Type: `String`  
@@ -181,6 +184,7 @@ Lets you add in your own Connect middlewares. This option expects a function tha
 [project Gruntfile]: Gruntfile.js
 [project unit tests]: test/connect_test.js
 
+
 ### Usage examples
 
 #### Basic Use
@@ -233,6 +237,32 @@ grunt.initConfig({
   }
 });
 ```
+
+#### Connect.static Options
+You can specify options to be passed to each instance of the [connect.static](http://www.senchalabs.org/connect/static.html) module:
+
+```js
+grunt.initConfig({
+  connect: {
+    server: {
+      options: {
+        port: 8000,
+        base: {
+          path: 'www-root',
+          options: {
+            index: 'somedoc.html',
+            maxAge: 300000
+          }
+        }
+      }
+    }
+  }
+});
+```
+
+
+
+#### 
 
 #### Roll Your Own
 Like the [Basic Use](#basic-use) example, this example will start a static web server at `http://localhost:9001/`, with its base path set to the `www-root` directory relative to the gruntfile. Unlike the other example, this is done by creating a brand new task. in fact, this plugin isn't even installed!
@@ -332,6 +362,7 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 ## Release History
 
+ * 2014-05-28   v0.7.2   Support for connect.static options.
  * 2014-02-27   v0.7.1   Fixes issue with the '*' hostname option.
  * 2014-02-18   v0.7.0   Update connect to ~2.13.0. Default hostname switched to '0.0.0.0'. Modified options.middleware to accept an array or a function.
  * 2013-12-29   v0.6.0   Open options.hostname if provided. Update connect-livereload to ~0.3.0. Update connect to ~2.12.0. Use well-formed ssl certificates. Support all options of open. Make directory browseable when base is a string.
@@ -351,4 +382,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Fri Feb 28 2014 22:38:50.*
+*This file was generated on Wed May 28 2014 13:28:36.*
