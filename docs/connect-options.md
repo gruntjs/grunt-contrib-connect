@@ -21,12 +21,15 @@ The hostname the webserver will use.
 Setting it to `'*'` will make the server accessible from anywhere.
 
 ## base
-Type: `String` or `Array`  
+Type: `String` or `Array` or `Object`  
 Default: `'.'`
 
-The base (or root) directory from which files will be served. Defaults to the project Gruntfile's directory.
+| Type     | Result                                                                                                                                           | Example                                              |
+| ---      | :---                                                                                                                                             | ---                                                  |
+| *String* | The base (or root) directory from which files will be served. Defaults to the project Gruntfile's directory.                                     | `'public'`                                           |
+| *Array*  | Array of `String` (or `Object`) bases to serve multiple directories. The last base given will be the [directory][] to become browse-able.        | `['public','www-root']`                              |
+| *Object* | Map containing `path` and `options` keys. `options` are passed on to the [connect.static](http://www.senchalabs.org/connect/static.html) module. | `{ path: 'public', options: { maxAge: 1000*60*5 } }` |
 
-Can be an array of bases to serve multiple directories. The last base given will be the directory to become browse-able.
 
 ## directory
 Type: `String`  

@@ -51,12 +51,15 @@ The hostname the webserver will use.
 Setting it to `'*'` will make the server accessible from anywhere.
 
 #### base
-Type: `String` or `Array`  
+Type: `String` or `Array` or `Object`  
 Default: `'.'`
 
-The base (or root) directory from which files will be served. Defaults to the project Gruntfile's directory.
+| Type     | Result                                                                                                                                           | Example                                              |
+| ---      | :---                                                                                                                                             | ---                                                  |
+| *String* | The base (or root) directory from which files will be served. Defaults to the project Gruntfile's directory.                                     | `'public'`                                           |
+| *Array*  | Array of `String` (or `Object`) bases to serve multiple directories. The last base given will be the [directory][] to become browse-able.        | `['public','www-root']`                              |
+| *Object* | Map containing `path` and `options` keys. `options` are passed on to the [connect.static](http://www.senchalabs.org/connect/static.html) module. | `{ path: 'public', options: { maxAge: 1000*60*5 } }` |
 
-Can be an array of bases to serve multiple directories. The last base given will be the directory to become browse-able.
 
 #### directory
 Type: `String`  
@@ -234,6 +237,32 @@ grunt.initConfig({
 });
 ```
 
+#### Connect.static Options
+You can specify options to be passed to each instance of the [connect.static](http://www.senchalabs.org/connect/static.html) module:
+
+```js
+grunt.initConfig({
+  connect: {
+    server: {
+      options: {
+        port: 8000,
+        base: {
+          path: 'www-root',
+          options: {
+            index: 'somedoc.html',
+            maxAge: 300000
+          }
+        }
+      }
+    }
+  }
+});
+```
+
+
+
+#### 
+
 #### Roll Your Own
 Like the [Basic Use](#basic-use) example, this example will start a static web server at `http://localhost:9001/`, with its base path set to the `www-root` directory relative to the gruntfile. Unlike the other example, this is done by creating a brand new task. in fact, this plugin isn't even installed!
 
@@ -351,4 +380,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Fri Feb 28 2014 22:38:50.*
+*This file was generated on Mon Jun 02 2014 09:32:13.*
