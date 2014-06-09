@@ -1,3 +1,7 @@
+v0.8.0:
+  date: 2014-06-09
+  changes:
+    - Update connect and connect-livereload.
 v0.7.1:
   date: 2014-02-27
   changes:

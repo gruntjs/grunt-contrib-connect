@@ -1,4 +1,4 @@
-# grunt-contrib-connect v0.7.1 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-connect.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect)
+# grunt-contrib-connect v0.8.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect)
 
 > Start a connect web server.
 
@@ -332,6 +332,7 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 ## Release History
 
+ * 2014-06-09   v0.8.0   Update connect and connect-livereload.
  * 2014-02-27   v0.7.1   Fixes issue with the '*' hostname option.
  * 2014-02-18   v0.7.0   Update connect to ~2.13.0. Default hostname switched to '0.0.0.0'. Modified options.middleware to accept an array or a function.
  * 2013-12-29   v0.6.0   Open options.hostname if provided. Update connect-livereload to ~0.3.0. Update connect to ~2.12.0. Use well-formed ssl certificates. Support all options of open. Make directory browseable when base is a string.
@@ -351,4 +352,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Fri Feb 28 2014 22:38:50.*
+*This file was generated on Mon Jun 09 2014 14:17:55.*
