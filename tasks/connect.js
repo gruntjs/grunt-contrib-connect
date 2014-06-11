@@ -14,7 +14,7 @@ module.exports = function(grunt) {
   var http = require('http');
   var https = require('https');
   var injectLiveReload = require('connect-livereload');
-  var open = require('open');
+  var open = require('opn');
   var portscanner = require('portscanner');
   var async = require('async');
 
