@@ -1,4 +1,4 @@
-# grunt-contrib-connect v0.8.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect)
+# grunt-contrib-connect v0.9.0-pre [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect)
 
 > Start a connect web server.
 
@@ -361,6 +361,7 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 ## Release History
 
+ * 2014-06-09   v0.9.0-pre   Switch to `opn` as it fixes some Linux issues. Add support for connect.static instance options.
  * 2014-06-09   v0.8.0   Update connect and connect-livereload.
  * 2014-02-27   v0.7.1   Fixes issue with the '*' hostname option.
  * 2014-02-18   v0.7.0   Update connect to ~2.13.0. Default hostname switched to '0.0.0.0'. Modified options.middleware to accept an array or a function.
@@ -381,4 +382,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Mon Jun 30 2014 19:50:00.*
+*This file was generated on Mon Jun 30 2014 19:55:34.*
