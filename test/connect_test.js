@@ -89,8 +89,23 @@ exports.connect = {
       test.done();
     });
   },
-  multiple_base: function(test) {
+  custom_base_with_options: function(test) {
     test.expect(2);
+    get({
+      hostname: 'localhost',
+      port: 8014,
+      path: '/',
+      headers: {
+        accept: 'text/plain',
+      },
+    }, function(res, body) {
+      test.equal(res.statusCode, 200, 'should return 200');
+      test.equal(body, 'Hello world', 'should return static page');
+      test.done();
+    });
+  },
+  multiple_base: function(test) {
+    test.expect(4);
     get({
       hostname: 'localhost',
       port: 8004,
@@ -100,7 +115,29 @@ exports.connect = {
       },
     }, function(res, body) {
       test.equal(res.statusCode, 200, 'should return 200');
+      test.equal(res.headers['content-type'],'text/plain; charset=UTF-8', 'should return plaintext content type');
       get('http://localhost:8004/connect-examples.md', function(res, body) {
+        test.equal(res.headers['content-type'],'text/x-markdown; charset=UTF-8', 'should return markdown content type');
+        test.equal(res.statusCode, 200, 'should return 200');
+        test.done();
+      });
+    });
+  },
+  multiple_base_with_options: function(test) {
+    test.expect(5);
+    get({
+      hostname: 'localhost',
+      port: 8015,
+      path: '/',
+      headers: {
+        accept: 'text/plain',
+      },
+    }, function(res, body) {
+      test.equal(res.statusCode, 200, 'should return 200');
+      test.equal(body, 'Hello world', 'should return static page');
+      test.ok(res.headers['cache-control'].indexOf('max-age=0') > 0);
+      get('http://localhost:8015/connect-examples.md', function(res, body) {
+        test.ok(res.headers['cache-control'].indexOf('max-age=300') > 0);
         test.equal(res.statusCode, 200, 'should return 200');
         test.done();
       });

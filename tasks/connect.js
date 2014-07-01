@@ -25,13 +25,17 @@ module.exports = function(grunt) {
     if (!Array.isArray(options.base)) {
       options.base = [options.base];
     }
+    //Options for connect.static module. See http://www.senchalabs.org/connect/static.html
+    var defaultStaticOptions = {};
     var directory = options.directory || options.base[options.base.length - 1];
     options.base.forEach(function(base) {
       // Serve static files.
-      middlewares.push(connect.static(base));
+      var path = base.path || base;
+      var staticOptions = base.options || defaultStaticOptions;
+      middlewares.push(connect.static(path, staticOptions));
     });
     // Make directory browse-able.
-    middlewares.push(connect.directory(directory));
+    middlewares.push(connect.directory(directory.path || directory));
     return middlewares;
   };
 
@@ -61,10 +65,18 @@ module.exports = function(grunt) {
     // Connect requires the base path to be absolute.
     if (Array.isArray(options.base)) {
       options.base = options.base.map(function(base) {
+        if(base.path) {
+          base.path = path.resolve(base.path);
+          return base;
+        }
         return path.resolve(base);
       });
     } else {
-      options.base = path.resolve(options.base);
+      if(options.base.path) {
+        options.base.path = path.resolve(options.base.path);
+      } else {
+        options.base = path.resolve(options.base);
+      }
     }
 
     // Connect will listen to all interfaces if hostname is null.

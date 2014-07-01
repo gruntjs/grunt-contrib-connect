@@ -69,10 +69,40 @@ module.exports = function(grunt) {
           passphrase: '',
         }
       },
+      custom_base_with_options: {
+        options: {
+          base: {
+            path: 'test',
+            options: {
+              index: 'fixtures/hello.txt'
+            }
+          },
+          port: 8014
+        },
+      },
       multiple_base: {
         options: {
           base: ['test', 'docs'],
           port: 8004,
+        },
+      },
+      multiple_base_with_options: {
+        options: {
+          base: [
+            {
+              path: 'test',
+              options: {
+                index: 'fixtures/hello.txt'
+              }
+            },
+            {
+              path: 'docs',
+              options: {
+                maxAge: 300000 //5min
+              }
+            }
+          ],
+          port: 8015
         },
       },
       multiple_base_directory: {

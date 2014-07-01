@@ -51,6 +51,32 @@ grunt.initConfig({
 });
 ```
 
+## Connect.static Options
+You can specify options to be passed to each instance of the [connect.static](http://www.senchalabs.org/connect/static.html) module:
+
+```js
+grunt.initConfig({
+  connect: {
+    server: {
+      options: {
+        port: 8000,
+        base: {
+          path: 'www-root',
+          options: {
+            index: 'somedoc.html',
+            maxAge: 300000
+          }
+        }
+      }
+    }
+  }
+});
+```
+
+
+
+## 
+
 ## Roll Your Own
 Like the [Basic Use](#basic-use) example, this example will start a static web server at `http://localhost:9001/`, with its base path set to the `www-root` directory relative to the gruntfile. Unlike the other example, this is done by creating a brand new task. in fact, this plugin isn't even installed!
 
