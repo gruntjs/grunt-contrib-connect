@@ -135,7 +135,7 @@ grunt.initConfig({
       options: {
         middleware: function(connect, options, middlewares) {
           // inject a custom middleware into the array of default middlewares
-          middlewares.push(function(req, res, next) {
+          middlewares.unshift(function(req, res, next) {
             if (req.url !== '/hello/world') return next();
 
             res.end('Hello, world from port #' + options.port + '!');
