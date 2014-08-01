@@ -295,5 +295,13 @@ exports.connect = {
       test.ok(grunt.config.data.connect.onCreateServer.test, 'should set configuration object on request');
       test.done();
     });
+  },
+  routedMiddleware: function(test) {
+    test.expect(1);
+
+    get('http://localhost:8016/mung', function(res, body) {
+      test.equal(body, 'Yay', 'should return a string at /mung');
+      test.done();
+    });
   }
 };
