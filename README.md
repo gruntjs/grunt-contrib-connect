@@ -293,6 +293,9 @@ to your keychain.
 In OS X, after you add 'server.crt', right click on the certificate,
 select 'Get Info' - 'Trust' - 'Always Trust', close window, restart Chrome.
 
+For HTTPS livereload with [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) 
+ see the last example [here](https://github.com/gruntjs/grunt-contrib-watch#optionslivereload).
+
 ###### Advanced HTTPS config
 
 If the default certificate setup is unsuitable for your environment, OpenSSL
@@ -382,4 +385,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Mon Jun 30 2014 19:55:34.*
+*This file was generated on Fri Aug 08 2014 13:03:19.*

@@ -107,6 +107,9 @@ to your keychain.
 In OS X, after you add 'server.crt', right click on the certificate,
 select 'Get Info' - 'Trust' - 'Always Trust', close window, restart Chrome.
 
+For HTTPS livereload with [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) 
+ see the last example [here](https://github.com/gruntjs/grunt-contrib-watch#optionslivereload).
+
 #### Advanced HTTPS config
 
 If the default certificate setup is unsuitable for your environment, OpenSSL
