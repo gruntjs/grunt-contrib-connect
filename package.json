@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "async": "~0.9.0",
-    "connect": "~2.19.5",
+    "connect": "~2.25.5",
     "connect-livereload": "~0.4.0",
     "opn": "~0.1.2",
     "portscanner": "~0.2.3"
