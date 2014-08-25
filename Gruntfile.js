@@ -208,6 +208,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-internal');
 
-  grunt.registerTask('test', ['connect', 'nodeunit']);
-  grunt.registerTask('default', ['jshint', 'test', 'build-contrib']);
+  grunt.registerTask('test', ['jshint', 'connect', 'nodeunit']);
+  grunt.registerTask('default', ['test', 'build-contrib']);
 };
