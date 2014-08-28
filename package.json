@@ -31,7 +31,7 @@
     "connect": "~2.25.5",
     "connect-livereload": "~0.4.0",
     "opn": "~0.1.2",
-    "portscanner": "~0.2.3"
+    "portscanner": "~1.0.0"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.10.0",
