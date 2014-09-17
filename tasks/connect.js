@@ -124,15 +124,24 @@ module.exports = function(grunt) {
     async.waterfall([
       // find a port for livereload if needed first
       function(callback){
-
         // Inject live reload snippet
         if (options.livereload !== false) {
-          if (options.livereload === true) {
-            options.livereload = 35729;
+          var liveReloadOptions = {};
+
+          if (typeof options.livereload === 'object') {
+            liveReloadOptions = options.livereload;
+          }
+
+          if (typeof options.livereload === 'number') {
+            liveReloadOptions.port = options.livereload;
           }
 
           // TODO: Add custom ports here?
-          middleware.unshift(injectLiveReload({port: options.livereload}));
+          if (options.livereload === true) {
+            liveReloadOptions.port = 35729;
+          }
+
+          middleware.unshift(injectLiveReload(liveReloadOptions));
           callback(null);
         } else {
           callback(null);
