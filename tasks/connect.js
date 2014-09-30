@@ -132,7 +132,7 @@ module.exports = function(grunt) {
           }
 
           // TODO: Add custom ports here?
-          middleware.unshift(injectLiveReload({port: options.livereload}));
+          middleware.unshift(injectLiveReload({port: options.livereload, hostname: options.hostname}));
           callback(null);
         } else {
           callback(null);
