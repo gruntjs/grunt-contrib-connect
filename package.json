@@ -29,7 +29,7 @@
   "dependencies": {
     "async": "~0.9.0",
     "connect": "~2.25.5",
-    "connect-livereload": "~0.4.0",
+    "connect-livereload": "~0.5.0",
     "opn": "~0.1.2",
     "portscanner": "~1.0.0"
   },
