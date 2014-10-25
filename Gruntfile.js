@@ -198,6 +198,18 @@ module.exports = function(grunt) {
             });
           }
         }
+      },
+      routedMiddleware: {
+        options: {
+          port: 8016,
+          hostname: '*',
+          middleware: function(connect, options, middleware) {
+            middleware.unshift(['/mung', function (req, res, next) {
+              res.end('Yay');
+            }]);
+            return middleware;
+          }
+        }
       }
     },
   });

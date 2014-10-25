@@ -17,6 +17,7 @@ module.exports = function(grunt) {
   var open = require('opn');
   var portscanner = require('portscanner');
   var async = require('async');
+  var util = require('util');
 
   var MAX_PORTS = 30; // Maximum available ports to check after the specified port
 
@@ -140,8 +141,15 @@ module.exports = function(grunt) {
       },
       function(){
 
-        var app = connect.apply(null, middleware);
+        var app = connect();
         var server = null;
+
+        middleware.forEach(function (m) {
+          if (!util.isArray(m)) {
+            m = [m];
+          }
+          app.use.apply(app, m);
+        });
 
         if (options.protocol === 'https') {
           server = https.createServer({
