@@ -34,7 +34,7 @@ This task was designed to be used in conjunction with another task that is run i
 Type: `Integer`  
 Default: `8000`
 
-The port on which the webserver will respond. The task will fail if the specified port is already in use. You can use the special values `0` or `'?'` to use a system-assigned port.
+The port on which the webserver will respond. The task will fail if the specified port is already in use (unless [useAvailablePort](#useavailableport) is set). You can use the special values `0` or `'?'` to use a system-assigned port.
 
 #### protocol
 Type: `String`  
