@@ -7,6 +7,7 @@
     "name": "Grunt Team",
     "url": "http://gruntjs.com/"
   },
+  "main": "tasks/connect.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/gruntjs/grunt-contrib-connect.git"
