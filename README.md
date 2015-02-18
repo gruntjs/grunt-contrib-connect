@@ -48,7 +48,7 @@ Default: `'0.0.0.0'`
 
 The hostname the webserver will use.
 
-Setting it to `'*'` will make the server accessible from anywhere.
+Setting it to `'*'`, like '`0.0.0.0`', will make the server accessible from any **local** IPv4 address like  `'127.0.0.1'` and the IP assigned to an ethernet or wireless interface (like `'192.168.0.x'` or `'10.0.0.x'`). [More info](http://en.wikipedia.org/wiki/0.0.0.0)
 
 #### base
 Type: `String` or `Array` or `Object`  
