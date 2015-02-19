@@ -1,4 +1,4 @@
-# grunt-contrib-connect v0.9.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect)
+# grunt-contrib-connect v0.9.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/3bp93hbs2rd5lwfd/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-connect/branch/master)
 
 > Start a connect web server
 
@@ -393,4 +393,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Wed Mar 25 2015 17:23:42.*
+*This file was generated on Tue Mar 31 2015 19:00:22.*
