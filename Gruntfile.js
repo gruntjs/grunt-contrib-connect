@@ -2,7 +2,7 @@
  * grunt-contrib-connect
  * http://gruntjs.com/
  *
- * Copyright (c) 2014 "Cowboy" Ben Alman, contributors
+ * Copyright (c) 2015 "Cowboy" Ben Alman, contributors
  * Licensed under the MIT license.
  */
 
@@ -196,6 +196,18 @@ module.exports = function(grunt) {
               // set a config object, so we can check it in our tests
               grunt.config.data.connect.onCreateServer.test = true;
             });
+          }
+        }
+      },
+      routedMiddleware: {
+        options: {
+          port: 8016,
+          hostname: '*',
+          middleware: function(connect, options, middleware) {
+            middleware.unshift(['/mung', function (req, res, next) {
+              res.end('Yay');
+            }]);
+            return middleware;
           }
         }
       }

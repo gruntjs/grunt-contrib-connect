@@ -2,7 +2,7 @@
  * grunt-contrib-connect
  * http://gruntjs.com/
  *
- * Copyright (c) 2014 "Cowboy" Ben Alman, contributors
+ * Copyright (c) 2015 "Cowboy" Ben Alman, contributors
  * Licensed under the MIT license.
  */
 
@@ -17,6 +17,7 @@ module.exports = function(grunt) {
   var open = require('opn');
   var portscanner = require('portscanner');
   var async = require('async');
+  var util = require('util');
 
   var MAX_PORTS = 30; // Maximum available ports to check after the specified port
 
@@ -124,9 +125,14 @@ module.exports = function(grunt) {
     async.waterfall([
       // find a port for livereload if needed first
       function(callback){
+
         // Inject live reload snippet
         if (options.livereload !== false) {
-          var liveReloadOptions = {};
+					//defaults
+          var liveReloadOptions = {
+						port: 35729,
+						hostname: options.hostname
+					};
 
           if (typeof options.livereload === 'object') {
             liveReloadOptions = options.livereload;
@@ -134,11 +140,6 @@ module.exports = function(grunt) {
 
           if (typeof options.livereload === 'number') {
             liveReloadOptions.port = options.livereload;
-          }
-
-          // TODO: Add custom ports here?
-          if (options.livereload === true) {
-            liveReloadOptions.port = 35729;
           }
 
           middleware.unshift(injectLiveReload(liveReloadOptions));
@@ -149,8 +150,15 @@ module.exports = function(grunt) {
       },
       function(){
 
-        var app = connect.apply(null, middleware);
+        var app = connect();
         var server = null;
+
+        middleware.forEach(function (m) {
+          if (!util.isArray(m)) {
+            m = [m];
+          }
+          app.use.apply(app, m);
+        });
 
         if (options.protocol === 'https') {
           server = https.createServer({

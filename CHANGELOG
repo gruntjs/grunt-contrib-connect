@@ -1,6 +1,7 @@
-v0.9.0-pre:
-  date: 2014-06-09
+v0.9.0:
+  date: 2014-11-07
   changes:
+    - Adds routable middleware.
     - Switch to `opn` as it fixes some Linux issues.
     - Add support for connect.static instance options.
 v0.8.0:

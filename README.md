@@ -1,11 +1,11 @@
-# grunt-contrib-connect v0.9.0-pre [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect)
+# grunt-contrib-connect v0.9.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect)
 
-> Start a connect web server.
+> Start a connect web server
 
 
 
 ## Getting Started
-This plugin requires Grunt `~0.4.0`
+This plugin requires Grunt `>=0.4.0`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -34,7 +34,7 @@ This task was designed to be used in conjunction with another task that is run i
 Type: `Integer`  
 Default: `8000`
 
-The port on which the webserver will respond. The task will fail if the specified port is already in use. You can use the special values `0` or `'?'` to use a system-assigned port.
+The port on which the webserver will respond. The task will fail if the specified port is already in use (unless [useAvailablePort](#useavailableport) is set). You can use the special values `0` or `'?'` to use a system-assigned port.
 
 #### protocol
 Type: `String`  
@@ -48,7 +48,7 @@ Default: `'0.0.0.0'`
 
 The hostname the webserver will use.
 
-Setting it to `'*'` will make the server accessible from anywhere.
+Setting it to `'*'`, like '`0.0.0.0`', will make the server accessible from any **local** IPv4 address like  `'127.0.0.1'` and the IP assigned to an ethernet or wireless interface (like `'192.168.0.x'` or `'10.0.0.x'`). [More info](http://en.wikipedia.org/wiki/0.0.0.0)
 
 #### base
 Type: `String` or `Array` or `Object`  
@@ -364,7 +364,7 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 ## Release History
 
- * 2014-06-09   v0.9.0-pre   Switch to `opn` as it fixes some Linux issues. Add support for connect.static instance options.
+ * 2014-11-07   v0.9.0   Adds routable middleware. Switch to `opn` as it fixes some Linux issues. Add support for connect.static instance options.
  * 2014-06-09   v0.8.0   Update connect and connect-livereload.
  * 2014-02-27   v0.7.1   Fixes issue with the '*' hostname option.
  * 2014-02-18   v0.7.0   Update connect to ~2.13.0. Default hostname switched to '0.0.0.0'. Modified options.middleware to accept an array or a function.
@@ -385,4 +385,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Fri Aug 08 2014 13:03:19.*
+*This file was generated on Fri Feb 20 2015 13:14:27.*
