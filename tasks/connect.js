@@ -123,16 +123,16 @@ module.exports = function(grunt) {
     var keepAlive = this.flags.keepalive || options.keepalive;
 
     async.waterfall([
-      // find a port for livereload if needed first
+      // find livereload options if needed first
       function(callback){
 
         // Inject live reload snippet
         if (options.livereload !== false) {
-					//defaults
+          //defaults
           var liveReloadOptions = {
-						port: 35729,
-						hostname: options.hostname
-					};
+            port: 35729,
+            hostname: options.hostname
+          };
 
           if (typeof options.livereload === 'object') {
             liveReloadOptions = options.livereload;
@@ -143,10 +143,8 @@ module.exports = function(grunt) {
           }
 
           middleware.unshift(injectLiveReload(liveReloadOptions));
-          callback(null);
-        } else {
-          callback(null);
         }
+        callback(null);
       },
       function(){
 
