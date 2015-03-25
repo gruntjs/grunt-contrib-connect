@@ -46,9 +46,11 @@ May be `'http'` or `'https'`.
 Type: `String`  
 Default: `'0.0.0.0'`
 
-The hostname the webserver will use.
+The hostname on which the webserver can be accessed.
 
 Setting it to `'*'`, like '`0.0.0.0`', will make the server accessible from any **local** IPv4 address like  `'127.0.0.1'` and the IP assigned to an ethernet or wireless interface (like `'192.168.0.x'` or `'10.0.0.x'`). [More info](http://en.wikipedia.org/wiki/0.0.0.0)
+
+If [`open`](#open) is set to `true`, the `hostname` setting will be used to generate the URL that is opened by the browser, defaulting to `localhost` if a wildcard hostname was specified.
 
 #### base
 Type: `String` or `Array` or `Object`  
@@ -90,18 +92,24 @@ Set to `true` or a port number to inject a live reload script tag into your page
 *This does not perform live reloading. It is intended to be used in tandem with grunt-contrib-watch or another task that will trigger a live reload server upon files changing.*
 
 #### open
-Type: `Boolean` or `String` or `Object`
+Type: `Boolean` or `String` or `Object`  
 Default: `false`
 
-Open the served page in your default browser. Specifying `true` opens the default server URL, specifying a URL opens that URL or specify an object with the following keys to configure open directly (each are optional):
+Open the served page in your default browser.
 
-```js
-{
-  target: 'http://localhost:8000', // target url to open
-  appName: 'open', // name of the app that opens, ie: open, start, xdg-open
-  callback: function() {} // called when the app has opened
-}
-```
+This can be one of the following:
+
+- Specifying `true` opens the default server URL (generated from the [`protocol`](#protocol), [`hostname`](#hostname) and [`port`](#port) settings)
+- Specifying a URL opens that URL
+- Specify an object with the following keys to configure [open](https://www.npmjs.com/package/open) directly:
+
+	```js
+	{
+	  target: 'http://localhost:8000', // target url to open
+	  appName: 'open', // name of the app that opens, ie: open, start, xdg-open
+	  callback: function() {} // called when the app has opened
+	}
+	```
 
 #### useAvailablePort
   Type: `Boolean`
@@ -385,4 +393,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Fri Feb 20 2015 13:14:27.*
+*This file was generated on Wed Mar 25 2015 17:23:42.*
