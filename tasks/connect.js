@@ -180,7 +180,8 @@ module.exports = function(grunt) {
             .on('listening', function() {
               var address = server.address();
               var hostname = options.hostname || '0.0.0.0';
-              var target = options.protocol + '://' + hostname + ':' + address.port;
+              var targetHostname = (hostname === '0.0.0.0' ? 'localhost' : hostname);
+              var target = options.protocol + '://' + targetHostname + ':' + address.port;
 
               grunt.log.writeln('Started connect web server on ' + target);
               grunt.config.set('connect.' + taskTarget + '.options.hostname', hostname);
