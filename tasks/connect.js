@@ -169,7 +169,17 @@ module.exports = function(grunt) {
           });
         }
 
-        portscanner.findAPortNotInUse(options.port, options.port + MAX_PORTS, options.hostname, function(error, foundPort) {
+        function findUnusedPort(port, maxPort, hostname, callback) {
+          if (port === 0) {
+            async.nextTick(function() {
+              callback(null, 0);
+            });
+          } else {
+            portscanner.findAPortNotInUse(port, maxPort, hostname, callback);
+          }
+        }
+
+        findUnusedPort(options.port, options.port + MAX_PORTS, options.hostname, function(error, foundPort) {
           // if the found port doesn't match the option port, and we are forced to use the option port
           if (options.port !== foundPort && options.useAvailablePort === false) {
             grunt.fatal('Port ' + options.port + ' is already in use by another process.');
