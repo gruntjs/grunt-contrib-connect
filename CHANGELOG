@@ -1,3 +1,7 @@
+v0.10.1:
+  date: 2015-04-03
+  changes:
+    - fixes npm corruption issue
 v0.10.0:
   date: 2015-04-03
   changes:
