@@ -1,4 +1,4 @@
-# grunt-contrib-connect v0.9.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/3bp93hbs2rd5lwfd/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-connect/branch/master)
+# grunt-contrib-connect v0.10.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/3bp93hbs2rd5lwfd/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-connect/branch/master)
 
 > Start a connect web server
 
@@ -372,6 +372,7 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 ## Release History
 
+ * 2015-04-03   v0.10.0   node 0.12 fixes doc updates fixes port finding other fixes
  * 2014-11-07   v0.9.0   Adds routable middleware. Switch to `opn` as it fixes some Linux issues. Add support for connect.static instance options.
  * 2014-06-09   v0.8.0   Update connect and connect-livereload.
  * 2014-02-27   v0.7.1   Fixes issue with the '*' hostname option.
@@ -393,4 +394,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Tue Mar 31 2015 19:00:22.*
+*This file was generated on Fri Apr 03 2015 10:51:24.*
