@@ -69,14 +69,14 @@ module.exports = function(grunt) {
     // Connect requires the base path to be absolute.
     if (Array.isArray(options.base)) {
       options.base = options.base.map(function(base) {
-        if(base.path) {
+        if (base.path) {
           base.path = path.resolve(base.path);
           return base;
         }
         return path.resolve(base);
       });
     } else {
-      if(options.base.path) {
+      if (options.base.path) {
         options.base.path = path.resolve(options.base.path);
       } else {
         options.base = path.resolve(options.base);
@@ -109,7 +109,7 @@ module.exports = function(grunt) {
     } else {
       middleware = createDefaultMiddleware.call(this, connect, options);
 
-      if (typeof(options.middleware) === 'function') {
+      if (typeof options.middleware === 'function') {
         middleware = options.middleware.call(this, connect, options, middleware);
       }
     }
@@ -127,7 +127,7 @@ module.exports = function(grunt) {
 
     async.waterfall([
       // find a port for livereload if needed first
-      function(callback){
+      function(callback) {
 
         // Inject live reload snippet
         if (options.livereload !== false) {
@@ -142,7 +142,7 @@ module.exports = function(grunt) {
           callback(null);
         }
       },
-      function(){
+      function() {
 
         var app = connect();
         var server = null;
@@ -159,7 +159,7 @@ module.exports = function(grunt) {
             key: options.key || grunt.file.read(path.join(__dirname, 'certs', 'server.key')).toString(),
             cert: options.cert || grunt.file.read(path.join(__dirname, 'certs', 'server.crt')).toString(),
             ca: options.ca || grunt.file.read(path.join(__dirname, 'certs', 'ca.crt')).toString(),
-            passphrase: options.passphrase || 'grunt',
+            passphrase: options.passphrase || 'grunt'
           }, app);
         } else {
           server = http.createServer(app);
@@ -201,7 +201,7 @@ module.exports = function(grunt) {
             .on('listening', function() {
               var address = server.address();
               var hostname = options.hostname || '0.0.0.0';
-              var targetHostname = (hostname === '0.0.0.0' ? 'localhost' : hostname);
+              var targetHostname = hostname === '0.0.0.0' ? 'localhost' : hostname;
               var target = options.protocol + '://' + targetHostname + ':' + address.port;
 
               grunt.log.writeln('Started connect web server on ' + target);

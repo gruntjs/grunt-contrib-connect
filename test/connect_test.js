@@ -6,9 +6,9 @@ var https = require('https');
 
 function get(url, done) {
   var client = http;
-  if ((typeof url === 'string' && url.toLowerCase().indexOf('https') === 0) ||
-    (typeof url === 'object' && url.port === 443) ||
-    (typeof url === 'object' && url.scheme === 'https')) {
+  if (typeof url === 'string' && url.toLowerCase().indexOf('https') === 0 ||
+    typeof url === 'object' && url.port === 443 ||
+    typeof url === 'object' && url.scheme === 'https') {
     client = https;
     delete url.scheme;
   }
@@ -30,8 +30,8 @@ exports.connect = {
       port: 8000,
       path: '/fixtures/hello.txt',
       headers: {
-        accept: 'text/plain',
-      },
+        accept: 'text/plain'
+      }
     }, function(res, body) {
       test.equal(res.statusCode, 200, 'should return 200');
       test.equal(body, 'Hello world', 'should return static page');
@@ -45,8 +45,8 @@ exports.connect = {
       port: 8001,
       path: '/fixtures/hello.txt',
       headers: {
-        accept: 'text/plain',
-      },
+        accept: 'text/plain'
+      }
     }, function(res, body) {
       test.equal(res.statusCode, 200, 'should return 200');
       test.equal(body, 'Hello world', 'should return static page');
@@ -64,8 +64,8 @@ exports.connect = {
       port: 8002,
       path: '/fixtures/hello.txt',
       headers: {
-        accept: 'text/plain',
-      },
+        accept: 'text/plain'
+      }
     }, function(res, body) {
       test.equal(res.statusCode, 200, 'should return 200');
       test.equal(body, 'Hello world', 'should return static page');
@@ -81,8 +81,8 @@ exports.connect = {
       port: 8003,
       path: '/fixtures/hello.txt',
       headers: {
-        accept: 'text/plain',
-      },
+        accept: 'text/plain'
+      }
     }, function(res, body) {
       test.equal(res.statusCode, 200, 'should return 200');
       test.equal(body, 'Hello world', 'should return static page');
@@ -96,8 +96,8 @@ exports.connect = {
       port: 8014,
       path: '/',
       headers: {
-        accept: 'text/plain',
-      },
+        accept: 'text/plain'
+      }
     }, function(res, body) {
       test.equal(res.statusCode, 200, 'should return 200');
       test.equal(body, 'Hello world', 'should return static page');
@@ -111,13 +111,13 @@ exports.connect = {
       port: 8004,
       path: '/fixtures/hello.txt',
       headers: {
-        accept: 'text/plain',
-      },
+        accept: 'text/plain'
+      }
     }, function(res, body) {
       test.equal(res.statusCode, 200, 'should return 200');
-      test.equal(res.headers['content-type'],'text/plain; charset=UTF-8', 'should return plaintext content type');
+      test.equal(res.headers['content-type'], 'text/plain; charset=UTF-8', 'should return plaintext content type');
       get('http://localhost:8004/connect-examples.md', function(res, body) {
-        test.equal(res.headers['content-type'],'text/x-markdown; charset=UTF-8', 'should return markdown content type');
+        test.equal(res.headers['content-type'], 'text/x-markdown; charset=UTF-8', 'should return markdown content type');
         test.equal(res.statusCode, 200, 'should return 200');
         test.done();
       });
@@ -130,8 +130,8 @@ exports.connect = {
       port: 8015,
       path: '/',
       headers: {
-        accept: 'text/plain',
-      },
+        accept: 'text/plain'
+      }
     }, function(res, body) {
       test.equal(res.statusCode, 200, 'should return 200');
       test.equal(body, 'Hello world', 'should return static page');
@@ -150,11 +150,11 @@ exports.connect = {
       port: 8005,
       path: '/',
       headers: {
-        accept: 'text/html',
-      },
+        accept: 'text/html'
+      }
     }, function(res, body) {
       test.equal(res.statusCode, 200, 'should return 200');
-      test.ok((body.indexOf('hello.txt') !== -1), 'Listing should contain hello.txt');
+      test.ok(body.indexOf('hello.txt') !== -1, 'Listing should contain hello.txt');
       get('http://localhost:8005/fixtures/hello.txt', function(res, body) {
         test.equal(res.statusCode, 200, 'should return 200');
         test.equal(body, 'Hello world', 'Should display contents of /fixtures/hello.txt');
@@ -169,10 +169,10 @@ exports.connect = {
       port: 8006,
       path: '/livereload.html',
       headers: {
-        accept: 'text/html',
-      },
+        accept: 'text/html'
+      }
     }, function(res, body) {
-      test.ok((body.indexOf('35729/livereload.js') !== -1), 'Should contain livereload snippet.');
+      test.ok(body.indexOf('35729/livereload.js') !== -1, 'Should contain livereload snippet.');
 
       // check if livereload works with params
       get({
@@ -180,10 +180,10 @@ exports.connect = {
         port: 8006,
         path: '/livereload.html?a=1&b=2#id',
         headers: {
-          accept: 'text/html',
-        },
+          accept: 'text/html'
+        }
       }, function(res, body) {
-        test.ok((body.indexOf('35729/livereload.js') !== -1), 'Should contain livereload snippet.');
+        test.ok(body.indexOf('35729/livereload.js') !== -1, 'Should contain livereload snippet.');
         test.done();
       });
     });
@@ -196,7 +196,7 @@ exports.connect = {
       port: PORT,
       path: '/hello/world',
       headers: {
-        accept: 'text/plain',
+        accept: 'text/plain'
       },
       middleware: []
     }, function(res, body) {
@@ -207,8 +207,8 @@ exports.connect = {
         port: PORT,
         path: '/fixtures/hello.txt',
         headers: {
-          accept: 'text/plain',
-        },
+          accept: 'text/plain'
+        }
       }, function(res, body) {
         test.equal(res.statusCode, 200, 'should return 200');
         test.equal(body, 'Hello world', 'should return static page');
@@ -223,8 +223,8 @@ exports.connect = {
       port: 8008,
       path: '/fixtures/hello.txt',
       headers: {
-        accept: 'text/plain',
-      },
+        accept: 'text/plain'
+      }
     }, function(res, body) {
       test.equal(res.statusCode, 200, 'should return 200');
       test.equal(body, 'Hello world', 'should return static page');
@@ -238,8 +238,8 @@ exports.connect = {
       port: 8009,
       path: '/fixtures/hello.txt',
       headers: {
-        accept: 'text/plain',
-      },
+        accept: 'text/plain'
+      }
     }, function(res, body) {
       test.equal(res.statusCode, 404, 'should return 404');
       test.done();
@@ -253,7 +253,7 @@ exports.connect = {
       port: PORT,
       path: '/hello/world',
       headers: {
-        accept: 'text/plain',
+        accept: 'text/plain'
       },
       middleware: []
     }, function(res, body) {
@@ -265,8 +265,8 @@ exports.connect = {
         port: PORT,
         path: '/fixtures/hello.txt',
         headers: {
-          accept: 'text/plain',
-        },
+          accept: 'text/plain'
+        }
       }, function(res, body) {
         test.equal(res.statusCode, 200, 'should return 200');
         test.equal(body, 'Hello world', 'should return static page');

@@ -37,32 +37,32 @@ module.exports = function(grunt) {
       },
       custom_base: {
         options: {
-          base: 'test',
-        },
+          base: 'test'
+        }
       },
       custom_port: {
         options: {
           base: 'test',
-          port: 8001,
-        },
+          port: 8001
+        }
       },
       self_port_q: {
         options: {
           base: 'test',
-          port: '?',
+          port: '?'
         }
       },
       self_port_0: {
         options: {
           base: 'test',
-          port: 0,
+          port: 0
         }
       },
       custom_https: {
         options: {
           base: 'test',
           port: 8002,
-          protocol: 'https',
+          protocol: 'https'
         }
       },
       custom_https_certs: {
@@ -73,7 +73,7 @@ module.exports = function(grunt) {
           key: grunt.file.read(path.join(certs, 'server.key')).toString(),
           cert: grunt.file.read(path.join(certs, 'server.crt')).toString(),
           ca: grunt.file.read(path.join(certs, 'ca.crt')).toString(),
-          passphrase: '',
+          passphrase: ''
         }
       },
       custom_base_with_options: {
@@ -85,13 +85,13 @@ module.exports = function(grunt) {
             }
           },
           port: 8014
-        },
+        }
       },
       multiple_base: {
         options: {
           base: ['test', 'docs'],
-          port: 8004,
-        },
+          port: 8004
+        }
       },
       multiple_base_with_options: {
         options: {
@@ -105,26 +105,26 @@ module.exports = function(grunt) {
             {
               path: 'docs',
               options: {
-                maxAge: 300000 //5min
+                maxAge: 300000 // 5min
               }
             }
           ],
           port: 8015
-        },
+        }
       },
       multiple_base_directory: {
         options: {
           base: ['test', 'docs'],
           directory: 'test/fixtures/',
-          port: 8005,
-        },
+          port: 8005
+        }
       },
       livereload: {
         options: {
           livereload: true,
           base: 'test/fixtures/',
-          port: 8006,
-        },
+          port: 8006
+        }
       },
       custom_middleware: {
         options: {
@@ -143,22 +143,22 @@ module.exports = function(grunt) {
                 res.end('Hello from port ' + options.port);
               }
             ];
-          },
-        },
+          }
+        }
       },
       null_middleware: {
         options: {
           port: 8008,
           base: 'test/',
           middleware: null
-        },
+        }
       },
       empty_middleware: {
         options: {
           port: 8009,
           base: 'test/',
           middleware: []
-        },
+        }
       },
       custom_middleware_patch_default_middleware: {
         options: {
@@ -177,8 +177,8 @@ module.exports = function(grunt) {
             });
 
             return middlewares;
-          },
-        },
+          }
+        }
       },
       useAvailablePort: {
         options: {
@@ -218,7 +218,7 @@ module.exports = function(grunt) {
           }
         }
       }
-    },
+    }
   });
 
   grunt.loadTasks('tasks');
