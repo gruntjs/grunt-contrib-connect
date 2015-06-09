@@ -19,8 +19,15 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-contrib-connect');
 ```
 
-
-
+The most basic Gruntfile configuration names a server without specifying options:
+```js
+grunt.initConfig({
+  connect: {
+    server_using_defaults: {}
+  }
+});
+```
+The task `grunt connect` will start on port `8000` by default. 
 
 ## Connect task
 _Run this task with the `grunt connect` command._
