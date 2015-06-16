@@ -170,6 +170,10 @@ module.exports = function(grunt) {
         }
 
         function findUnusedPort(port, maxPort, hostname, callback) {
+          if (hostname === '0.0.0.0') {
+            hostname = '127.0.0.1';
+          }
+          
           if (port === 0) {
             async.nextTick(function() {
               callback(null, 0);
