@@ -180,6 +180,10 @@ module.exports = function(grunt) {
         }
 
         findUnusedPort(options.port, options.port + MAX_PORTS, options.hostname, function(error, foundPort) {
+          if (error) {
+            grunt.log.writeln('Failed to find unused port: ' + error);
+          }
+          
           // if the found port doesn't match the option port, and we are forced to use the option port
           if (options.port !== foundPort && options.useAvailablePort === false) {
             grunt.fatal('Port ' + options.port + ' is already in use by another process.');
