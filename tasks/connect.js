@@ -11,6 +11,8 @@
 module.exports = function(grunt) {
   var path = require('path');
   var connect = require('connect');
+  var serveStatic = require('serve-static');
+  var serveIndex = require('serve-index');
   var http = require('http');
   var https = require('https');
   var injectLiveReload = require('connect-livereload');
@@ -26,17 +28,17 @@ module.exports = function(grunt) {
     if (!Array.isArray(options.base)) {
       options.base = [options.base];
     }
-    //Options for connect.static module. See http://www.senchalabs.org/connect/static.html
+    //Options for serve-static module. See https://www.npmjs.com/package/serve-static
     var defaultStaticOptions = {};
     var directory = options.directory || options.base[options.base.length - 1];
     options.base.forEach(function(base) {
       // Serve static files.
       var path = base.path || base;
       var staticOptions = base.options || defaultStaticOptions;
-      middlewares.push(connect.static(path, staticOptions));
+      middlewares.push(serveStatic(path, staticOptions));
     });
     // Make directory browse-able.
-    middlewares.push(connect.directory(directory.path || directory));
+    middlewares.push(serveIndex(directory.path || directory));
     return middlewares;
   };
 

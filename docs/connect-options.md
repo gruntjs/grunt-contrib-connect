@@ -30,7 +30,7 @@ Default: `'.'`
 | ---      | :---                                                                                                                                             | ---                                                  |
 | *String* | The base (or root) directory from which files will be served. Defaults to the project Gruntfile's directory.                                     | `'public'`                                           |
 | *Array*  | Array of `String` (or `Object`) bases to serve multiple directories. The last base given will be the [directory][] to become browse-able.        | `['public','www-root']`                              |
-| *Object* | Map containing `path` and `options` keys. `options` are passed on to the [connect.static](http://www.senchalabs.org/connect/static.html) module. | `{ path: 'public', options: { maxAge: 1000*60*5 } }` |
+| *Object* | Map containing `path` and `options` keys. `options` are passed on to the [serve-static](https://www.npmjs.com/package/serve-static) module. | `{ path: 'public', options: { maxAge: 1000*60*5 } }` |
 
 
 ## directory
@@ -38,6 +38,8 @@ Type: `String`
 Default: `null`
 
 Set to the directory you wish to be browse-able. Used to override the `base` option browse-able directory.
+
+See https://www.npmjs.com/package/serve-index for details.
 
 ## keepalive
 Type: `Boolean`  

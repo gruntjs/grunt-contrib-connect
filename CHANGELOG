@@ -1,3 +1,7 @@
+v0.11.0:
+  date: 2015-07-30
+  changes:
+    - update to connect 3.
 v0.10.1:
   date: 2015-04-03
   changes:

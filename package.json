@@ -1,7 +1,7 @@
 {
   "name": "grunt-contrib-connect",
   "description": "Start a connect web server",
-  "version": "0.10.1",
+  "version": "0.11.0",
   "author": {
     "name": "Grunt Team",
     "url": "http://gruntjs.com/"
@@ -16,10 +16,12 @@
   },
   "dependencies": {
     "async": "^0.9.0",
-    "connect": "^2.27.1",
+    "connect": "^3.4.0",
     "connect-livereload": "^0.5.0",
     "opn": "^1.0.0",
-    "portscanner": "^1.0.0"
+    "portscanner": "^1.0.0",
+    "serve-index": "^1.7.1",
+    "serve-static": "^1.10.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

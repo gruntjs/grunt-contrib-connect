@@ -1,4 +1,4 @@
-# grunt-contrib-connect v0.10.1 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/3bp93hbs2rd5lwfd/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-connect/branch/master)
+# grunt-contrib-connect v0.11.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/3bp93hbs2rd5lwfd/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-connect/branch/master)
 
 > Start a connect web server
 
@@ -60,7 +60,7 @@ Default: `'.'`
 | ---      | :---                                                                                                                                             | ---                                                  |
 | *String* | The base (or root) directory from which files will be served. Defaults to the project Gruntfile's directory.                                     | `'public'`                                           |
 | *Array*  | Array of `String` (or `Object`) bases to serve multiple directories. The last base given will be the [directory][] to become browse-able.        | `['public','www-root']`                              |
-| *Object* | Map containing `path` and `options` keys. `options` are passed on to the [connect.static](http://www.senchalabs.org/connect/static.html) module. | `{ path: 'public', options: { maxAge: 1000*60*5 } }` |
+| *Object* | Map containing `path` and `options` keys. `options` are passed on to the [serve-static](https://www.npmjs.com/package/serve-static) module. | `{ path: 'public', options: { maxAge: 1000*60*5 } }` |
 
 
 #### directory
@@ -68,6 +68,8 @@ Type: `String`
 Default: `null`
 
 Set to the directory you wish to be browse-able. Used to override the `base` option browse-able directory.
+
+See https://www.npmjs.com/package/serve-index for details.
 
 #### keepalive
 Type: `Boolean`  
@@ -372,6 +374,7 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 ## Release History
 
+ * 2015-07-30   v0.11.0   update to connect 3.
  * 2015-04-03   v0.10.1   fixes npm corruption issue
  * 2015-04-03   v0.10.0   node 0.12 fixes doc updates fixes port finding other fixes
  * 2014-11-07   v0.9.0   Adds routable middleware. Switch to `opn` as it fixes some Linux issues. Add support for connect.static instance options.
@@ -395,4 +398,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Fri Apr 03 2015 10:53:18.*
+*This file was generated on Thu Jul 30 2015 10:49:46.*

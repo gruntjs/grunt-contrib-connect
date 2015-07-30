@@ -8,6 +8,8 @@
 
 'use strict';
 var path = require('path');
+
+var serveStatic = require('serve-static');
 var certs = path.join(__dirname, 'tasks', 'certs');
 
 module.exports = function(grunt) {
@@ -28,6 +30,11 @@ module.exports = function(grunt) {
     },
 
     connect: {
+      basic: {
+        options: {
+          port: 7999
+        }
+      },
       custom_base: {
         options: {
           base: 'test',
@@ -126,7 +133,7 @@ module.exports = function(grunt) {
           middleware: function(connect, options, middlwares) {
             // an explicit array of any middlewares that ignores the default set
             return [
-              connect.static(options.base[0]),
+              serveStatic(options.base[0]),
 
               function(req, res, next) {
                 if (req.url !== '/hello/world') {
