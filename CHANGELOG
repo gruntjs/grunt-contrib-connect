@@ -1,3 +1,7 @@
+v0.11.1:
+  date: 2015-08-01
+  changes:
+    - fixes debug logging.
 v0.11.0:
   date: 2015-07-30
   changes:
