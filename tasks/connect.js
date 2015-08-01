@@ -11,6 +11,7 @@
 module.exports = function(grunt) {
   var path = require('path');
   var connect = require('connect');
+  var morgan = require('morgan');
   var serveStatic = require('serve-static');
   var serveIndex = require('serve-index');
   var http = require('http');
@@ -115,9 +116,9 @@ module.exports = function(grunt) {
 
     // If --debug was specified, enable logging.
     if (grunt.option('debug') || options.debug === true) {
-      connect.logger.format('grunt', ('[D] server :method :url :status ' +
+      morgan.format('grunt', ('[D] server :method :url :status ' +
         ':res[content-length] - :response-time ms').magenta);
-      middleware.unshift(connect.logger('grunt'));
+      middleware.unshift(morgan('grunt'));
     }
 
     // Start server.
