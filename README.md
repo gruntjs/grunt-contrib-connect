@@ -1,4 +1,4 @@
-# grunt-contrib-connect v0.11.1 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/3bp93hbs2rd5lwfd/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-connect/branch/master)
+# grunt-contrib-connect v0.11.2 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/3bp93hbs2rd5lwfd/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-connect/branch/master)
 
 > Start a connect web server
 
@@ -247,8 +247,9 @@ grunt.initConfig({
 });
 ```
 
-#### Connect.static Options
-You can specify options to be passed to each instance of the [connect.static](http://www.senchalabs.org/connect/static.html) module:
+#### Static Options
+
+Options for the serve-static module. See [serve-static](https://www.npmjs.com/package/serve-static):
 
 ```js
 grunt.initConfig({
@@ -280,15 +281,17 @@ Like the [Basic Use](#basic-use) example, this example will start a static web s
 // Project configuration.
 grunt.initConfig({ /* Nothing needed here! */ });
 
-// After running "npm install connect --save-dev" to add connect as a dev
+// After running "npm install connect serve-static --save-dev" to add connect as a dev
 // dependency of your project, you can require it in your gruntfile with:
 var connect = require('connect');
+var serveStatic = require('serve-static');
+connect(serveStatic('www-root')).listen(9001);
 
 // Now you can define a "connect" task that starts a webserver, using the
 // connect lib, with whatever options and configuration you need:
 grunt.registerTask('connect', 'Start a custom static web server.', function() {
   grunt.log.writeln('Starting static web server in "www-root" on port 9001.');
-  connect(connect.static('www-root')).listen(9001);
+  connect(serveStatic.static('www-root')).listen(9001);
 });
 ```
 
@@ -374,6 +377,7 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 ## Release History
 
+ * 2015-08-03   v0.11.2   documentation fixes.
  * 2015-08-01   v0.11.1   fixes debug logging.
  * 2015-07-30   v0.11.0   update to connect 3.
  * 2015-04-03   v0.10.1   fixes npm corruption issue
@@ -399,4 +403,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Sat Aug 01 2015 16:15:44.*
+*This file was generated on Mon Aug 03 2015 12:58:30.*

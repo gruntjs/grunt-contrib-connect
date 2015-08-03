@@ -29,7 +29,7 @@ module.exports = function(grunt) {
     if (!Array.isArray(options.base)) {
       options.base = [options.base];
     }
-    //Options for serve-static module. See https://www.npmjs.com/package/serve-static
+    // Options for serve-static module. See https://www.npmjs.com/package/serve-static
     var defaultStaticOptions = {};
     var directory = options.directory || options.base[options.base.length - 1];
     options.base.forEach(function(base) {

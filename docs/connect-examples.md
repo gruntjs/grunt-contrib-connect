@@ -51,8 +51,9 @@ grunt.initConfig({
 });
 ```
 
-## Connect.static Options
-You can specify options to be passed to each instance of the [connect.static](http://www.senchalabs.org/connect/static.html) module:
+## Static Options
+
+Options for the serve-static module. See [serve-static](https://www.npmjs.com/package/serve-static):
 
 ```js
 grunt.initConfig({
@@ -84,15 +85,17 @@ Like the [Basic Use](#basic-use) example, this example will start a static web s
 // Project configuration.
 grunt.initConfig({ /* Nothing needed here! */ });
 
-// After running "npm install connect --save-dev" to add connect as a dev
+// After running "npm install connect serve-static --save-dev" to add connect as a dev
 // dependency of your project, you can require it in your gruntfile with:
 var connect = require('connect');
+var serveStatic = require('serve-static');
+connect(serveStatic('www-root')).listen(9001);
 
 // Now you can define a "connect" task that starts a webserver, using the
 // connect lib, with whatever options and configuration you need:
 grunt.registerTask('connect', 'Start a custom static web server.', function() {
   grunt.log.writeln('Starting static web server in "www-root" on port 9001.');
-  connect(connect.static('www-root')).listen(9001);
+  connect(serveStatic.static('www-root')).listen(9001);
 });
 ```
 
