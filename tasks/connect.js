@@ -126,21 +126,28 @@ module.exports = function(grunt) {
     var keepAlive = this.flags.keepalive || options.keepalive;
 
     async.waterfall([
-      // find a port for livereload if needed first
+      // find livereload options if needed first
       function(callback){
 
         // Inject live reload snippet
         if (options.livereload !== false) {
-          if (options.livereload === true) {
-            options.livereload = 35729;
+          //defaults
+          var liveReloadOptions = {
+            port: 35729,
+            hostname: options.hostname
+          };
+
+          if (typeof options.livereload === 'object') {
+            liveReloadOptions = options.livereload;
           }
 
-          // TODO: Add custom ports here?
-          middleware.unshift(injectLiveReload({port: options.livereload, hostname: options.hostname}));
-          callback(null);
-        } else {
-          callback(null);
+          if (typeof options.livereload === 'number') {
+            liveReloadOptions.port = options.livereload;
+          }
+
+          middleware.unshift(injectLiveReload(liveReloadOptions));
         }
+        callback(null);
       },
       function(){
 
