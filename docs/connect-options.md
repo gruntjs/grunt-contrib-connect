@@ -84,13 +84,13 @@ This can be one of the following:
 	```
 
 ## useAvailablePort
-  Type: `Boolean`
-  Default: `false`
+Type: `Boolean`  
+Default: `false`
 
 If `true` the task will look for the next available port after the set `port` option.
 
 ## onCreateServer
-Type: `Function` or `Array`
+Type: `Function` or `Array`  
 Default: `null`
 
 A function to be called after the server object is created, to allow integrating libraries that need access to connect's server object. A Socket.IO example:
@@ -115,7 +115,7 @@ grunt.initConfig({
 ```
 
 ## middleware
-Type: `Function` or `Array`
+Type: `Function` or `Array`  
 Default: `Array` of connect middlewares that use `options.base` for static files and directory browsing
 
 As an `Array`:
