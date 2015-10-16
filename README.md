@@ -114,13 +114,13 @@ This can be one of the following:
 	```
 
 #### useAvailablePort
-  Type: `Boolean`
-  Default: `false`
+Type: `Boolean`  
+Default: `false`
 
 If `true` the task will look for the next available port after the set `port` option.
 
 #### onCreateServer
-Type: `Function` or `Array`
+Type: `Function` or `Array`  
 Default: `null`
 
 A function to be called after the server object is created, to allow integrating libraries that need access to connect's server object. A Socket.IO example:
@@ -145,7 +145,7 @@ grunt.initConfig({
 ```
 
 #### middleware
-Type: `Function` or `Array`
+Type: `Function` or `Array`  
 Default: `Array` of connect middlewares that use `options.base` for static files and directory browsing
 
 As an `Array`:
@@ -199,7 +199,7 @@ Lets you add in your own Connect middlewares. This option expects a function tha
 #### Basic Use
 In this example, `grunt connect` (or more verbosely, `grunt connect:server`) will start a static web server at `http://localhost:9001/`, with its base path set to the `www-root` directory relative to the gruntfile, and any tasks run afterwards will be able to access it.
 
-```javascript
+```js
 // Project configuration.
 grunt.initConfig({
   connect: {
@@ -215,7 +215,7 @@ grunt.initConfig({
 
 If you want your web server to use the default options, just omit the `options` object. You still need to specify a target (`uses_defaults` in this example), but the target's configuration object can otherwise be empty or nonexistent. In this example, `grunt connect` (or more verbosely, `grunt connect:uses_defaults`) will start a static web server using the default options.
 
-```javascript
+```js
 // Project configuration.
 grunt.initConfig({
   connect: {
@@ -227,7 +227,7 @@ grunt.initConfig({
 #### Multiple Servers
 You can specify multiple servers to be run alone or simultaneously by creating a target for each server. In this example, running either `grunt connect:site1` or `grunt connect:site2` will  start the appropriate web server, but running `grunt connect` will run _both_. Note that any server for which the [keepalive](#keepalive) option is specified will prevent _any_ task or target from running after it.
 
-```javascript
+```js
 // Project configuration.
 grunt.initConfig({
   connect: {
@@ -277,7 +277,7 @@ grunt.initConfig({
 #### Roll Your Own
 Like the [Basic Use](#basic-use) example, this example will start a static web server at `http://localhost:9001/`, with its base path set to the `www-root` directory relative to the gruntfile. Unlike the other example, this is done by creating a brand new task. in fact, this plugin isn't even installed!
 
-```javascript
+```js
 // Project configuration.
 grunt.initConfig({ /* Nothing needed here! */ });
 
@@ -291,7 +291,7 @@ connect(serveStatic('www-root')).listen(9001);
 // connect lib, with whatever options and configuration you need:
 grunt.registerTask('connect', 'Start a custom static web server.', function() {
   grunt.log.writeln('Starting static web server in "www-root" on port 9001.');
-  connect(serveStatic.static('www-root')).listen(9001);
+  connect(serveStatic('www-root')).listen(9001);
 });
 ```
 
@@ -338,7 +338,7 @@ please see the Node documentation for [TLS][].
 
 Grunt configuration would become
 
-```javascript
+```js
 // Project configuration.
 grunt.initConfig({
   connect: {
@@ -360,7 +360,7 @@ grunt.initConfig({
 #### Grunt Events
 The connect plugin will emit a grunt event, `connect.{taskName}.listening`, once the server has started. You can listen for this event to run things against a keepalive server, for example:
 
-```javascript
+```js
 grunt.registerTask('jasmine-server', 'start web server for jasmine tests in browser', function() {
   grunt.task.run('jasmine:tests:build');
 
@@ -403,4 +403,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Mon Aug 03 2015 12:58:30.*
+*This file was generated on Fri Oct 16 2015 18:58:27.*
