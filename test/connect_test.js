@@ -289,7 +289,7 @@ exports.connect = {
     });
   },
   onCreateServer: function(test) {
-		test.expect(1);
+    test.expect(1);
 
     get('http://localhost:8013/hello', function(res, body) {
       test.ok(grunt.config.data.connect.onCreateServer.test, 'should set configuration object on request');

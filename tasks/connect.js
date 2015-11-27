@@ -176,7 +176,7 @@ module.exports = function(grunt) {
           if (hostname === '0.0.0.0') {
             hostname = '127.0.0.1';
           }
-          
+
           if (port === 0) {
             async.nextTick(function() {
               callback(null, 0);
@@ -190,7 +190,7 @@ module.exports = function(grunt) {
           if (error) {
             grunt.log.writeln('Failed to find unused port: ' + error);
           }
-          
+
           // if the found port doesn't match the option port, and we are forced to use the option port
           if (options.port !== foundPort && options.useAvailablePort === false) {
             grunt.fatal('Port ' + options.port + ' is already in use by another process.');
