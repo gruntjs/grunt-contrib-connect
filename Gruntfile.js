@@ -222,7 +222,7 @@ module.exports = function(grunt) {
         options: {
           base: 'test',
           port: 8017,
-          protocol: 'https'
+          protocol: 'http2'
         }
       }
     }
