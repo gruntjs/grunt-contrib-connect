@@ -217,6 +217,13 @@ module.exports = function(grunt) {
             return middleware;
           }
         }
+      },
+      http2: {
+        options: {
+          base: 'test',
+          port: 8017,
+          protocol: 'https'
+        }
       }
     }
   });

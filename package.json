@@ -18,6 +18,7 @@
     "async": "^0.9.0",
     "connect": "^3.4.0",
     "connect-livereload": "^0.5.0",
+    "http2": "^3.3.2",
     "morgan": "^1.6.1",
     "opn": "^1.0.0",
     "portscanner": "^1.0.0",
