@@ -59,22 +59,27 @@ exports.connect = {
     });
   },
   custom_http2: function(test) {
-    test.expect(3);
-    get({
-      scheme: 'http2',
-      rejectUnauthorized: false,
-      hostname: 'localhost',
-      port: 8017,
-      path: '/fixtures/hello.txt',
-      headers: {
-        accept: 'text/plain'
-      }
-    }, function(res, body) {
-      test.equal(res.httpVersion, '2.0', 'should return HTTP/2 response');
-      test.equal(res.statusCode, 200, 'should return 200');
-      test.equal(body, 'Hello world', 'should return static page');
+    if (!grunt.config.data.connect.http2) {
       test.done();
-    });
+    }
+    else {
+      test.expect(3);
+      get({
+        scheme: 'http2',
+        rejectUnauthorized: false,
+        hostname: 'localhost',
+        port: 8017,
+        path: '/fixtures/hello.txt',
+        headers: {
+          accept: 'text/plain'
+        }
+      }, function(res, body) {
+        test.equal(res.httpVersion, '2.0', 'should return HTTP/2 response');
+        test.equal(res.statusCode, 200, 'should return 200');
+        test.equal(body, 'Hello world', 'should return static page');
+        test.done();
+      });
+    }   
   },
   custom_https: function(test) {
     test.expect(2);
