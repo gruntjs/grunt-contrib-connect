@@ -3,10 +3,15 @@
 var grunt = require('grunt');
 var http = require('http');
 var https = require('https');
+var http2 = require('http2');
 
 function get(url, done) {
   var client = http;
-  if (typeof url === 'string' && url.toLowerCase().indexOf('https') === 0 ||
+  if (typeof url === 'object' && url.scheme === 'http2') {
+    client = http2;
+    delete url.scheme;
+  }
+  else if (typeof url === 'string' && url.toLowerCase().indexOf('https') === 0 ||
     typeof url === 'object' && url.port === 443 ||
     typeof url === 'object' && url.scheme === 'https') {
     client = https;
@@ -52,6 +57,29 @@ exports.connect = {
       test.equal(body, 'Hello world', 'should return static page');
       test.done();
     });
+  },
+  custom_http2: function(test) {
+    if (!grunt.config.data.connect.http2) {
+      test.done();
+    }
+    else {
+      test.expect(3);
+      get({
+        scheme: 'http2',
+        rejectUnauthorized: false,
+        hostname: 'localhost',
+        port: 8017,
+        path: '/fixtures/hello.txt',
+        headers: {
+          accept: 'text/plain'
+        }
+      }, function(res, body) {
+        test.equal(res.httpVersion, '2.0', 'should return HTTP/2 response');
+        test.equal(res.statusCode, 200, 'should return 200');
+        test.equal(body, 'Hello world', 'should return static page');
+        test.done();
+      });
+    }   
   },
   custom_https: function(test) {
     test.expect(2);
@@ -173,7 +201,7 @@ exports.connect = {
       }
     }, function(res, body) {
       test.ok(body.indexOf('35729/livereload.js') !== -1, 'Should contain livereload snippet.');
-
+  
       // check if livereload works with params
       get({
         hostname: 'localhost',
@@ -259,7 +287,7 @@ exports.connect = {
     }, function(res, body) {
       test.equal(res.statusCode, 200, 'should return 200');
       test.equal(body, 'Hello, world from port #' + PORT + '!', 'should return a dynamic response');
-
+  
       get({
         hostname: 'localhost',
         port: PORT,
@@ -276,7 +304,7 @@ exports.connect = {
   },
   allHostname: function(test) {
     test.expect(3);
-
+  
     get('http://localhost:8012/fixtures/hello.txt', function(res, body) {
       test.equal(res.statusCode, 200, 'should return 200');
       get('http://127.0.0.1:8012/fixtures/hello.txt', function(res, body) {
@@ -298,7 +326,7 @@ exports.connect = {
   },
   routedMiddleware: function(test) {
     test.expect(1);
-
+  
     get('http://localhost:8016/mung', function(res, body) {
       test.equal(body, 'Yay', 'should return a string at /mung');
       test.done();
