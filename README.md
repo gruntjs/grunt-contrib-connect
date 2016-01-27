@@ -71,6 +71,26 @@ Set to the directory you wish to be browse-able. Used to override the `base` opt
 
 See https://www.npmjs.com/package/serve-index for details.
 
+#### directoryOptions
+Type: `Object`  
+Default: `null`
+
+Set directory listing options.
+
+	```js
+		connect: {
+            server: {
+                options: {
+                    port: 1812,
+                    base: 'templates',
+                    directoryOptions: {'icons':true}
+                }
+            }
+        }
+	```
+	
+See https://github.com/expressjs/serve-index#options for possible values.
+
 #### keepalive
 Type: `Boolean`  
 Default: `false`
