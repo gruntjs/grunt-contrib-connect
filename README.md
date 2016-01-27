@@ -78,15 +78,15 @@ Default: `null`
 Set directory listing options.
 
 ```js
-	connect: {
-		server: {
-			options: {
-				port: 1812,
-				base: 'templates',
-				directoryOptions: {'icons':true}
-			}
+connect: {
+	server: {
+		options: {
+			port: 1812,
+			base: 'templates',
+			directoryOptions: {'icons':true}
 		}
 	}
+}
 ```
 	
 See https://github.com/expressjs/serve-index#options for possible values.
