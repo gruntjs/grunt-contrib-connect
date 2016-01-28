@@ -88,7 +88,7 @@ connect: {
 	}
 }
 ```
-	
+
 See https://github.com/expressjs/serve-index#options for possible values.
 
 #### keepalive
@@ -423,4 +423,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Fri Oct 16 2015 18:58:27.*
+*This file was generated on Thu Jan 28 2016 10:50:15.*
