@@ -40,7 +40,7 @@ module.exports = function(grunt) {
       middlewares.push(serveStatic(path, staticOptions));
     });
     // Make directory browse-able.
-    middlewares.push(serveIndex(directory.path || directory));
+    middlewares.push(serveIndex(directory.path || directory, options.directoryOptions));
     return middlewares;
   };
 
@@ -53,6 +53,7 @@ module.exports = function(grunt) {
       hostname: '0.0.0.0',
       base: '.',
       directory: null,
+      directoryOptions: null,
       keepalive: false,
       debug: false,
       livereload: false,
