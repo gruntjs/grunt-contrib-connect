@@ -16,6 +16,7 @@ module.exports = function(grunt) {
   var serveIndex = require('serve-index');
   var http = require('http');
   var https = require('https');
+  var http2 = require('http2');
   var injectLiveReload = require('connect-livereload');
   var open = require('opn');
   var portscanner = require('portscanner');
@@ -62,8 +63,12 @@ module.exports = function(grunt) {
       middleware: null
     });
 
-    if (options.protocol !== 'http' && options.protocol !== 'https') {
-      grunt.fatal('protocol option must be \'http\' or \'https\'');
+    if (options.protocol !== 'http' && options.protocol !== 'https' && options.protocol !== 'http2') {
+      grunt.fatal('protocol option must be \'http\', \'https\' or \'http2\'');
+    }
+    
+    if (options.protocol === 'http2' && /^0.(?:1|2|3|4|5|6|7|8|9|10|11)\./.test(process.versions.node)) {
+      grunt.fatal('can\'t use http2 with node < 0.12, see https://github.com/molnarg/node-http2/issues/101');
     }
 
     // Connect requires the base path to be absolute.
@@ -146,6 +151,12 @@ module.exports = function(grunt) {
 
         var app = connect();
         var server = null;
+        var httpsOptions = {
+          key: options.key || grunt.file.read(path.join(__dirname, 'certs', 'server.key')).toString(),
+          cert: options.cert || grunt.file.read(path.join(__dirname, 'certs', 'server.crt')).toString(),
+          ca: options.ca || grunt.file.read(path.join(__dirname, 'certs', 'ca.crt')).toString(),
+          passphrase: options.passphrase || 'grunt'
+        };
 
         middleware.forEach(function (m) {
           if (!util.isArray(m)) {
@@ -155,12 +166,9 @@ module.exports = function(grunt) {
         });
 
         if (options.protocol === 'https') {
-          server = https.createServer({
-            key: options.key || grunt.file.read(path.join(__dirname, 'certs', 'server.key')).toString(),
-            cert: options.cert || grunt.file.read(path.join(__dirname, 'certs', 'server.crt')).toString(),
-            ca: options.ca || grunt.file.read(path.join(__dirname, 'certs', 'ca.crt')).toString(),
-            passphrase: options.passphrase || 'grunt'
-          }, app);
+          server = https.createServer(httpsOptions, app);
+        } else if (options.protocol === 'http2') {
+          server = http2.createServer(httpsOptions, app);
         } else {
           server = http.createServer(app);
         }
@@ -199,16 +207,17 @@ module.exports = function(grunt) {
           server
             .listen(foundPort, options.hostname)
             .on('listening', function() {
-              var address = server.address();
+              var port = foundPort;
+              var scheme = options.protocol === 'http2' ? 'https' : options.protocol;
               var hostname = options.hostname || '0.0.0.0';
               var targetHostname = hostname === '0.0.0.0' ? 'localhost' : hostname;
-              var target = options.protocol + '://' + targetHostname + ':' + address.port;
+              var target = scheme + '://' + targetHostname + ':' + port;
 
               grunt.log.writeln('Started connect web server on ' + target);
               grunt.config.set('connect.' + taskTarget + '.options.hostname', hostname);
-              grunt.config.set('connect.' + taskTarget + '.options.port', address.port);
+              grunt.config.set('connect.' + taskTarget + '.options.port', port);
 
-              grunt.event.emit('connect.' + taskTarget + '.listening', hostname, address.port);
+              grunt.event.emit('connect.' + taskTarget + '.listening', hostname, port);
 
               if (options.open === true) {
                 open(target);
