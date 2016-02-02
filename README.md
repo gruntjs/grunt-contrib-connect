@@ -79,13 +79,19 @@ Set directory listing options.
 
 ```js
 connect: {
-	server: {
-		options: {
-			port: 1812,
-			base: 'templates',
-			directoryOptions: {'icons':true}
-		}
-	}
+    server: {
+        options: {
+            directoryOptions: {
+                icons: true, //Show file icons
+                view: 'details', //Show details
+                filter: function (filename, index, files, dir) { //Filter files by extension
+                    var validExtensions=['html','txt','json','xml'];
+                    var ext=filename.split('.').pop();
+                    return validExtensions.indexOf(ext)>=0;
+                }
+            }
+        }
+    }
 }
 ```
 
@@ -423,4 +429,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Thu Jan 28 2016 10:50:15.*
+*This file was generated on Tue Feb 02 2016 14:37:41.*

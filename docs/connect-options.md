@@ -49,13 +49,19 @@ Set directory listing options.
 
 ```js
 connect: {
-	server: {
-		options: {
-			port: 1812,
-			base: 'templates',
-			directoryOptions: {'icons':true}
-		}
-	}
+    server: {
+        options: {
+            directoryOptions: {
+                icons: true, //Show file icons
+                view: 'details', //Show details
+                filter: function (filename, index, files, dir) { //Filter files by extension
+                    var validExtensions=['html','txt','json','xml'];
+                    var ext=filename.split('.').pop();
+                    return validExtensions.indexOf(ext)>=0;
+                }
+            }
+        }
+    }
 }
 ```
 
