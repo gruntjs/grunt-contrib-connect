@@ -13,6 +13,9 @@ var serveStatic = require('serve-static');
 var certs = path.join(__dirname, 'tasks', 'certs');
 
 module.exports = function(grunt) {
+
+  grunt.option('stack', true);
+
   var testConnectInstances = {
     basic: {
       options: {
