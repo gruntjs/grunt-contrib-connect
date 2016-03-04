@@ -10,7 +10,7 @@ The port on which the webserver will respond. The task will fail if the specifie
 Type: `String`  
 Default: `'http'`
 
-May be `'http'` or `'https'`.
+May be `'http'`, `'https'` or `'http2'`.
 
 ## hostname
 Type: `String`  
@@ -40,6 +40,32 @@ Default: `null`
 Set to the directory you wish to be browse-able. Used to override the `base` option browse-able directory.
 
 See https://www.npmjs.com/package/serve-index for details.
+
+## directoryOptions
+Type: `Object`  
+Default: `null`
+
+Set directory listing options.
+
+```js
+connect: {
+    server: {
+        options: {
+            directoryOptions: {
+                icons: true, //Show file icons
+                view: 'details', //Show details
+                filter: function (filename, index, files, dir) { //Filter files by extension
+                    var validExtensions=['html','txt','json','xml'];
+                    var ext=filename.split('.').pop();
+                    return validExtensions.indexOf(ext)>=0;
+                }
+            }
+        }
+    }
+}
+```
+
+See https://github.com/expressjs/serve-index#options for possible values.
 
 ## keepalive
 Type: `Boolean`  

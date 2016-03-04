@@ -99,10 +99,10 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
 });
 ```
 
-## Support for HTTPS
+## Support for HTTPS / HTTP2
 
 A default certificate authority, certificate and key file are provided and pre-
-configured for use when `protocol` has been set to `https`.
+configured for use when `protocol` has been set to `https` or `http2`.
 
 NOTE: No passphrase set for the certificate.
 If you are getting warnings in Google Chrome, add 'server.crt' (from 'node_modules/tasks/certs')
@@ -113,7 +113,7 @@ select 'Get Info' - 'Trust' - 'Always Trust', close window, restart Chrome.
 For HTTPS livereload with [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) 
  see the last example [here](https://github.com/gruntjs/grunt-contrib-watch#optionslivereload).
 
-#### Advanced HTTPS config
+#### Advanced HTTPS / HTTP2 config
 
 If the default certificate setup is unsuitable for your environment, OpenSSL
 can be used to create a set of self-signed certificates with a local ca root.
@@ -148,7 +148,7 @@ grunt.initConfig({
   connect: {
     server: {
       options: {
-        protocol: 'https',
+        protocol: 'https', // or 'http2'
         port: 8443,
         key: grunt.file.read('server.key').toString(),
         cert: grunt.file.read('server.crt').toString(),
