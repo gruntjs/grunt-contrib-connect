@@ -121,9 +121,7 @@ module.exports = function(grunt) {
 
     // If --debug was specified, enable logging.
     if (grunt.option('debug') || options.debug === true) {
-      morgan.format('grunt', ('[D] server :method :url :status ' +
-        ':res[content-length] - :response-time ms').magenta);
-      middleware.unshift(morgan('grunt'));
+      middleware.unshift(morgan('dev'));
     }
 
     // Start server.
