@@ -1,3 +1,10 @@
+v1.0.0:
+  date: 2016-03-04
+  changes:
+    - use predefined logger format with colored http status.
+    - update deps and docs.
+    - HTTP2 support.
+    - other fixes.
 v0.11.2:
   date: 2015-08-03
   changes:

@@ -10,7 +10,7 @@ The port on which the webserver will respond. The task will fail if the specifie
 Type: `String`  
 Default: `'http'`
 
-May be `'http'` or `'https'`.
+May be `'http'`, `'http2'` or `'https'`.
 
 ## hostname
 Type: `String`  

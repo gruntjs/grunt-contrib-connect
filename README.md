@@ -1,11 +1,10 @@
-# grunt-contrib-connect v0.11.2 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/3bp93hbs2rd5lwfd/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-connect/branch/master)
+# grunt-contrib-connect v1.0.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/3bp93hbs2rd5lwfd/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-connect/branch/master)
 
 > Start a connect web server
 
 
 
 ## Getting Started
-This plugin requires Grunt `>=0.4.0`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -38,9 +37,9 @@ The port on which the webserver will respond. The task will fail if the specifie
 
 #### protocol
 Type: `String`  
-Default: `'http'`
+Default: `'http'`, `'http2'`
 
-May be `'http'`, `'https'` or `'http2'`.
+May be `'http'`, `'http2'` or `'https'`.
 
 #### hostname
 Type: `String`  
@@ -298,7 +297,7 @@ grunt.registerTask('connect', 'Start a custom static web server.', function() {
 #### Support for HTTPS / HTTP2
 
 A default certificate authority, certificate and key file are provided and pre-
-configured for use when `protocol` has been set to `https` or `http2`.
+configured for use when `protocol` has been set to `https`.
 
 NOTE: No passphrase set for the certificate.
 If you are getting warnings in Google Chrome, add 'server.crt' (from 'node_modules/tasks/certs')
@@ -306,7 +305,7 @@ to your keychain.
 In OS X, after you add 'server.crt', right click on the certificate,
 select 'Get Info' - 'Trust' - 'Always Trust', close window, restart Chrome.
 
-For HTTPS livereload with [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) 
+For HTTPS / HTTP2 livereload with [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) 
  see the last example [here](https://github.com/gruntjs/grunt-contrib-watch#optionslivereload).
 
 ###### Advanced HTTPS / HTTP2 config
@@ -377,6 +376,7 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 ## Release History
 
+ * 2016-03-04   v1.0.0   use predefined logger format with colored http status. update deps and docs. HTTP2 support. other fixes.
  * 2015-08-03   v0.11.2   documentation fixes.
  * 2015-08-01   v0.11.1   fixes debug logging.
  * 2015-07-30   v0.11.0   update to connect 3.
@@ -403,4 +403,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Fri Oct 16 2015 18:58:27.*
+*This file was generated on Fri Mar 04 2016 21:32:37.*
