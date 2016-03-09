@@ -19,7 +19,7 @@
     "async": "^1.5.2",
     "connect": "^3.4.0",
     "connect-livereload": "^0.5.0",
-    "http2": "git://github.com/gruntjs/node-http2#fix-return-value",
+    "http2": "https://github.com/gruntjs/node-http2#fix-return-value",
     "morgan": "^1.6.1",
     "opn": "^4.0.0",
     "portscanner": "^1.0.0",
