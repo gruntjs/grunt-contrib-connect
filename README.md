@@ -70,6 +70,32 @@ Set to the directory you wish to be browse-able. Used to override the `base` opt
 
 See https://www.npmjs.com/package/serve-index for details.
 
+#### directoryOptions
+Type: `Object`  
+Default: `null`
+
+Set directory listing options.
+
+```js
+connect: {
+    server: {
+        options: {
+            directoryOptions: {
+                icons: true, //Show file icons
+                view: 'details', //Show details
+                filter: function (filename, index, files, dir) { //Filter files by extension
+                    var validExtensions=['html','txt','json','xml'];
+                    var ext = filename.split('.').pop();
+                    return validExtensions.indexOf(ext) >= 0;
+                }
+            }
+        }
+    }
+}
+```
+
+See https://github.com/expressjs/serve-index#options for possible values.
+
 #### keepalive
 Type: `Boolean`  
 Default: `false`
@@ -403,4 +429,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Fri Mar 04 2016 21:32:37.*
+*This file was generated on Fri Mar 11 2016 11:58:16.*
