@@ -1,39 +1,39 @@
 v1.0.0:
   date: 2016-03-04
   changes:
-    - use predefined logger format with colored http status.
-    - update deps and docs.
+    - Use predefined logger format with colored http status.
+    - Update deps and docs.
     - HTTP2 support.
-    - other fixes.
+    - Other fixes.
 v0.11.2:
   date: 2015-08-03
   changes:
-    - documentation fixes.
+    - Documentation fixes.
 v0.11.1:
   date: 2015-08-01
   changes:
-    - fixes debug logging.
+    - Fixes debug logging.
 v0.11.0:
   date: 2015-07-30
   changes:
-    - update to connect 3.
+    - Update to connect 3.
 v0.10.1:
   date: 2015-04-03
   changes:
-    - fixes npm corruption issue
+    - Fixes npm corruption issue.
 v0.10.0:
   date: 2015-04-03
   changes:
-    - node 0.12 fixes
-    - doc updates
-    - fixes port finding
-    - other fixes
+    - Node.js 0.12 fixes.
+    - Doc updates.
+    - Fixes port finding.
+    - Other fixes.
 v0.9.0:
   date: 2014-11-07
   changes:
     - Adds routable middleware.
     - Switch to `opn` as it fixes some Linux issues.
-    - Add support for connect.static instance options.
+    - Add support for `connect.static` instance options.
 v0.8.0:
   date: 2014-06-09
   changes:
@@ -41,31 +41,31 @@ v0.8.0:
 v0.7.1:
   date: 2014-02-27
   changes:
-    - Fixes issue with the '*' hostname option.
+    - Fixes issue with the '*' `hostname` option.
 v0.7.0:
   date: 2014-02-18
   changes:
     - Update connect to ~2.13.0.
-    - Default hostname switched to '0.0.0.0'.
-    - Modified options.middleware to accept an array or a function.
+    - Default hostname switched to `0.0.0.0`.
+    - Modified `options.middleware` to accept an array or a function.
 v0.6.0:
   date: 2013-12-29
   changes:
-    - Open options.hostname if provided.
+    - Open `options.hostname` if provided.
     - Update connect-livereload to ~0.3.0.
     - Update connect to ~2.12.0.
-    - Use well-formed ssl certificates.
+    - Use well-formed SSL certificates.
     - Support all options of open.
     - Make directory browseable when base is a string.
 v0.5.0:
   date: 2013-09-05
   changes:
-    - Add 'open' option.
+    - Add `open` option.
 v0.4.2:
   date: 2013-09-05
   changes:
-    - Un-normalize options.base as it should be a string or an array as the user has set.
-    - Fix setting target hostname option.
+    - Un-normalize `options.base` as it should be a string or an array as the user has set.
+    - Fix setting target `hostname` option.
 v0.4.1:
   date: 2013-09-02
   changes:
@@ -78,8 +78,8 @@ v0.4.0:
     - Ability to set multiple bases.
     - Event emitted when server starts listening.
     - Support for HTTPS.
-    - debug option added to display debug logging like the --debug flag.
-    - livereload option added to inject a livereload snippet into the page.
+    - '`debug` option added to display debug logging like the `--debug` flag.'
+    - '`livereload` option added to inject a livereload snippet into the page.'
 v0.3.0:
   date: 2013-04-10
   changes:

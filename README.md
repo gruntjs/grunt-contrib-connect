@@ -37,7 +37,7 @@ The port on which the webserver will respond. The task will fail if the specifie
 
 #### protocol
 Type: `String`  
-Default: `'http'`, `'http2'`
+Default: `'http'`
 
 May be `'http'`, `'http2'` or `'https'`.
 
@@ -376,21 +376,21 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 ## Release History
 
- * 2016-03-04   v1.0.0   use predefined logger format with colored http status. update deps and docs. HTTP2 support. other fixes.
- * 2015-08-03   v0.11.2   documentation fixes.
- * 2015-08-01   v0.11.1   fixes debug logging.
- * 2015-07-30   v0.11.0   update to connect 3.
- * 2015-04-03   v0.10.1   fixes npm corruption issue
- * 2015-04-03   v0.10.0   node 0.12 fixes doc updates fixes port finding other fixes
- * 2014-11-07   v0.9.0   Adds routable middleware. Switch to `opn` as it fixes some Linux issues. Add support for connect.static instance options.
+ * 2016-03-04   v1.0.0   Use predefined logger format with colored http status. Update deps and docs. HTTP2 support. Other fixes.
+ * 2015-08-03   v0.11.2   Documentation fixes.
+ * 2015-08-01   v0.11.1   Fixes debug logging.
+ * 2015-07-30   v0.11.0   Update to connect 3.
+ * 2015-04-03   v0.10.1   Fixes npm corruption issue.
+ * 2015-04-03   v0.10.0   Node.js 0.12 fixes. Doc updates. Fixes port finding. Other fixes.
+ * 2014-11-07   v0.9.0   Adds routable middleware. Switch to `opn` as it fixes some Linux issues. Add support for `connect.static` instance options.
  * 2014-06-09   v0.8.0   Update connect and connect-livereload.
- * 2014-02-27   v0.7.1   Fixes issue with the '*' hostname option.
- * 2014-02-18   v0.7.0   Update connect to ~2.13.0. Default hostname switched to '0.0.0.0'. Modified options.middleware to accept an array or a function.
- * 2013-12-29   v0.6.0   Open options.hostname if provided. Update connect-livereload to ~0.3.0. Update connect to ~2.12.0. Use well-formed ssl certificates. Support all options of open. Make directory browseable when base is a string.
- * 2013-09-05   v0.5.0   Add 'open' option.
- * 2013-09-05   v0.4.2   Un-normalize options.base as it should be a string or an array as the user has set. Fix setting target hostname option.
+ * 2014-02-27   v0.7.1   Fixes issue with the '*' `hostname` option.
+ * 2014-02-18   v0.7.0   Update connect to ~2.13.0. Default hostname switched to `0.0.0.0`. Modified `options.middleware` to accept an array or a function.
+ * 2013-12-29   v0.6.0   Open `options.hostname` if provided. Update connect-livereload to ~0.3.0. Update connect to ~2.12.0. Use well-formed SSL certificates. Support all options of open. Make directory browseable when base is a string.
+ * 2013-09-05   v0.5.0   Add `open` option.
+ * 2013-09-05   v0.4.2   Un-normalize `options.base` as it should be a string or an array as the user has set. Fix setting target `hostname` option.
  * 2013-09-02   v0.4.1   Browse-able directory is the last item supplied to bases. Added directory option to override browse-able directory.
- * 2013-09-01   v0.4.0   Fix logging of which server address. Ability to set multiple bases. Event emitted when server starts listening. Support for HTTPS. debug option added to display debug logging like the --debug flag. livereload option added to inject a livereload snippet into the page.
+ * 2013-09-01   v0.4.0   Fix logging of which server address. Ability to set multiple bases. Event emitted when server starts listening. Support for HTTPS. `debug` option added to display debug logging like the `--debug` flag. `livereload` option added to inject a livereload snippet into the page.
  * 2013-04-10   v0.3.0   Add ability to listen on system-assigned port.
  * 2013-03-07   v0.2.0   Upgrade connect dependency.
  * 2013-02-17   v0.1.2   Ensure Gruntfile.js is included on npm.
@@ -403,4 +403,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Fri Mar 04 2016 21:32:37.*
+*This file was generated on Fri Mar 18 2016 19:23:56.*
