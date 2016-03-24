@@ -51,6 +51,12 @@ Setting it to `'*'`, like '`0.0.0.0`', will make the server accessible from any 
 
 If [`open`](#open) is set to `true`, the `hostname` setting will be used to generate the URL that is opened by the browser, defaulting to `localhost` if a wildcard hostname was specified.
 
+#### ignore
+Type: `Array`__
+
+An array of Strings or RegExps the served urls will be matched against and excluded live-reloading. This makes possible to workaround a problem with damaged binary data (in case there is no explicit e.g. .pdf in the url itself - see discussion here: https://github.com/gruntjs/grunt-contrib-connect/issues/142)
+The value is passed as-is to the underlying https://github.com/intesso/connect-livereload middleware and it is documented there.
+
 #### base
 Type: `String` or `Array` or `Object`  
 Default: `'.'`
