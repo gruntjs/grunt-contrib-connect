@@ -139,7 +139,12 @@ module.exports = function(grunt) {
           }
 
           // TODO: Add custom ports here?
-          middleware.unshift(injectLiveReload({port: options.livereload, hostname: options.hostname}));
+          var liveReloadOpts = {port: options.livereload, hostname: options.hostname};
+          // pass the ignore options - to address a problem: https://github.com/intesso/connect-livereload/issues/39
+          if (options.ignore) {
+            liveReloadOpts.ignore = options.ignore;
+          }
+          middleware.unshift(injectLiveReload(liveReloadOpts));
           callback(null);
         } else {
           callback(null);
