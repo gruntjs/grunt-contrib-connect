@@ -79,7 +79,7 @@ exports.connect = {
         test.equal(body, 'Hello world', 'should return static page');
         test.done();
       });
-    }   
+    }
   },
   custom_https: function(test) {
     test.expect(2);
@@ -201,7 +201,7 @@ exports.connect = {
       }
     }, function(res, body) {
       test.ok(body.indexOf('35729/livereload.js') !== -1, 'Should contain livereload snippet.');
-  
+
       // check if livereload works with params
       get({
         hostname: 'localhost',
@@ -287,7 +287,7 @@ exports.connect = {
     }, function(res, body) {
       test.equal(res.statusCode, 200, 'should return 200');
       test.equal(body, 'Hello, world from port #' + PORT + '!', 'should return a dynamic response');
-  
+
       get({
         hostname: 'localhost',
         port: PORT,
@@ -304,7 +304,7 @@ exports.connect = {
   },
   allHostname: function(test) {
     test.expect(3);
-  
+
     get('http://localhost:8012/fixtures/hello.txt', function(res, body) {
       test.equal(res.statusCode, 200, 'should return 200');
       get('http://127.0.0.1:8012/fixtures/hello.txt', function(res, body) {
@@ -332,7 +332,7 @@ exports.connect = {
   },
   routedMiddleware: function(test) {
     test.expect(1);
-  
+
     get('http://localhost:8016/mung', function(res, body) {
       test.equal(body, 'Yay', 'should return a string at /mung');
       test.done();
