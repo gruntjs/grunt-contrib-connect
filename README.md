@@ -1,4 +1,4 @@
-# grunt-contrib-connect v1.0.1 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/3bp93hbs2rd5lwfd/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-connect/branch/master)
+# grunt-contrib-connect v1.0.2 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/3bp93hbs2rd5lwfd/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-connect/branch/master)
 
 > Start a connect web server
 
@@ -376,6 +376,7 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 ## Release History
 
+ * 2016-04-27   v1.0.2   Fixed http2 dependencies and stopped using the fork.
  * 2016-03-22   v1.0.1   Fixed dependencies behind corporate proxy server.
  * 2016-03-04   v1.0.0   Use predefined logger format with colored http status. Update deps and docs. HTTP2 support. Other fixes.
  * 2015-08-03   v0.11.2   Documentation fixes.
@@ -404,4 +405,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Tue Mar 22 2016 10:33:53.*
+*This file was generated on Wed Apr 27 2016 10:11:42.*

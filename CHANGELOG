@@ -1,3 +1,7 @@
+v1.0.2:
+  date: 2016-04-27
+  changes:
+    - Fixed http2 dependencies and stopped using the fork.
 v1.0.1:
   date: 2016-03-22
   changes:
