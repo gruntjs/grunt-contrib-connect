@@ -44,13 +44,13 @@ module.exports = function(grunt) {
     return middlewares;
   };
   
-  grunt.registerMultiTask('disconnect', 'Stop a connected web server.', function() {
+  grunt.registerMultiTask('disconnect', 'Stop a connect web server.', function() {
+    var done = this.async();
     var taskTarget = this.target;
-    var stopServer = grunt.config.get('connect.' + taskTarget + '.shutdown'),
-        done = this.async();
+    var stopServer = grunt.config.get('connect.' + taskTarget + '.shutdown');
 
     if (stopServer) {
-        stopServer(done);
+      stopServer(done);
     }
 
     grunt.config.set('connect.' + taskTarget + '.shutdown', undefined);
