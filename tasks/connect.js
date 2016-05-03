@@ -43,6 +43,18 @@ module.exports = function(grunt) {
     middlewares.push(serveIndex(directory.path || directory));
     return middlewares;
   };
+  
+  grunt.registerMultiTask('disconnect', 'Stop a connected web server.', function() {
+    var taskTarget = this.target;
+    var stopServer = grunt.config.get('connect.' + taskTarget + '.shutdown'),
+        done = this.async();
+
+    if (stopServer) {
+        stopServer(done);
+    }
+
+    grunt.config.set('connect.' + taskTarget + '.shutdown', undefined);
+  });
 
   grunt.registerMultiTask('connect', 'Start a connect web server.', function() {
     var done = this.async();
@@ -202,7 +214,7 @@ module.exports = function(grunt) {
             grunt.fatal('Port ' + options.port + ' is already in use by another process.');
           }
 
-          server
+          var serverInstance = server
             .listen(foundPort, options.hostname)
             .on('listening', function() {
               var port = foundPort;
@@ -239,6 +251,9 @@ module.exports = function(grunt) {
                 grunt.fatal(err);
               }
             });
+        });
+        grunt.config.set('connect.' + taskTarget + '.shutdown', function(cb) {
+            serverInstance.close(cb);
         });
 
         // So many people expect this task to keep alive that I'm adding an option
