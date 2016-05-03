@@ -22,6 +22,7 @@ module.exports = function(grunt) {
   var portscanner = require('portscanner');
   var async = require('async');
   var util = require('util');
+  var serverInstances = {};
 
   var MAX_PORTS = 30; // Maximum available ports to check after the specified port
 
@@ -214,7 +215,7 @@ module.exports = function(grunt) {
             grunt.fatal('Port ' + options.port + ' is already in use by another process.');
           }
 
-          var serverInstance = server
+          serverInstances[taskTarget] = server
             .listen(foundPort, options.hostname)
             .on('listening', function() {
               var port = foundPort;
@@ -253,7 +254,8 @@ module.exports = function(grunt) {
             });
         });
         grunt.config.set('connect.' + taskTarget + '.shutdown', function(cb) {
-            serverInstance.close(cb);
+            serverInstances[taskTarget].close(cb);
+            serverInstances[taskTarget] = undefined;
         });
 
         // So many people expect this task to keep alive that I'm adding an option
