@@ -51,7 +51,7 @@ module.exports = function(grunt) {
     var stopServer = grunt.config.get('connect.' + taskTarget + '.shutdown');
 
     if (stopServer) {
-      stopServer(done);
+      stopServer(taskTarget, done);
     }
 
     grunt.config.set('connect.' + taskTarget + '.shutdown', undefined);
@@ -253,7 +253,7 @@ module.exports = function(grunt) {
               }
             });
         });
-        grunt.config.set('connect.' + taskTarget + '.shutdown', function(cb) {
+        grunt.config.set('connect.' + taskTarget + '.shutdown', function(taskTarget, cb) {
             serverInstances[taskTarget].close(cb);
             serverInstances[taskTarget] = undefined;
         });
