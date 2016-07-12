@@ -136,10 +136,12 @@ module.exports = function(grunt) {
         if (options.livereload !== false) {
           if (options.livereload === true) {
             options.livereload = 35729;
+          } else if (typeof options.livereload === 'object') {
+            middleware.unshift(injectLiveReload(options.livereload));
+          } else {
+            // TODO: Add custom ports here?
+            middleware.unshift(injectLiveReload({port: options.livereload, hostname: options.hostname}));
           }
-
-          // TODO: Add custom ports here?
-          middleware.unshift(injectLiveReload({port: options.livereload, hostname: options.hostname}));
           callback(null);
         } else {
           callback(null);
