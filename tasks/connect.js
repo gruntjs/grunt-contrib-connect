@@ -249,6 +249,8 @@ module.exports = function(grunt) {
           // function, this task will never, ever, ever terminate. Have fun!
           grunt.log.write('Waiting forever...\n');
         }
+
+        grunt.event.emit('connect-started', server, options.port);
       }
     ]);
   });
