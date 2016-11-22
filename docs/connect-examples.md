@@ -94,6 +94,7 @@ connect(serveStatic('www-root')).listen(9001);
 // Now you can define a "connect" task that starts a webserver, using the
 // connect lib, with whatever options and configuration you need:
 grunt.registerTask('connect', 'Start a custom static web server.', function() {
+  this.async();
   grunt.log.writeln('Starting static web server in "www-root" on port 9001.');
   connect(serveStatic('www-root')).listen(9001);
 });
