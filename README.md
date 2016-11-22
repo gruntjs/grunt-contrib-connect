@@ -41,6 +41,8 @@ Default: `'http'`
 
 May be `'http'`, `'http2'` or `'https'`.
 
+See [note](#support-for-https) about livereload if also using grunt-contrib-watch
+
 #### hostname
 Type: `String`  
 Default: `'0.0.0.0'`
@@ -355,6 +357,33 @@ grunt.initConfig({
 ```
 
 [TLS]: http://nodejs.org/api/tls.html#tls_tls_createserver_options_secureconnectionlistener
+
+If you are also using `grunt-contrib-watch`, you will need to update the options there as well to reference the **key** and **cert**:
+
+```javascript
+// Project configuration.
+grunt.initConfig({
+  connect: {
+    server: {
+      options: {
+        protocol: 'https',
+        port: 8443,
+        key: grunt.file.read('server.key').toString(),
+        cert: grunt.file.read('server.crt').toString(),
+        ca: grunt.file.read('ca.crt').toString()
+      },
+    },
+  },
+  watch: {
+    options: {
+      livereload: {
+        key: '<%= connect.server.options.key %>',
+        cert: '<%= connect.server.options.cert %>'
+      }
+    }
+  }
+});
+```
 
 #### Grunt Events
 The connect plugin will emit a grunt event, `connect.{taskName}.listening`, once the server has started. You can listen for this event to run things against a keepalive server, for example:
