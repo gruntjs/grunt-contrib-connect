@@ -1,3 +1,7 @@
+v1.0.3:
+  date: 2017-01-23
+  changes:
+    - Fixed "open" to use appName
 v1.0.2:
   date: 2016-04-27
   changes:
