@@ -202,7 +202,7 @@ module.exports = function(grunt) {
             grunt.fatal('Port ' + options.port + ' is already in use by another process.');
           }
 
-          server
+          var instance = server
             .listen(foundPort, options.hostname)
             .on('listening', function() {
               var port = foundPort;
@@ -241,6 +241,10 @@ module.exports = function(grunt) {
             });
         });
 
+        grunt.config('connect.' + taskTarget + '.server-closer', function(cb) {
+          instance.close(cb);
+        });
+
         // So many people expect this task to keep alive that I'm adding an option
         // for it. Running the task explicitly as grunt:keepalive will override any
         // value stored in the config. Have fun, people.
@@ -251,5 +255,14 @@ module.exports = function(grunt) {
         }
       }
     ]);
+  });
+
+  grunt.registerTask('disconnect', 'Stop a connected web server.', function(target) {
+    var stopServer = grunt.config('connect.' + target + '.server-closer'),
+        done = this.async();
+
+    if (stopServer) { stopServer(done); }
+
+    grunt.config('connect.' + target + '.server-closer', undefined)
   });
 };
