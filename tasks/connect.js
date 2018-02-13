@@ -153,7 +153,8 @@ module.exports = function(grunt) {
           key: options.key || grunt.file.read(path.join(__dirname, 'certs', 'server.key')).toString(),
           cert: options.cert || grunt.file.read(path.join(__dirname, 'certs', 'server.crt')).toString(),
           ca: options.ca || grunt.file.read(path.join(__dirname, 'certs', 'ca.crt')).toString(),
-          passphrase: options.passphrase || 'grunt'
+          passphrase: options.passphrase || 'grunt',
+          secureProtocol: options.secureProtocol || '',
         };
 
         middleware.forEach(function (m) {
