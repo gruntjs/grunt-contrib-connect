@@ -1,15 +1,15 @@
 sudo: false
+
 language: node_js
+
 node_js:
-  - "0.10"
-  - "0.12"
-  - "4"
-  - "5"
-  - "iojs"
-before_install:
-  - if [ "$TRAVIS_NODE_VERSION" = "0.10" ]; then npm install -g npm@2; fi
+  - "6"
+  - "8"
+  - "10"
+
 matrix:
   fast_finish: true
+
 cache:
   directories:
     - node_modules
