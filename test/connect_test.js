@@ -145,7 +145,7 @@ exports.connect = {
       test.equal(res.statusCode, 200, 'should return 200');
       test.equal(res.headers['content-type'], 'text/plain; charset=UTF-8', 'should return plaintext content type');
       get('http://localhost:8004/connect-examples.md', function(res, body) {
-        test.equal(res.headers['content-type'], 'text/x-markdown; charset=UTF-8', 'should return markdown content type');
+        test.equal(res.headers['content-type'], 'text/markdown; charset=UTF-8', 'should return markdown content type');
         test.equal(res.statusCode, 200, 'should return 200');
         test.done();
       });
