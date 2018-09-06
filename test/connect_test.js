@@ -3,7 +3,7 @@
 var grunt = require('grunt');
 var http = require('http');
 var https = require('https');
-var http2 = require('http2');
+var http2 = require('node-http2');
 
 function get(url, done) {
   var client = http;
