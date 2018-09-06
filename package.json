@@ -13,7 +13,7 @@
   },
   "main": "tasks/connect.js",
   "scripts": {
-    "test": "grunt test --verbose"
+    "test": "grunt test"
   },
   "dependencies": {
     "async": "^1.5.2",
