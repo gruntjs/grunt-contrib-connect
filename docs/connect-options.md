@@ -18,7 +18,7 @@ Default: `'0.0.0.0'`
 
 The hostname on which the webserver can be accessed.
 
-Setting it to `'*'`, like '`0.0.0.0`', will make the server accessible from any **local** IPv4 address like  `'127.0.0.1'` and the IP assigned to an ethernet or wireless interface (like `'192.168.0.x'` or `'10.0.0.x'`). [More info](http://en.wikipedia.org/wiki/0.0.0.0)
+Setting it to `'*'`, like '`0.0.0.0`', will make the server accessible from any **local** IPv4 address like  `'127.0.0.1'` and the IP assigned to an ethernet or wireless interface (like `'192.168.0.x'` or `'10.0.0.x'`). [More info](https://en.wikipedia.org/wiki/0.0.0.0)
 
 If [`open`](#open) is set to `true`, the `hostname` setting will be used to generate the URL that is opened by the browser, defaulting to `localhost` if a wildcard hostname was specified.
 

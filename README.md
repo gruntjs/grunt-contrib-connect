@@ -47,7 +47,7 @@ Default: `'0.0.0.0'`
 
 The hostname on which the webserver can be accessed.
 
-Setting it to `'*'`, like '`0.0.0.0`', will make the server accessible from any **local** IPv4 address like  `'127.0.0.1'` and the IP assigned to an ethernet or wireless interface (like `'192.168.0.x'` or `'10.0.0.x'`). [More info](http://en.wikipedia.org/wiki/0.0.0.0)
+Setting it to `'*'`, like '`0.0.0.0`', will make the server accessible from any **local** IPv4 address like  `'127.0.0.1'` and the IP assigned to an ethernet or wireless interface (like `'192.168.0.x'` or `'10.0.0.x'`). [More info](https://en.wikipedia.org/wiki/0.0.0.0)
 
 If [`open`](#open) is set to `true`, the `hostname` setting will be used to generate the URL that is opened by the browser, defaulting to `localhost` if a wildcard hostname was specified.
 
@@ -354,7 +354,7 @@ grunt.initConfig({
 });
 ```
 
-[TLS]: http://nodejs.org/api/tls.html#tls_tls_createserver_options_secureconnectionlistener
+[TLS]: https://nodejs.org/api/tls.html#tls_tls_createserver_options_secureconnectionlistener
 
 #### Grunt Events
 The connect plugin will emit a grunt event, `connect.{taskName}.listening`, once the server has started. You can listen for this event to run things against a keepalive server, for example:
@@ -405,4 +405,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Thu Sep 06 2018 16:46:53.*
+*This file was generated on Thu Sep 06 2018 17:06:45.*

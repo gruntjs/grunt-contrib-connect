@@ -159,7 +159,7 @@ grunt.initConfig({
 });
 ```
 
-[TLS]: http://nodejs.org/api/tls.html#tls_tls_createserver_options_secureconnectionlistener
+[TLS]: https://nodejs.org/api/tls.html#tls_tls_createserver_options_secureconnectionlistener
 
 ## Grunt Events
 The connect plugin will emit a grunt event, `connect.{taskName}.listening`, once the server has started. You can listen for this event to run things against a keepalive server, for example:
