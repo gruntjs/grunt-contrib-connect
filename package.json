@@ -16,15 +16,15 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "async": "^1.5.2",
-    "connect": "^3.4.0",
-    "connect-livereload": "^0.5.0",
-    "morgan": "^1.6.1",
+    "async": "^2.6.1",
+    "connect": "^3.6.6",
+    "connect-livereload": "^0.6.0",
+    "morgan": "^1.9.0",
     "node-http2": "^4.0.1",
-    "opn": "^4.0.0",
-    "portscanner": "^1.0.0",
-    "serve-index": "^1.7.1",
-    "serve-static": "^1.10.0"
+    "opn": "^5.3.0",
+    "portscanner": "^2.2.0",
+    "serve-index": "^1.9.1",
+    "serve-static": "^1.13.2"
   },
   "devDependencies": {
     "grunt": "^1.0.3",
