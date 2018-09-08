@@ -82,6 +82,7 @@ This can be one of the following:
 	  callback: function() {} // called when the app has opened
 	}
 	```
+
 Note that in [v0.9.0](https://github.com/gruntjs/grunt-contrib-connect/releases/tag/v0.9.0) [open](https://www.npmjs.com/package/open) was replaced with [opn](https://www.npmjs.com/package/opn) but the configuration remained the same for backwards compatibility. `target`, `appName` and `callback` are the only supported keys in the config object.
 
 ## useAvailablePort
