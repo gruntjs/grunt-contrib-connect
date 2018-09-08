@@ -102,7 +102,7 @@ This can be one of the following:
 
 - Specifying `true` opens the default server URL (generated from the [`protocol`](#protocol), [`hostname`](#hostname) and [`port`](#port) settings)
 - Specifying a URL opens that URL
-- Specify an object with the following keys to configure [opn](https://www.npmjs.com/package/opn) directly:
+- Specify an object with the following keys to configure [open](https://www.npmjs.com/package/open) directly:
 
 	```js
 	{
@@ -111,7 +111,6 @@ This can be one of the following:
 	  callback: function() {} // called when the app has opened
 	}
 	```
-Note that in [v0.9.0](https://github.com/gruntjs/grunt-contrib-connect/releases/tag/v0.9.0) [open](https://www.npmjs.com/package/open) was replaced with [opn](https://www.npmjs.com/package/opn) but the configuration remained the same for backwards compatibility. `target`, `appName` and `callback` are the only supported keys in the config object.
 
 #### useAvailablePort
 Type: `Boolean`  
@@ -406,4 +405,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Sat Sep 08 2018 13:54:36.*
+*This file was generated on Thu Sep 06 2018 17:06:45.*
