@@ -224,7 +224,8 @@ module.exports = function(grunt) {
                 options.open.target = options.open.target || target;
                 options.open.appName = options.open.appName || null;
                 options.open.callback = options.open.callback || function() {};
-                open(options.open.target, options.open.appName, options.open.callback);
+                open(options.open.target, { app: options.open.appName })
+                  .then(options.open.callback, grunt.fatal);
               } else if (typeof options.open === 'string') {
                 open(options.open);
               }
