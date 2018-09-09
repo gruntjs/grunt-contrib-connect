@@ -1,3 +1,11 @@
+v2.0.0:
+  date: 2018-09-09
+  changes:
+    - Drop Node.js < 6 support.
+    - Update all dependencies and switch to `node-http2`.
+    - Add `secureProtocol` in `httpsOptions`.
+    - Fix `open.appName`.
+    - Allow passing `serve-index` options.
 v1.0.2:
   date: 2016-04-27
   changes:
