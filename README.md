@@ -1,4 +1,4 @@
-# grunt-contrib-connect v1.0.2 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/3bp93hbs2rd5lwfd/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-connect/branch/master)
+# grunt-contrib-connect v2.0.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/3bp93hbs2rd5lwfd/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-connect/branch/master)
 
 > Start a connect web server
 
@@ -102,7 +102,7 @@ This can be one of the following:
 
 - Specifying `true` opens the default server URL (generated from the [`protocol`](#protocol), [`hostname`](#hostname) and [`port`](#port) settings)
 - Specifying a URL opens that URL
-- Specify an object with the following keys to configure [open](https://www.npmjs.com/package/open) directly:
+- Specify an object with the following keys to configure [opn](https://www.npmjs.com/package/opn) directly:
 
 	```js
 	{
@@ -111,6 +111,8 @@ This can be one of the following:
 	  callback: function() {} // called when the app has opened
 	}
 	```
+
+Note that in [v0.9.0](https://github.com/gruntjs/grunt-contrib-connect/releases/tag/v0.9.0) [open](https://www.npmjs.com/package/open) was replaced with [opn](https://www.npmjs.com/package/opn) but the configuration remained the same for backwards compatibility. `target`, `appName` and `callback` are the only supported keys in the config object.
 
 #### useAvailablePort
 Type: `Boolean`  
@@ -376,6 +378,7 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 ## Release History
 
+ * 2018-09-09   v2.0.0   Drop Node.js < 6 support. Update all dependencies and switch to `node-http2`. Add `secureProtocol` in `httpsOptions`. Fix `open.appName`. Allow passing `serve-index` options.
  * 2016-04-27   v1.0.2   Fixed http2 dependencies and stopped using the fork.
  * 2016-03-22   v1.0.1   Fixed dependencies behind corporate proxy server.
  * 2016-03-04   v1.0.0   Use predefined logger format with colored http status. Update deps and docs. HTTP2 support. Other fixes.
@@ -405,4 +408,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Thu Sep 06 2018 17:06:45.*
+*This file was generated on Sun Sep 09 2018 10:07:45.*
