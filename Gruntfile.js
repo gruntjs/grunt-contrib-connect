@@ -120,6 +120,13 @@ module.exports = function(grunt) {
         port: 8018
       }
     },
+    livereload_general: {
+      options: {
+        livereload: {src: 'https://example.org:54321/livereload.js?snipver=1'},
+        base: 'test/fixtures/',
+        port: 8019
+      }
+    },
     custom_middleware: {
       options: {
         port: 8007,
