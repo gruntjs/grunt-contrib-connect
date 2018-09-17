@@ -216,6 +216,32 @@ exports.connect = {
       });
     });
   },
+  livereload_port: function(test) {
+    test.expect(2);
+    get({
+      hostname: 'localhost',
+      port: 8018,
+      path: '/livereload.html',
+      headers: {
+        accept: 'text/html'
+      }
+    }, function(res, body) {
+      test.ok(body.indexOf('12345/livereload.js') !== -1, 'Should contain livereload snippet with configured port.');
+
+      // check if livereload works with params
+      get({
+        hostname: 'localhost',
+        port: 8018,
+        path: '/livereload.html?a=1&b=2#id',
+        headers: {
+          accept: 'text/html'
+        }
+      }, function(res, body) {
+        test.ok(body.indexOf('12345/livereload.js') !== -1, 'Should contain livereload snippet with configured port.');
+        test.done();
+      });
+    });
+  },
   custom_middleware: function(test) {
     var PORT = 8007;
     test.expect(4);
