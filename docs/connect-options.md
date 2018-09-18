@@ -56,12 +56,14 @@ Default: `false`
 Set the `debug` option to true to enable logging instead of using the `--debug` flag.
 
 ## livereload
-Type: `Boolean` or `Number`  
+Type: `Boolean`, `Number`, or `Object`  
 Default: `false`
 
-Set to `true` or a port number to inject a live reload script tag into your page using [connect-livereload](https://github.com/intesso/connect-livereload).
+Set to anything but `false` to inject a live reload script tag into your page using [connect-livereload](https://github.com/intesso/connect-livereload).
 
-*This does not perform live reloading. It is intended to be used in tandem with grunt-contrib-watch or another task that will trigger a live reload server upon files changing.*
+If you set to `true`, defaults are used. If you set to a number, that number is used as a port number, together with the hostname you configured. If you set this to an object, that object is passed to `connect-livereload` unchanged as its configuration.
+
+*This does not by itself perform live reloading.* It is intended to be used in tandem with grunt-contrib-watch or another task that will trigger a live reload server upon files changing.
 
 ## open
 Type: `Boolean` or `String` or `Object`  
