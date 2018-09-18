@@ -182,7 +182,7 @@ exports.connect = {
       }
     }, function(res, body) {
       test.equal(res.statusCode, 200, 'should return 200');
-      test.ok(body.includes('hello.txt'), 'Listing should contain hello.txt');
+      test.ok(body.indexOf('hello.txt') !== -1, 'Listing should contain hello.txt');
       get('http://localhost:8005/fixtures/hello.txt', function(res, body) {
         test.equal(res.statusCode, 200, 'should return 200');
         test.equal(body, 'Hello world', 'Should display contents of /fixtures/hello.txt');
@@ -200,7 +200,7 @@ exports.connect = {
         accept: 'text/html'
       }
     }, function(res, body) {
-      test.ok(body.includes('35729/livereload.js'), 'Should contain livereload snippet.');
+      test.ok(body.indexOf('35729/livereload.js') !== -1, 'Should contain livereload snippet.');
 
       // check if livereload works with params
       get({
@@ -211,7 +211,7 @@ exports.connect = {
           accept: 'text/html'
         }
       }, function(res, body) {
-        test.ok(body.includes('35729/livereload.js'), 'Should contain livereload snippet.');
+        test.ok(body.indexOf('35729/livereload.js') !== -1, 'Should contain livereload snippet.');
         test.done();
       });
     });
@@ -226,7 +226,7 @@ exports.connect = {
         accept: 'text/html'
       }
     }, function(res, body) {
-      test.ok(body.includes('12345/livereload.js'), 'Should contain livereload snippet with configured port.');
+      test.ok(body.indexOf('12345/livereload.js') !== -1, 'Should contain livereload snippet with configured port.');
 
       // check if livereload works with params
       get({
@@ -237,7 +237,7 @@ exports.connect = {
           accept: 'text/html'
         }
       }, function(res, body) {
-        test.ok(body.includes('12345/livereload.js'), 'Should contain livereload snippet with configured port.');
+        test.ok(body.indexOf('12345/livereload.js') !== -1, 'Should contain livereload snippet with configured port.');
         test.done();
       });
     });
@@ -252,7 +252,7 @@ exports.connect = {
         accept: 'text/html'
       }
     }, function(res, body) {
-      test.ok(body.includes('https://example.org:54321/livereload.js?snipver=1'), 'Should contain livereload snippet with configured src.');
+      test.ok(body.indexOf('https://example.org:54321/livereload.js?snipver=1') !== -1, 'Should contain livereload snippet with configured src.');
 
       // check if livereload works with params
       get({
@@ -263,7 +263,7 @@ exports.connect = {
           accept: 'text/html'
         }
       }, function(res, body) {
-        test.ok(body.includes('https://example.org:54321/livereload.js?snipver=1'), 'Should contain livereload snippet with configured src.');
+        test.ok(body.indexOf('https://example.org:54321/livereload.js?snipver=1') !== -1, 'Should contain livereload snippet with configured src.');
         test.done();
       });
     });
