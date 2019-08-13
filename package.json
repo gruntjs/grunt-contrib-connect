@@ -19,7 +19,7 @@
     "async": "^2.6.1",
     "connect": "^3.6.6",
     "connect-livereload": "^0.6.0",
-    "morgan": "^1.9.0",
+    "morgan": "^1.9.1",
     "node-http2": "^4.0.1",
     "opn": "^5.3.0",
     "portscanner": "^2.2.0",
