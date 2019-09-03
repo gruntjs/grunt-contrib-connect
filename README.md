@@ -1,4 +1,4 @@
-# grunt-contrib-connect v2.0.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/3bp93hbs2rd5lwfd/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-connect/branch/master)
+# grunt-contrib-connect v2.1.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-connect.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-connect) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/3bp93hbs2rd5lwfd/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-connect/branch/master)
 
 > Start a connect web server
 
@@ -85,12 +85,14 @@ Default: `false`
 Set the `debug` option to true to enable logging instead of using the `--debug` flag.
 
 #### livereload
-Type: `Boolean` or `Number`  
+Type: `Boolean`, `Number`, or `Object`  
 Default: `false`
 
-Set to `true` or a port number to inject a live reload script tag into your page using [connect-livereload](https://github.com/intesso/connect-livereload).
+Set to anything but `false` to inject a live reload script tag into your page using [connect-livereload](https://github.com/intesso/connect-livereload).
 
-*This does not perform live reloading. It is intended to be used in tandem with grunt-contrib-watch or another task that will trigger a live reload server upon files changing.*
+If you set to `true`, defaults are used. If you set to a number, that number is used as a port number, together with the hostname you configured. If you set this to an object, that object is passed to `connect-livereload` unchanged as its configuration.
+
+*This does not by itself perform live reloading.* It is intended to be used in tandem with grunt-contrib-watch or another task that will trigger a live reload server upon files changing.
 
 #### open
 Type: `Boolean` or `String` or `Object`  
@@ -378,6 +380,7 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 ## Release History
 
+ * 2019-09-03   v2.1.0   Update package lock. Allow all configuration options of livereload to be passed through.
  * 2018-09-09   v2.0.0   Drop Node.js < 6 support. Update all dependencies and switch to `node-http2`. Add `secureProtocol` in `httpsOptions`. Fix `open.appName`. Allow passing `serve-index` options.
  * 2016-04-27   v1.0.2   Fixed http2 dependencies and stopped using the fork.
  * 2016-03-22   v1.0.1   Fixed dependencies behind corporate proxy server.
@@ -408,4 +411,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Sun Sep 09 2018 10:07:45.*
+*This file was generated on Tue Sep 03 2019 12:53:19.*

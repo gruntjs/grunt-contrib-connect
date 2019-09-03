@@ -1,3 +1,8 @@
+v2.1.0:
+  date: 2019-09-03
+  changes:
+    - Update package lock.
+    - Allow all configuration options of livereload to be passed through.
 v2.0.0:
   date: 2018-09-09
   changes:
