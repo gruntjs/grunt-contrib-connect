@@ -380,6 +380,7 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 ## Release History
 
+ * 2020-07-16   v3.0.0   Requires node 10+. Updated dependencies.
  * 2019-09-03   v2.1.0   Update package lock. Allow all configuration options of livereload to be passed through.
  * 2018-09-09   v2.0.0   Drop Node.js < 6 support. Update all dependencies and switch to `node-http2`. Add `secureProtocol` in `httpsOptions`. Fix `open.appName`. Allow passing `serve-index` options.
  * 2016-04-27   v1.0.2   Fixed http2 dependencies and stopped using the fork.
@@ -411,4 +412,4 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com)
 
-*This file was generated on Thu Jul 16 2020 10:36:46.*
+*This file was generated on Thu Jul 16 2020 10:58:04.*
