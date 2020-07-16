@@ -1,7 +1,7 @@
 {
   "name": "grunt-contrib-connect",
   "description": "Start a connect web server",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "author": {
     "name": "Grunt Team",
     "url": "https://gruntjs.com/"
@@ -9,7 +9,7 @@
   "repository": "gruntjs/grunt-contrib-connect",
   "license": "MIT",
   "engines": {
-    "node": ">=6"
+    "node": ">=10"
   },
   "main": "tasks/connect.js",
   "scripts": {
@@ -28,12 +28,9 @@
   },
   "devDependencies": {
     "grunt": "^1.0.3",
-    "grunt-contrib-internal": "^3.1.0",
+    "grunt-contrib-internal": "^5.0.0",
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-nodeunit": "^2.0.0"
-  },
-  "peerDependencies": {
-    "grunt": ">=0.4.0"
   },
   "keywords": [
     "gruntplugin",
@@ -43,6 +40,5 @@
   ],
   "files": [
     "tasks"
-  ],
-  "appveyor_id": "3bp93hbs2rd5lwfd"
+  ]
 }
