@@ -67,7 +67,7 @@ module.exports = function(grunt) {
       grunt.fatal('protocol option must be \'http\', \'https\' or \'http2\'');
     }
 
-    if (options.protocol === 'http2' && /^0.(?:1|2|3|4|5|6|7|8|9|10|11)\./.test(process.versions.node)) {
+    if (options.protocol === 'http2' && /^0\.(?:[1-9][12]?)\./.test(process.versions.node)) {
       grunt.fatal('can\'t use http2 with node < 0.12, see https://github.com/molnarg/node-http2/issues/101');
     }
 
