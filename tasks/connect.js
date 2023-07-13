@@ -18,7 +18,7 @@ module.exports = function(grunt) {
   var https = require('https');
   var http2 = require('node-http2');
   var injectLiveReload = require('connect-livereload');
-  var open = require('opn');
+  var open = require('open');
   var portscanner = require('portscanner');
   var async = require('async');
   var util = require('util');
@@ -88,9 +88,16 @@ module.exports = function(grunt) {
       }
     }
 
-    // Connect will listen to all interfaces if hostname is null.
-    if (options.hostname === '*') {
-      options.hostname = '';
+    // Backward compatibility: Support wildcard (see README).
+    //
+    // Support Node 18: "localhost" now expands to IPv6 "::" by default.
+    // Listening for "0.0.0.0" is IPv4-only. In order to make sure grunt-contrib-connect usage
+    // works as-is, both if you relied on "localhost" and if you relied on "127.0.0.1", bind the
+    // listen to IPv6 "::" so that "localhost" keeps working. On most operating systems,
+    // listening on "::" also results in receiving packets for 127.0.0.1.
+    // Ref https://github.com/nodejs/node/issues/40702
+    if (!options.hostname || options.hostname === '*' || options.hostname === '0.0.0.0') {
+      options.hostname = '::';
     }
 
     // Connect will listen to ephemeral port if asked
@@ -180,7 +187,7 @@ module.exports = function(grunt) {
         }
 
         function findUnusedPort(port, maxPort, hostname, callback) {
-          if (hostname === '0.0.0.0') {
+          if (hostname === '::') {
             hostname = '127.0.0.1';
           }
 
@@ -208,8 +215,8 @@ module.exports = function(grunt) {
             .on('listening', function() {
               var port = foundPort;
               var scheme = options.protocol === 'http2' ? 'https' : options.protocol;
-              var hostname = options.hostname || '0.0.0.0';
-              var targetHostname = hostname === '0.0.0.0' ? 'localhost' : hostname;
+              var hostname = options.hostname;
+              var targetHostname = hostname === '::' ? 'localhost' : hostname;
               var target = scheme + '://' + targetHostname + ':' + port;
 
               grunt.log.writeln('Started connect web server on ' + target);
