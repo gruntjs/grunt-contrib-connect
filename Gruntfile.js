@@ -218,19 +218,15 @@ module.exports = function(grunt) {
           return middleware;
         }
       }
-    }
-  };
-
-  // don't try to test http2 support in node < 0.12, see https://github.com/molnarg/node-http2/issues/101
-  if (!/^0.(?:1|2|3|4|5|6|7|8|9|10|11)\./.test(process.versions.node)) {
-    testConnectInstances.http2 = {
+    },
+    http2: {
       options: {
         base: 'test',
         port: 8017,
         protocol: 'http2',
       }
-    };
-  }
+    }
+  };
 
   grunt.initConfig({
     jshint: {
