@@ -170,7 +170,7 @@ module.exports = function(grunt) {
         if (options.protocol === 'https') {
           server = https.createServer(httpsOptions, app);
         } else if (options.protocol === 'http2') {
-          server = http2.createServer(httpsOptions, app);
+          server = http2.createSecureServer(httpsOptions, app);
         } else {
           server = http.createServer(app);
         }
