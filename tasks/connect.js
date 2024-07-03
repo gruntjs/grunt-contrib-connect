@@ -16,7 +16,7 @@ module.exports = function(grunt) {
   var serveIndex = require('serve-index');
   var http = require('http');
   var https = require('https');
-  var http2 = require('node-http2');
+  var http2 = require('http2-wrapper');
   var injectLiveReload = require('connect-livereload');
   var open = require('open');
   var portscanner = require('portscanner');
@@ -65,10 +65,6 @@ module.exports = function(grunt) {
 
     if (options.protocol !== 'http' && options.protocol !== 'https' && options.protocol !== 'http2') {
       grunt.fatal('protocol option must be \'http\', \'https\' or \'http2\'');
-    }
-
-    if (options.protocol === 'http2' && /^0.(?:1|2|3|4|5|6|7|8|9|10|11)\./.test(process.versions.node)) {
-      grunt.fatal('can\'t use http2 with node < 0.12, see https://github.com/molnarg/node-http2/issues/101');
     }
 
     // Connect requires the base path to be absolute.
@@ -174,7 +170,7 @@ module.exports = function(grunt) {
         if (options.protocol === 'https') {
           server = https.createServer(httpsOptions, app);
         } else if (options.protocol === 'http2') {
-          server = http2.createServer(httpsOptions, app);
+          server = http2.createSecureServer(httpsOptions, app);
         } else {
           server = http.createServer(app);
         }
