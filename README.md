@@ -1,4 +1,4 @@
-# grunt-contrib-connect v4.0.0 [![Build Status](https://github.com/gruntjs/grunt-contrib-connect/workflows/Tests/badge.svg)](https://github.com/gruntjs/grunt-contrib-connect/actions?workflow=Tests)
+# grunt-contrib-connect v5.0.0 [![Build Status](https://github.com/gruntjs/grunt-contrib-connect/workflows/Tests/badge.svg)](https://github.com/gruntjs/grunt-contrib-connect/actions?workflow=Tests)
 
 > Start a connect web server
 
