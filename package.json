@@ -16,7 +16,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "async": "^3.2.0",
+    "async": "^3.2.5",
     "connect": "^3.7.0",
     "connect-livereload": "^0.6.1",
     "http2-wrapper": "^2.2.1",
@@ -24,11 +24,11 @@
     "open": "^8.0.0",
     "portscanner": "^2.2.0",
     "serve-index": "^1.9.1",
-    "serve-static": "^1.14.1"
+    "serve-static": "^1.15.0"
   },
   "devDependencies": {
     "grunt": "^1.6.1",
-    "grunt-contrib-internal": "^8.0.0",
+    "grunt-contrib-internal": "^9.0.0",
     "grunt-contrib-jshint": "^3.2.0",
     "grunt-contrib-nodeunit": "^5.0.0"
   },

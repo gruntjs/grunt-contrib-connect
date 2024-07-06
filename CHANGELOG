@@ -1,3 +1,8 @@
+v5.0.0:
+  date: 2024-07-05
+  changes:
+    - Replaced node-http2 with http2-wrapper, potental breaking changes.
+    - Bump to deps, serve-static, async and internal grunt
 v4.0.0:
   date: 2023-07-13
   changes:
@@ -109,8 +114,8 @@ v0.4.0:
     - Ability to set multiple bases.
     - Event emitted when server starts listening.
     - Support for HTTPS.
-    - '`debug` option added to display debug logging like the `--debug` flag.'
-    - '`livereload` option added to inject a livereload snippet into the page.'
+    - "`debug` option added to display debug logging like the `--debug` flag."
+    - "`livereload` option added to inject a livereload snippet into the page."
 v0.3.0:
   date: 2013-04-10
   changes:
