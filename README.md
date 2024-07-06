@@ -380,6 +380,7 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 ## Release History
 
+ * 2024-07-05   v5.0.0   Replaced node-http2 with http2-wrapper, potental breaking changes. Bump to deps, serve-static, async and internal grunt
  * 2023-07-13   v4.0.0   Requires node 16+. Updated dependencies.
  * 2020-07-16   v3.0.0   Requires node 10+. Updated dependencies.
  * 2019-09-03   v2.1.0   Update package lock. Allow all configuration options of livereload to be passed through.
