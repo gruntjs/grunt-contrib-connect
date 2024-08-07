@@ -21,7 +21,6 @@ module.exports = function(grunt) {
   var open = require('open');
   var portscanner = require('portscanner');
   var async = require('async');
-  var util = require('util');
 
   var MAX_PORTS = 30; // Maximum available ports to check after the specified port
 
@@ -161,7 +160,7 @@ module.exports = function(grunt) {
         };
 
         middleware.forEach(function (m) {
-          if (!util.isArray(m)) {
+          if (!Array.isArray(m)) {
             m = [m];
           }
           app.use.apply(app, m);
