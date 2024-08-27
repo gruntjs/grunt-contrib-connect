@@ -1,4 +1,4 @@
-# grunt-contrib-connect v5.0.0 [![Build Status](https://github.com/gruntjs/grunt-contrib-connect/workflows/Tests/badge.svg)](https://github.com/gruntjs/grunt-contrib-connect/actions?workflow=Tests)
+# grunt-contrib-connect v5.0.1 [![Build Status](https://github.com/gruntjs/grunt-contrib-connect/workflows/Tests/badge.svg)](https://github.com/gruntjs/grunt-contrib-connect/actions?workflow=Tests)
 
 > Start a connect web server
 
@@ -380,6 +380,7 @@ grunt.registerTask('jasmine-server', 'start web server for jasmine tests in brow
 
 ## Release History
 
+ * 2024-08-27   v5.0.1   Replace use of deprecated `util.isArray`.
  * 2024-07-05   v5.0.0   Replaced node-http2 with http2-wrapper, potental breaking changes. Bump to deps, serve-static, async and internal grunt
  * 2023-07-13   v4.0.0   Requires node 16+. Updated dependencies.
  * 2020-07-16   v3.0.0   Requires node 10+. Updated dependencies.
